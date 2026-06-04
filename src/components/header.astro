@@ -1,0 +1,8 @@
+---
+import { getNavigation } from '@/pages/api/navigation';
+import HeaderIsland from '@/islands/Header/index';
+const pathname = Astro.url.pathname;
+const navigation = await getNavigation();
+---
+
+<HeaderIsland pathname={pathname} navigation={navigation} client:load />

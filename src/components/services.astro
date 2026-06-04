@@ -1,0 +1,26 @@
+---
+import type { HomeData } from '@/server/repositories/types';
+import Container from './container.astro';
+import ServiceBox from './service-box.astro';
+
+interface Props {
+  data: HomeData['services'];
+}
+
+const { data } = Astro.props;
+---
+
+<section id="servicios" class="py-20 w-full p-6 px-0 md:p-12">
+  <Container class="flex flex-col items-center">
+    <h2 class="text-3xl md:text-4xl tracking-wide leading-tight mb-4 font-[mobile-sans]">{data.title}</h2>
+    <div class="w-full grid grid-rows-1 grid-cols-1 gap-8 lg:p-6 lg:grid-rows-2 lg:grid-cols-2 lg:px-8 lg:gap-8">
+      {
+        data.service.map((service) => (
+          <div>
+            <ServiceBox title={service.title} link={service.link} image={service.image} />
+          </div>
+        ))
+      }
+    </div>
+  </Container>
+</section>

@@ -1,0 +1,54 @@
+---
+import { Image } from 'astro:assets';
+import type { HomeData } from '@/server/repositories/types';
+import Container from './container.astro';
+
+interface Props {
+  data: HomeData['center'];
+}
+
+const { data } = Astro.props;
+---
+
+<section id="el-centro" class="w-full p-6 px-0 bg-primary-light md:p-12">
+  <Container>
+    <div class="grid grid-cols-1 md:grid-cols-3 mb-12 gap-32">
+      <div class="col-span-2">
+        <div class="small-title inline-block prose prose-p:mb-4 prose-p:pb-2 prose-p:text-lg prose-p:leading-7 prose-p:tracking-wider prose-p:uppercase prose-p:relative prose-p:font-[mobile-sans]" set:html={data.title} />
+        <div class="inline-block prose prose-h2:text-3xl prose-h2:leading-tight prose-h2:md:text-5xl prose-h2:md:leading-none prose-h2:font-[mobile-sans] prose-h2:tracking-wide" set:html={data.subtitle} />
+      </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-32">
+      <div>
+        <div class="prose prose-p:text-lg prose-p:text-black prose-p:pb-4 prose-p:tracking-wider prose-p:text-inherit prose-p:mb-0! prose-p:mt-0!" set:html={data.content} />
+        <a
+          href={data.button.link}
+          class="inline-flex mt-3 p-3 px-12 text-xl rounded-full tracking-wider font-[mobile-sans] cursor-pointer no-underline bg-white text-primary-dark hover:text-primary-dark-hover"
+        >
+          {data.button.title}
+        </a>
+      </div>
+      <div class="hidden md:block">
+        {
+          data.image && (
+            <div class="hidden w-96 h-96 overflow-hidden rounded-full relative md:block">
+              <Image src={data.image} alt="El centro" width={384} height={384} class="rounded-full object-cover w-full h-full" />
+            </div>
+          )
+        }
+      </div>
+    </div>
+  </Container>
+</section>
+
+<style is:global>
+  .small-title p::before {
+    position: absolute;
+    content: '';
+    bottom: 0;
+    left: 0;
+    width: 150%;
+    height: 1px;
+    background-color: black;
+  }
+</style>

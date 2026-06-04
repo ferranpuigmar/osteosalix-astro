@@ -1,0 +1,87 @@
+@import "tailwindcss";
+@plugin '@tailwindcss/typography';
+
+:root {
+  --color-primary-main: 140 214 171;
+  --color-primary-hover: 79 184 127;
+  --color-primary-dark: 93 193 146;
+  --color-primary-dark-hover: 42 159 108;
+  --color-primary-light: 201 234 217;
+  --color-gray: 78 78 77;
+
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@layer utilities {
+  .bg-primary-main {
+    background-color: rgb(var(--color-primary-main));
+  }
+
+  .bg-primary-hover {
+    background-color: rgb(var(--color-primary-hover));
+  }
+
+  .text-primary-dark {
+    color: rgb(var(--color-primary-dark));
+  }
+
+  .text-primary-dark-hover {
+    color: rgb(var(--color-primary-dark-hover));
+  }
+
+  .hover\:text-primary-dark-hover:hover {
+    color: rgb(var(--color-primary-dark-hover));
+  }
+
+  .text-primary-main {
+    color: rgb(var(--color-primary-main));
+  }
+
+  .md\:text-primary-main {
+    color: rgb(var(--color-primary-main));
+  }
+
+  .bg-primary-light {
+    background-color: rgb(var(--color-primary-light));
+  }
+
+  .text-gray {
+    color: rgb(var(--color-gray));
+  }
+
+  .before\:bg-primary-main::before {
+    background-color: rgb(var(--color-primary-main) / 0.4);
+  }
+}
+
+@font-face {
+  font-family: 'mobile-sans';
+  src: url('/fonts/mobile_sans-webfont.woff2') format('woff2'),
+       url('/fonts/mobile_sans-webfont.woff') format('woff'),
+       url('/fonts/mobile_sans-webfont.ttf') format('truetype'),
+       url('/fonts/mobile_sans-webfont.svg#mobile_sansregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: 'mobile-sans', 'Montserrat', sans-serif;
+  color: black;
+  min-height: 100vh;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+:target {
+  scroll-margin-top: 90px;
+}
+
+main,
+footer {
+  position: relative;
+  z-index: 1;
+}

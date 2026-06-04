@@ -1,0 +1,21 @@
+---
+import BaseLayout from './base-layout.astro';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+}
+
+const { title, description, canonical } = Astro.props;
+---
+
+<BaseLayout title={title} description={description} canonical={canonical}>
+  <main class="pt-24 pb-24 md:px-12">
+    <div class="w-full max-w-7xl mx-auto px-6">
+      <div class="prose prose-h1:mb-6 prose-h1:text-4xl md:prose-h1:text-5xl prose-h1:leading-tight prose-h1:tracking-wide prose-h1:font-[mobile-sans] prose-h2:pt-3 prose-h2:mb-6 prose-h2:text-3xl prose-h2:leading-tight prose-h2:tracking-wide prose-h2:font-[mobile-sans] prose-li:relative prose-li:pl-5 prose-li:pb-6 prose-li:before:content-[''] prose-li:before:absolute prose-li:before:w-2 prose-li:before:h-2 prose-li:before:rounded-full prose-li:before:bg-primary-main max-w-none">
+        <slot />
+      </div>
+    </div>
+  </main>
+</BaseLayout>

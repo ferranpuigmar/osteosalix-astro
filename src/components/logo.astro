@@ -1,0 +1,12 @@
+---
+import { Image } from 'astro:assets';
+import { siteConfig } from '@/data/site-config';
+---
+<div class="logo z-10">
+  <Image
+    src={siteConfig.logo.url}
+    alt={siteConfig.logo.alt}
+    width={siteConfig.logo.width}
+    height={siteConfig.logo.height}
+  />
+</div>
