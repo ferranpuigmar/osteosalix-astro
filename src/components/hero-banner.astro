@@ -10,7 +10,7 @@ const { data } = Astro.props;
 ---
 
 <section class="pb-8 pt-16 h-screen bg-white flex items-center justify-center w-full overflow-hidden relative font-[mobile-sans]">
-  <div class="relative z-[2] flex items-center w-full flex-col">
+  <div id="hero-content" class="relative z-[2] flex items-center w-full flex-col">
     <div class="relative text-4xl md:text-6xl mt-[-0.9em]">
       {
         data.imagotypeUrl && (
@@ -31,3 +31,17 @@ const { data } = Astro.props;
     <Image alt="Osteosalix Portada" src={data.bgImageUrl} width={1920} height={1080} class="object-cover w-full h-full" />
   </div>
 </section>
+
+<script>
+  const el = document.getElementById('hero-content');
+  if (el) {
+    const onScroll = () => {
+      const rect = el.getBoundingClientRect();
+      const headerH = 80;
+      const progress = Math.min(1, Math.max(0, 1 - (headerH + 70 - rect.top) / (rect.height * 0.5)));
+      el.style.opacity = String(progress);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+</script>
