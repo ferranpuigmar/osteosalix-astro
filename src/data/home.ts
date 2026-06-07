@@ -1,9 +1,11 @@
 export interface HomeData {
   heroSection: {
+    badge: string;
     title: string;
-    subtitle: string;
+    description: string;
     bgImageUrl: string;
-    imagotypeUrl: string;
+    bgOverlayUrl: string;
+    heroImageUrl: string;
   };
   center: {
     title: string;
@@ -34,15 +36,17 @@ export interface HomeData {
 
 export const homeData: HomeData = {
   heroSection: {
-    title: 'Osteosalix',
-    subtitle: 'Osteopatía y fisioterapia en Sant Cugat del Vallés',
+    badge: 'Osteopatía y fisioterapia en Sant Cugat',
+    title: 'Cuidamos de ti de forma integral',
+    description: 'Un espacio dedicado a tu salud donde combinamos técnicas manuales y un enfoque holístico para devolverte el equilibrio que necesitas.',
     bgImageUrl: '/images/hero-bg.jpg',
-    imagotypeUrl: '/images/imagotip.svg',
+    bgOverlayUrl: 'https://images.unsplash.com/photo-1519824145371-296894a0daa9?fm=jpg&q=80&w=1440&auto=format&fit=crop',
+    heroImageUrl: 'https://images.unsplash.com/photo-1519823551278-64ac92734fb1?fm=jpg&q=80&w=1080&auto=format&fit=crop',
   },
   center: {
     title: '<p>El centro</p>',
     subtitle: '<h2><strong>Profesionales especializados en osteopatía y fisioterapia en Sant Cugat del Vallés</strong></h2>',
-    content: '<p>En Osteosalix combinamos osteopatía y fisioterapia para ofrecerte un tratamiento integral y personalizado. Nuestro enfoque busca la causa de tus molestias, no solo aliviar los síntomas.</p><p>Te ayudamos a recuperar tu bienestar a través de técnicas manuales suaves y efectivas, adaptadas a tus necesidades específicas.</p>',
+    content: '<p>Desde 2018, en Osteosalix combinamos experiencia y formación continua para ofrecerte el mejor tratamiento. Creemos en la capacidad natural del cuerpo para sanarse cuando se le dan las condiciones adecuadas.</p>',
     button: {
       title: 'Contactar',
       link: '#contactar',

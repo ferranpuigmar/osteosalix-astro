@@ -24,7 +24,7 @@ const plainText = text.replace(/<[^>]+>/g, '').trim();
     />
   </div>
   <div class={`flex justify-center items-center h-full relative z-[2] ${position === 'right' ? 'order-0' : ''}`}>
-    <h3 class={`mx-[10%] text-center text-xl tracking-wider leading-relaxed opacity-100 z-[2] md:text-4xl md:opacity-100 lg:mx-[25%] ${color === 'main' ? 'md:text-primary-main' : ''}`}>
+    <h3 class={`mx-[10%] text-center text-xl tracking-wider leading-relaxed opacity-100 z-[2] md:text-4xl md:opacity-100 lg:mx-[25%] ${color === 'main' ? 'md:text-brand-primary' : ''}`}>
       <a href={link} class="no-underline text-inherit" set:html={text} />
     </h3>
   </div>

@@ -1,9 +1,9 @@
 import { useScrollHeader, useMobileMenu } from './hooks';
-import { HeaderLogo } from './header-logo';
-import { DesktopNav } from './desktop-nav';
-import { PhoneButton } from './phone-button';
-import { MenuToggle } from './menu-toggle';
-import { MobileMenu } from './mobile-menu';
+import { HeaderLogo } from './components/header-logo';
+import { DesktopNav } from './components/desktop-nav';
+import { PhoneButton } from './components/phone-button';
+import { MenuToggle } from './components/menu-toggle';
+import { MobileMenu } from './components/mobile-menu';
 import type { MenuGroup } from '@/server/repositories/types';
 
 interface Props {
@@ -18,17 +18,17 @@ export default function HeaderIsland({ pathname, navigation }: Props) {
   const scrolled = headerWithScroll || !isHomePage;
 
   const headerClass = scrolled
-    ? 'bg-white fixed shadow-md'
+    ? 'bg-[var(--bg-canvas)] fixed'
     : 'bg-transparent absolute';
 
   return (
     <>
       <header
-        className={`h-16 lg:h-20 flex justify-center items-center top-0 z-20 w-full transition-all duration-300 ${headerClass}`}
+        className={`h-[60px] lg:h-[90px] flex justify-center items-center top-0 z-20 w-full transition-all duration-300 ${headerClass}`}
       >
-        <div className="max-w-7xl mx-auto px-6 md:pr-6 pr-14 h-full flex items-center justify-between w-full">
+        <div className="layout-wrapper h-full flex items-center justify-between">
           <HeaderLogo />
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-12">
             <DesktopNav navigation={navigation} pathname={pathname} />
             <PhoneButton />
           </div>

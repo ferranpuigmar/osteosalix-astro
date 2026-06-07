@@ -9,7 +9,7 @@ export function SubmitButton({ loading, label = 'Enviar', loadingLabel = 'Envian
     <button
       type="submit"
       disabled={loading}
-      className="p-3 px-12 text-xl rounded-full tracking-wider font-[mobile-sans] cursor-pointer no-underline bg-white text-primary-dark hover:text-primary-dark-hover disabled:opacity-50"
+      className="p-3 px-12 text-xl rounded-full tracking-wider font-[mobile-sans] cursor-pointer no-underline bg-white text-brand-primary hover:text-brand-dark disabled:opacity-50"
     >
       {loading ? loadingLabel : label}
     </button>

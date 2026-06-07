@@ -25,10 +25,12 @@ export interface MenuGroup {
 
 export interface HomeData {
   heroSection: {
+    badge: string;
     title: string;
-    subtitle: string;
+    description: string;
     bgImageUrl: string;
-    imagotypeUrl: string;
+    bgOverlayUrl: string;
+    heroImageUrl: string;
   };
   center: {
     title: string;
