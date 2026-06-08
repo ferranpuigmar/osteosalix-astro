@@ -10,7 +10,7 @@ interface Props {
 export function DesktopSubmenu({ items, isOpen, pathname, onNavigate }: Props) {
   return (
     <ul
-      className={`bg-white absolute w-[230px] top-[calc(100%+10px)] left-1/2 -translate-x-1/2 shadow-md rounded-br-md overflow-hidden transition-all duration-300 origin-top ${
+      className={`bg-white absolute w-[230px] top-[calc(100%+10px)] left-1/2 -translate-x-1/2 shadow-md rounded-br-md overflow-hidden transition-all duration-300 origin-top z-50 ${
         isOpen
           ? 'scale-y-100 opacity-100 pointer-events-auto'
           : 'scale-y-0 opacity-0 pointer-events-none'

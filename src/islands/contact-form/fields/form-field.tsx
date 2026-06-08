@@ -5,30 +5,19 @@ interface Props {
   type: 'text' | 'email' | 'tel';
   registration: UseFormRegisterReturn;
   error?: string;
-  value: string;
+  placeholder: string;
 }
 
-export function FormField({ label, type, registration, error, value }: Props) {
-  const isDirty = value && value.length > 0;
-
+export function FormField({ label, type, registration, error, placeholder }: Props) {
   return (
-    <div className="col-span-3 md:col-span-1 flex flex-col justify-center self-start">
-      <div className={`relative rounded-sm overflow-hidden bg-white ${error ? 'text-red-600 border border-red-600' : ''}`}>
-        <label
-          className={`absolute left-3 z-[1] pointer-events-none flex items-center transition-all duration-200 ease-linear opacity-70 ${
-            isDirty
-              ? 'top-[19%] text-xs'
-              : 'top-1/2 -translate-y-1/2'
-          }`}
-        >
-          {label}
-        </label>
-        <input
-          {...registration}
-          type={type}
-          className={`p-3 min-h-[68px] w-full ${isDirty ? 'pt-5' : ''}`}
-        />
-      </div>
+    <div className="flex flex-col gap-[10px] w-full">
+      <label className="text-body-xs font-[500] text-[var(--neutral-600)]">{label}</label>
+      <input
+        {...registration}
+        type={type}
+        placeholder={placeholder}
+        className="h-[52px] rounded-xl bg-[#F7F5F2] px-[18px] text-[16px] text-[var(--text-primary)] placeholder:text-[#A5A19A] outline-none transition-shadow focus:ring-2 focus:ring-[var(--brand-primary)]/20"
+      />
       {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
     </div>
   );

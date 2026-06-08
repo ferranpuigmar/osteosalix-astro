@@ -1,36 +1,45 @@
 ---
-import { getCollection } from 'astro:content';
-import BaseLayout from '@/layouts/base-layout.astro';
-import Container from '@/components/container.astro';
-import { getAllLegalPages } from '@/pages/api/legal-list';
+import { getCollection } from "astro:content";
+import BaseLayout from "@/layouts/base-layout.astro";
+import Container from "@/components/layout/container.astro";
+import { getAllLegalPages } from "@/pages/api/legal-list";
+import ContactSection from "@/components/shared/contact-section.astro";
+import CentrosSection from "@/components/centers/centros-section.astro";
 
 export async function getStaticPaths() {
-  const entries = await getAllLegalPages();
-  return entries.map((entry) => ({
-    params: { slug: entry.slug },
-    props: { slug: entry.slug },
-  }));
+	const entries = await getAllLegalPages();
+	return entries.map((entry) => ({
+		params: { slug: entry.slug },
+		props: { slug: entry.slug },
+	}));
 }
 
 const { slug } = Astro.props;
-const [legal] = (await getCollection('legal')).filter((e) => e.slug === slug);
+const [legal] = (await getCollection("legal")).filter((e) => e.slug === slug);
 const { Content } = await legal.render();
 ---
 
-<BaseLayout title={`${legal.data.title} | Osteosalix`} description={legal.data.description}>
-  <main>
-    <div class="w-full pt-24 pb-24 md:px-12">
-      <Container>
-        <div class="w-full max-w-none prose prose-h1:mb-6 prose-h1:text-4xl md:prose-h1:text-5xl prose-h1:leading-tight prose-h1:tracking-wide prose-h1:font-[mobile-sans] prose-h2:mb-4 prose-h2:text-3xl prose-h2:leading-tight prose-h2:tracking-wide prose-h2:font-[mobile-sans] prose-h3:pt-3 prose-h3:mb-6 prose-h3:text-3xl prose-h3:leading-tight prose-h3:tracking-wide prose-h3:font-[mobile-sans] prose-ul:list-none prose-ul:p-0 prose-li:relative prose-li:pl-5 prose-li:pb-6 prose-li:before:content-[''] prose-li:before:absolute prose-li:before:left-0 prose-li:before:top-[10px] prose-li:before:w-2 prose-li:before:h-2 prose-li:before:rounded-full prose-li:before:bg-border-default">
-          <Content />
-        </div>
-      </Container>
-    </div>
-  </main>
+<BaseLayout
+	title={`${legal.data.title} | Osteosalix`}
+	description={legal.data.description}
+>
+	<main>
+		<div class="w-full pt-24 pb-24 md:px-12">
+			<Container>
+				<div
+					class="w-full max-w-none prose prose-h1:mb-6 prose-h1:text-4xl md:prose-h1:text-5xl prose-h1:leading-tight prose-h1:tracking-wide prose-h1:font-[mobile-sans] prose-h2:mb-4 prose-h2:text-3xl prose-h2:leading-tight prose-h2:tracking-wide prose-h2:font-[mobile-sans] prose-h3:pt-3 prose-h3:mb-6 prose-h3:text-3xl prose-h3:leading-tight prose-h3:tracking-wide prose-h3:font-[mobile-sans] prose-ul:list-none prose-ul:p-0 prose-li:relative prose-li:pl-5 prose-li:pb-6 prose-li:before:content-[''] prose-li:before:absolute prose-li:before:left-0 prose-li:before:top-[10px] prose-li:before:w-2 prose-li:before:h-2 prose-li:before:rounded-full prose-li:before:bg-border-default"
+				>
+					<Content />
+				</div>
+			</Container>
+			<ContactSection />
+			<CentrosSection />
+		</div>
+	</main>
 </BaseLayout>
 
 <style is:global>
-  .prose ul > li::before {
-    background-color: rgb(var(--color-primary-main));
-  }
+	.prose ul > li::before {
+		background-color: rgb(var(--color-primary-main));
+	}
 </style>

@@ -19,19 +19,18 @@ export interface HomeData {
   };
   services: {
     title: string;
+    subtitle: string;
     service: {
       id: string;
       title: string;
+      description: string;
       link: string;
       image: string;
     }[];
   };
-  highlightedContent: {
-    content: string;
-    link: string;
-    position: 'left' | 'right';
-    image: string;
-  }[];
+  philosophy: {
+    textureUrl: string;
+  };
 }
 
 export const homeData: HomeData = {
@@ -55,45 +54,39 @@ export const homeData: HomeData = {
   },
   services: {
     title: 'Nuestros servicios',
+    subtitle: 'Tratamientos que te transforman',
     service: [
       {
         id: '1',
         title: 'Osteopatía',
+        description: 'Tratamiento integral que restablece el equilibrio del cuerpo.',
         link: '/servicios/osteopatia',
         image: '/images/servicio-osteopatia.jpg',
       },
       {
         id: '2',
         title: 'Fisioterapia',
+        description: 'Rehabilitación y terapia física para recuperar tu movilidad.',
         link: '/servicios/fisioterapia',
         image: '/images/servicio-fisioterapia.jpg',
       },
       {
         id: '3',
-        title: 'Osteopatía pediátrica',
+        title: 'Osteopatía Pediátrica',
+        description: 'Cuidado especializado para bebés y niños con técnicas suaves.',
         link: '/servicios/osteopatia-pediatrica',
         image: '/images/servicio-pediatrica.jpg',
       },
       {
         id: '4',
-        title: 'Osteopatía ginecológica',
+        title: 'Osteopatía Ginecológica',
+        description: 'Especialidad enfocada en la salud femenina y bienestar pélvico.',
         link: '/servicios/osteopatia-ginecologica',
         image: '/images/servicio-ginecologica.jpg',
       },
     ],
   },
-  highlightedContent: [
-    {
-      content: '<p>Especialistas en osteopatía pediátrica y ginecológica en el Vallés Occidental</p>',
-      link: '/especialistas-en-osteopatia-pediatrica-y-ginecologica-en-el-valles-occidental',
-      position: 'left',
-      image: '/images/destacado-1.jpg',
-    },
-    {
-      content: '<p>Fisioterapeuta en Sant Cugat del Vallès: tu bienestar es nuestra prioridad</p>',
-      link: '/fisioterapeuta-en-sant-cugat-del-valles',
-      position: 'right',
-      image: '/images/destacado-2.jpg',
-    },
-  ],
+  philosophy: {
+    textureUrl: 'https://images.unsplash.com/photo-1702094680205-3cd48dadbe53?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzA1NzkyMTZ8&ixlib=rb-4.1.0&q=80&w=1080',
+  },
 };

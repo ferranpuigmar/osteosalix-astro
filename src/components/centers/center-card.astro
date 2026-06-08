@@ -1,0 +1,43 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  name: string;
+  address: string;
+  phone: string;
+  image: string;
+  link: string;
+  alt?: boolean;
+}
+
+const { name, address, phone, image, link, alt = false } = Astro.props;
+---
+
+<div
+  class={`w-full max-w-[480px] h-[320px] flex overflow-hidden bg-white shadow-[0_16px_60px_rgba(0,0,0,0.03)] ${alt ? 'rounded-[12px_48px_12px_48px]' : 'rounded-[48px_12px_48px_12px]'}`}
+>
+  <img
+    src={image}
+    alt={name}
+    class={`w-[200px] h-full shrink-0 object-cover ${alt ? 'order-last' : ''}`}
+    loading="lazy"
+    decoding="async"
+  />
+  <div class="flex flex-col justify-center gap-5 px-[30px] py-[30px] flex-1">
+    <h3 class="font-heading text-[22px] font-[800] text-[var(--neutral-900)]">{name}</h3>
+    <div class="flex gap-3">
+      <Icon name="lucide:map-pin" size={18} class="text-[var(--brand-primary)] shrink-0 mt-0.5" />
+      <p class="text-body-sm text-[var(--neutral-600)]" set:html={address}></p>
+    </div>
+    <div class="flex items-center gap-3">
+      <Icon name="lucide:phone" size={18} class="text-[var(--brand-primary)] shrink-0" />
+      <span class="text-body-sm text-[var(--neutral-600)]">{phone}</span>
+    </div>
+    <a
+      href={link}
+      class="self-start rounded-[24px] bg-[var(--brand-primary)] text-white text-body-xs font-semibold px-6 py-[14px] transition-opacity hover:opacity-90"
+    >
+      Ver ficha del centro
+    </a>
+  </div>
+</div>

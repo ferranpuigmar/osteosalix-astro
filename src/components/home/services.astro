@@ -1,0 +1,38 @@
+---
+import type { HomeData } from '@/server/repositories/types';
+import LayoutWrapper from '../layout/layout-wrapper.astro';
+import ServiceCard from '../shared/service-card.astro';
+
+interface Props {
+  data: HomeData['services'];
+}
+
+const { data } = Astro.props;
+
+const mtOffsets = ['', 'lg:mt-20', '', 'lg:mt-20'];
+---
+
+<section id="servicios" class="bg-gradient-to-b from-[#F7F5F2] via-[#EAE6E0] to-white py-[60px]">
+  <LayoutWrapper class="pt4">
+    <div class="flex flex-col items-center lg:items-start gap-5 lg:gap-[20px] mb-12">
+      <span class="text-overline-sm text-xs text-[var(--brand-accent)]">Nuestros servicios</span>
+      <h2 class="text-center lg:text-left text-h2">Tratamientos que te transforman</h2>
+    </div>
+
+    <div class="flex flex-wrap items-start gap-6 lg:gap-x-[30px]">
+      {
+        data.service.map((service, i) => (
+          <div class={`w-full lg:w-[calc(25%-22.5px)] ${mtOffsets[i] ?? ''}`}>
+            <ServiceCard
+              title={service.title}
+              description={service.description}
+              image={service.image}
+              link={service.link}
+              alt={i % 2 !== 0}
+            />
+          </div>
+        ))
+      }
+    </div>
+  </LayoutWrapper>
+</section>

@@ -44,19 +44,18 @@ export interface HomeData {
   };
   services: {
     title: string;
+    subtitle: string;
     service: {
       id: string;
       title: string;
+      description: string;
       link: string;
       image: string;
     }[];
   };
-  highlightedContent: {
-    content: string;
-    link: string;
-    position: 'left' | 'right';
-    image: string;
-  }[];
+  philosophy: {
+    textureUrl: string;
+  };
 }
 
 export interface LegalEntry {

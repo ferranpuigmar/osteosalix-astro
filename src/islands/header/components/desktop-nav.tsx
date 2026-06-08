@@ -1,4 +1,4 @@
-import { useRef, useState, useCallback } from 'react';
+import { useRef, useState, useCallback, useEffect } from 'react';
 import { useClickOutside } from '../hooks';
 import { NavLink } from './nav-link';
 import { ChevronArrow } from './chevron-arrow';
@@ -17,11 +17,15 @@ export function DesktopNav({ navigation, pathname }: Props) {
     if (forceCollapse) setOpenIndex(null);
   }, []);
 
-  const submenuRef = useRef<HTMLDivElement>(null);
-  useClickOutside(submenuRef, closeSubmenu);
+  const navRef = useRef<HTMLDivElement>(null);
+  useClickOutside(navRef, closeSubmenu);
+
+  useEffect(() => {
+    console.log('openIndex: ', openIndex);
+  }, [openIndex]);
 
   return (
-    <div ref={submenuRef} className="hidden lg:flex items-center">
+    <div ref={navRef} className="hidden lg:flex items-center">
       <ul className="flex items-center gap-12">
         {navigation.map((group, index) => {
           const hasSubmenu = group.submenuItem.length > 0;
@@ -37,9 +41,13 @@ export function DesktopNav({ navigation, pathname }: Props) {
                     onClick={() => setOpenIndex(isOpen ? null : index)}
                     onMouseEnter={() => setOpenIndex(index)}
                   >
-                    <NavLink href={group.menuItem.link} isActive={isActive}>
+                    <span
+                      className={`no-underline text-[15px] transition-colors duration-300 ${
+                        isActive ? 'text-primary font-medium' : 'text-primary hover:text-brand-primary'
+                      }`}
+                    >
                       {group.menuItem.title}
-                    </NavLink>
+                    </span>
                     <ChevronArrow isOpen={isOpen} />
                   </button>
                   <DesktopSubmenu

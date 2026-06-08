@@ -1,0 +1,24 @@
+---
+import { siteConfig } from "@/data/site-config";
+---
+
+<div class="flex flex-col md:flex-row md:justify-between md:items-center gap-4 mt-auto pt-[80px]">
+  <p class="text-[var(--footer-legal)] text-sm">
+    &copy; {new Date().getFullYear()} {siteConfig.companyName}. Todos los
+    derechos reservados.
+  </p>
+  <div class="flex gap-8">
+    <a
+      href="#"
+      class="text-[var(--footer-legal)] text-sm hover:text-white transition-colors"
+    >Aviso Legal</a>
+    <a
+      href="#"
+      class="text-[var(--footer-legal)] text-sm hover:text-white transition-colors"
+    >Privacidad</a>
+    <a
+      href="#"
+      class="text-[var(--footer-legal)] text-sm hover:text-white transition-colors"
+    >Cookies</a>
+  </div>
+</div>

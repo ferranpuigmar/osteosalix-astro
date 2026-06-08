@@ -1,0 +1,31 @@
+---
+import BaseLayout from "@/layouts/base-layout.astro";
+import CenterHero from "@/components/centers/center-hero.astro";
+import GalleryCarousel from "@/components/centers/gallery-carousel.astro";
+import CenterServices from "@/components/centers/center-services.astro";
+import { centers, getCenterBySlug } from "@/data/centers";
+import ContactSection from "@/components/shared/contact-section.astro";
+
+export function getStaticPaths() {
+	return centers.map((center) => ({
+		params: { slug: center.slug },
+		props: { slug: center.slug },
+	}));
+}
+
+const { slug } = Astro.props;
+const center = getCenterBySlug(slug);
+
+if (!center) {
+	return Astro.redirect("/404");
+}
+---
+
+<BaseLayout title={`${center.name} | Osteosalix`} description={center.subtitle}>
+	<main>
+		<CenterHero center={center} />
+		<GalleryCarousel images={center.galleryImages} title={center.name} />
+		<CenterServices services={center.services} />
+		<ContactSection />
+	</main>
+</BaseLayout>

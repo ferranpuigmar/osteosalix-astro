@@ -1,0 +1,48 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Props {
+  textureUrl: string;
+}
+---
+
+<section class="relative bg-[var(--brand-dark)] overflow-hidden">
+  <div
+    class="absolute inset-0 opacity-10 bg-cover bg-center"
+    style="background-image: url({textureUrl})"
+  ></div>
+  <div class="relative layout-wrapper flex items-center min-h-[300px] py-12 lg:py-0">
+    <div class="flex flex-col lg:flex-row items-center lg:items-start gap-10 lg:gap-20 w-full">
+      <div class="flex flex-col items-center lg:items-start gap-6 shrink-0">
+        <div class="flex flex-col items-center lg:items-start gap-[7px]">
+          <Icon name="lucide:leaf" size={56} class="text-[var(--brand-accent)]" />
+          <h2 class="font-heading text-[39px] font-[500] leading-[1.15] text-white text-center lg:text-left">
+            Nuestra<br />filosofía
+          </h2>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-4 max-w-[797px]">
+        <p class="text-editorial text-[#DDE5DF]">
+          Creemos en un abordaje donde el cuerpo es un todo. Escuchamos, observamos y
+          tratamos la causa, no solo el síntoma. Cada persona es única y merece un plan
+          personalizado que respete su ritmo y su historia.
+        </p>
+        <div class="flex flex-wrap items-center gap-6">
+          <div class="flex items-center gap-2">
+            <Icon name="lucide:circle-check" size={20} class="text-[#E8A87C]" />
+            <span class="text-[13px] text-[#DDE5DF]">Visión holística</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <Icon name="lucide:circle-check" size={20} class="text-[#E8A87C]" />
+            <span class="text-[13px] text-[#DDE5DF]">Trato personalizado</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <Icon name="lucide:circle-check" size={20} class="text-[#E8A87C]" />
+            <span class="text-[13px] text-[#DDE5DF]">Escucha activa</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,94 @@
+---
+import { Splide, SplideSlide } from "astro-splide";
+import type { Options } from "astro-splide/splide";
+import LayoutWrapper from "../layout/layout-wrapper.astro";
+
+interface Props {
+	images: string[];
+	title: string;
+}
+
+const { images, title } = Astro.props;
+
+const splideOptions: Options = {
+	type: "slide",
+	perMove: 1,
+	gap: "16px",
+	padding: 0,
+	fixedWidth: 450,
+	fixedHeight: 400,
+	arrows: true,
+	pagination: false,
+	speed: 400,
+	breakpoints: {
+		767: {
+			fixedWidth: 280,
+			fixedHeight: 240,
+			arrows: false,
+		},
+	},
+};
+---
+
+<section class="bg-[var(--bg-canvas)] overflow-hidden pt-[60px]">
+	<LayoutWrapper>
+		<div class="mb-10 lg:mb-[60px]">
+			<div class="flex flex-col gap-3">
+				<span class="text-overline-sm text-xs text-[var(--brand-accent)]"
+					>Nuestro espacio</span
+				>
+				<h2 class="text-h3">{title}</h2>
+			</div>
+		</div>
+
+		<Splide options={splideOptions} class="gallery-splide">
+			{
+				images.map((img) => (
+					<SplideSlide>
+						<div class="w-full h-full rounded-[16px] overflow-hidden">
+							<img
+								src={img}
+								alt=""
+								loading="lazy"
+								decoding="async"
+								class="w-full h-full object-cover"
+							/>
+						</div>
+					</SplideSlide>
+				))
+			}
+		</Splide>
+	</LayoutWrapper>
+</section>
+
+<style>
+	.gallery-splide :global(.splide__arrow) {
+		width: 48px;
+		height: 48px;
+		border-radius: 24px;
+		background: #ffffff;
+		box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+		opacity: 1;
+	}
+
+	.gallery-splide :global(.splide__arrow--prev) {
+		left: 24px;
+	}
+
+	.gallery-splide :global(.splide__arrow--prev svg) {
+		fill: var(--neutral-600);
+	}
+
+	.gallery-splide :global(.splide__arrow--next) {
+		right: 24px;
+		background: var(--brand-primary);
+	}
+
+	.gallery-splide :global(.splide__arrow--next svg) {
+		fill: #ffffff;
+	}
+
+	.gallery-splide :global(.splide__arrow:disabled) {
+		display: none;
+	}
+</style>

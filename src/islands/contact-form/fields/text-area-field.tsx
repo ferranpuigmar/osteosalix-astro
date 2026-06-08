@@ -3,29 +3,18 @@ import type { UseFormRegisterReturn } from 'react-hook-form';
 interface Props {
   label: string;
   registration: UseFormRegisterReturn;
-  value: string;
+  placeholder: string;
 }
 
-export function TextAreaField({ label, registration, value }: Props) {
-  const isDirty = value && value.length > 0;
-
+export function TextAreaField({ label, registration, placeholder }: Props) {
   return (
-    <div className="col-span-3 flex flex-col justify-center self-start">
-      <div className="relative rounded-sm overflow-hidden bg-white" style={{ minHeight: '136px' }}>
-        <label
-          className={`absolute left-3 z-[1] pointer-events-none flex items-center transition-all duration-200 ease-linear opacity-70 ${
-            isDirty
-              ? 'top-[20px] text-xs'
-              : 'top-[28px]'
-          }`}
-        >
-          {label}
-        </label>
-        <textarea
-          {...registration}
-          className={`absolute inset-0 p-3 w-full resize-y ${isDirty ? 'pt-9' : 'pt-8'}`}
-        ></textarea>
-      </div>
+    <div className="flex flex-col gap-[10px] w-full">
+      <label className="text-body-xs font-[500] text-[var(--neutral-600)]">{label}</label>
+      <textarea
+        {...registration}
+        placeholder={placeholder}
+        className="min-h-[120px] rounded-xl bg-[#F7F5F2] p-[18px] text-[16px] text-[var(--text-primary)] placeholder:text-[#A5A19A] outline-none resize-y transition-shadow focus:ring-2 focus:ring-[var(--brand-primary)]/20"
+      ></textarea>
     </div>
   );
 }

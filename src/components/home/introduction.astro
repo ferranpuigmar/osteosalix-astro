@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
 import type { HomeData } from '@/server/repositories/types';
-import LayoutWrapper from './layout-wrapper.astro';
+import LayoutWrapper from '../layout/layout-wrapper.astro';
 
 interface Props {
   data: HomeData['center'];
@@ -11,8 +11,8 @@ interface Props {
 const { data } = Astro.props;
 ---
 
-<section id="el-centro" class="w-full bg-[var(--neutral-50)] min-h-[625px] relative max-lg:z-10 max-lg:-mt-8 rounded-[24px]">
-  <LayoutWrapper class="lg:py-[100px] max-lg:-mt-8 max-lg:px-0">
+<section id="sobre-nosotros" class="w-full bg-[var(--neutral-50)] min-h-[625px] relative max-lg:z-10 max-lg:-mt-8 rounded-[24px]">
+  <LayoutWrapper class="lg:py-[100px] lg:pb-0 max-lg:-mt-8 max-lg:px-0">
 
     <!-- card wrapper: white on mobile (FWXOo), transparent on desktop -->
     <div class="p-[48px_28px] lg:bg-transparent lg:rounded-none lg:p-0 flex flex-col lg:flex-row lg:items-center lg:gap-20 gap-5">
@@ -68,7 +68,7 @@ const { data } = Astro.props;
       </div>
 
       <!-- desktop images (4lz2g): 600x500 container with 2 absolutely-positioned images -->
-      <div class="hidden lg:block relative shrink-0 w-[600px] h-[500px]">
+      <div class="hidden lg:block relative shrink-0 xl:w-[600px] h-[500px] ">
         <!-- aboutImg2a (Ub1Zz): x:0 y:0, 320x400, radius [80,20,80,20] -->
         <div class="absolute top-[0px] left-[0px] w-[320px] h-[400px] rounded-tl-[80px] rounded-tr-[20px] rounded-br-[80px] rounded-bl-[20px] overflow-hidden">
           <Image
@@ -80,7 +80,7 @@ const { data } = Astro.props;
           />
         </div>
         <!-- aboutImg2b (tapS6): x:280 y:100, 280x350, radius [20,80,20,80] -->
-        <div class="absolute top-[100px] left-[280px] w-[280px] h-[350px] rounded-tl-[20px] rounded-tr-[80px] rounded-br-[20px] rounded-bl-[80px] overflow-hidden">
+        <div class="absolute top-[100px] left-[280px] w-[280px] h-[350px] rounded-tl-[20px] rounded-tr-[80px] rounded-br-[20px] rounded-bl-[80px] overflow-hidden hidden xl:block">
           <Image
             src="https://images.unsplash.com/photo-1668422550557-f096364b72b4?fm=jpg&q=80&w=1080&auto=format&fit=crop"
             alt=""

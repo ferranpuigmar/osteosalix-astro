@@ -13,7 +13,11 @@ src/
     repositories/   ← data access (interfaces + implementations)
   pages/api/        ← HTTP endpoints + re-exports for SSG
   pages/            ← Astro route pages
-  components/       ← Astro components (templates)
+  components/       ← Astro components (templates), grouped by context
+    layout/         ← structural shells (header, footer, layout-wrapper, container)
+    home/           ← home page sections (hero-banner, introduction, services, philosophy-banner)
+    centers/        ← center-related (centros-section, center-card, center-hero, center-services, gallery-carousel)
+    shared/         ← reused across contexts (service-card, hero-header, contact-section)
   layouts/          ← Astro layout components
   islands/          ← React interactive islands
   content/          ← MDX content collections

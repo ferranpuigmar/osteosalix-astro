@@ -10,7 +10,7 @@ interface Props {
 export function CheckboxField({ registration, error, children }: Props) {
   return (
     <div className="mb-5 md:mb-0">
-      <label className="flex items-center gap-2 cursor-pointer">
+      <label className="flex items-start pt-3 gap-2 cursor-pointer">
         <input type="checkbox" {...registration} className="w-4 h-4 accent-primary-main" />
         <span className="text-sm">{children}</span>
       </label>

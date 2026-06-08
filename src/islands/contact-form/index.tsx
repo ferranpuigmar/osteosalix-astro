@@ -15,48 +15,50 @@ const ContactForm: FC<Props> = ({ formEndpoint }) => {
 
   return (
     <div id="contact-form" className="w-full">
-      <form onSubmit={onSubmit} noValidate>
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-4">
+      <form onSubmit={onSubmit} noValidate className="flex flex-col gap-6">
+        <div className="flex flex-col lg:flex-row gap-5">
           <FormField
             label="Nombre"
             type="text"
             registration={register('name')}
             error={errors.name?.message}
-            value={watch('name')}
-          />
-          <FormField
-            label="Correo electrónico"
-            type="email"
-            registration={register('email')}
-            error={errors.email?.message}
-            value={watch('email')}
+            placeholder="Tu nombre"
           />
           <FormField
             label="Teléfono"
             type="tel"
             registration={register('phone')}
             error={errors.phone?.message}
-            value={watch('phone')}
+            placeholder="Tu teléfono"
           />
-          <TextAreaField
-            label="Mensaje (opcional)"
-            registration={register('message')}
-            value={watch('message')}
-          />
-          <div className="col-span-3 flex flex-col items-center md:flex-row md:justify-between">
-            <CheckboxField
-              registration={register('conditions')}
-              error={errors.conditions?.message}
-            >
-              He leído, comprendo y acepto el
-              {' '}<a href="/legal/aviso-legal" target="_blank" className="underline underline-offset-4">Aviso legal</a>
-              {' '}y{' '}
-              <a href="/legal/politicas-privacidad" target="_blank" className="underline underline-offset-4">las Políticas de privacidad</a>
-            </CheckboxField>
-            <SubmitButton loading={status === 'loading'} />
-          </div>
-          <FormStatus status={status} />
         </div>
+        <FormField
+          label="Email"
+          type="email"
+          registration={register('email')}
+          error={errors.email?.message}
+          placeholder="tu@email.com"
+        />
+        <TextAreaField
+          label="Mensaje"
+          registration={register('message')}
+          placeholder="Cuéntanos cómo podemos ayudarte..."
+        />
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+          <CheckboxField
+            registration={register('conditions')}
+            error={errors.conditions?.message}
+          >
+            He leído, comprendo y acepto el
+            {' '}<a href="/legal/aviso-legal" target="_blank" className="underline underline-offset-4">Aviso legal</a>
+            {' '}y{' '}
+            <a href="/legal/politicas-privacidad" target="_blank" className="underline underline-offset-4">las Políticas de privacidad</a>
+          </CheckboxField>
+        </div>
+        <div className="flex justify-end">
+          <SubmitButton loading={status === 'loading'} />
+        </div>
+        <FormStatus status={status} />
       </form>
     </div>
   );

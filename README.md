@@ -63,8 +63,7 @@ Contenido en **Markdown** aquí...
 1. Crear el archivo `.mdx` en la colección correspondiente
 2. Añadir las imágenes en `public/images/`
 3. Si es un servicio nuevo, añadirlo también en `src/data/home.ts` (sección `services.service`)
-4. Si es una página SEO nueva, añadir la entrada en `src/data/home.ts` (sección `highlightedContent`)
-5. Si es una página legal, se genera automáticamente
+4. Si es una página legal, se genera automáticamente
 
 ## Imágenes
 

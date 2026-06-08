@@ -4,12 +4,12 @@ interface Props {
   loadingLabel?: string;
 }
 
-export function SubmitButton({ loading, label = 'Enviar', loadingLabel = 'Enviando...' }: Props) {
+export function SubmitButton({ loading, label = 'Enviar mensaje', loadingLabel = 'Enviando...' }: Props) {
   return (
     <button
       type="submit"
       disabled={loading}
-      className="p-3 px-12 text-xl rounded-full tracking-wider font-[mobile-sans] cursor-pointer no-underline bg-white text-brand-primary hover:text-brand-dark disabled:opacity-50"
+      className="w-full h-14 rounded-[28px] bg-[var(--brand-primary)] text-white text-[16px] font-semibold cursor-pointer transition-opacity hover:opacity-90 disabled:opacity-50"
     >
       {loading ? loadingLabel : label}
     </button>

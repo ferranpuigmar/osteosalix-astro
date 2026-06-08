@@ -1,19 +1,23 @@
 ---
-import BaseLayout from '@/layouts/base-layout.astro';
-import HeroBanner from '@/components/hero-banner.astro';
-import Introduction from '@/components/introduction.astro';
-import Services from '@/components/services.astro';
-import ColumnBoxSection from '@/components/column-box-section.astro';
-import { getHomeData } from '@/pages/api/home';
+import BaseLayout from "@/layouts/base-layout.astro";
+import HeroBanner from "@/components/home/hero-banner.astro";
+import Introduction from "@/components/home/introduction.astro";
+import Services from "@/components/home/services.astro";
+import PhilosophyBanner from "@/components/home/philosophy-banner.astro";
+import { getHomeData } from "@/pages/api/home";
+import ContactSection from "@/components/shared/contact-section.astro";
+import CentrosSection from "@/components/centers/centros-section.astro";
 
 const homeData = await getHomeData();
 ---
 
 <BaseLayout>
-  <main class="relative z-0">
-    <HeroBanner data={homeData.heroSection} />
-    <Introduction data={homeData.center} />
-    <Services data={homeData.services} />
-    <ColumnBoxSection data={homeData.highlightedContent} />
-  </main>
+	<main class="relative z-0">
+		<HeroBanner data={homeData.heroSection} />
+		<Introduction data={homeData.center} />
+		<Services data={homeData.services} />
+		<PhilosophyBanner textureUrl={homeData.philosophy.textureUrl} />
+		<ContactSection />
+		<CentrosSection />
+	</main>
 </BaseLayout>

@@ -1,0 +1,78 @@
+---
+import { siteConfig } from "@/data/site-config";
+import { centers } from "@/data/centers";
+import FooterBrand from "@/components/layout/footer/footer-brand.astro";
+import FooterLinksColumn from "@/components/layout/footer/footer-links-column.astro";
+import FooterBottom from "@/components/layout/footer/footer-bottom.astro";
+---
+
+<footer class="bg-[var(--brand-dark)] min-h-[380px] flex flex-col">
+  <div class="layout-wrapper flex-1 flex flex-col pt-[60px] pb-20">
+    <div
+      class="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-12 lg:gap-0"
+    >
+      <FooterBrand />
+
+      <div class="flex flex-wrap gap-x-20 gap-y-10">
+        <FooterLinksColumn title="Servicios">
+          <a
+            href="/servicios/osteopatia"
+            class="text-[var(--footer-text)] text-[15px] hover:text-white transition-colors"
+          >Osteopatía</a>
+          <a
+            href="/servicios/osteopatia-ginecologica"
+            class="text-[var(--footer-text)] text-[15px] hover:text-white transition-colors"
+          >Osteopatía Ginecológica</a>
+          <a
+            href="/servicios/osteopatia-pediatrica"
+            class="text-[var(--footer-text)] text-[15px] hover:text-white transition-colors"
+          >Osteopatía Pediátrica</a>
+          <a
+            href="/servicios/fisioterapia"
+            class="text-[var(--footer-text)] text-[15px] hover:text-white transition-colors"
+          >Fisioterapia</a>
+        </FooterLinksColumn>
+
+        <FooterLinksColumn title="Empresa">
+          <a
+            href="/centro/centro-sant-cugat"
+            class="text-[var(--footer-text)] text-[15px] hover:text-white transition-colors"
+          >El Centro</a>
+          <a
+            href="/equipo"
+            class="text-[var(--footer-text)] text-[15px] hover:text-white transition-colors"
+          >Equipo</a>
+          <a
+            href="/blog"
+            class="text-[var(--footer-text)] text-[15px] hover:text-white transition-colors"
+          >Blog</a>
+          <a
+            href="#contactar"
+            class="text-[var(--footer-text)] text-[15px] hover:text-white transition-colors"
+          >Contacto</a>
+        </FooterLinksColumn>
+
+        <FooterLinksColumn title="Centros">
+          {
+            centers.map((c) => (
+              <a
+                href={`/centro/${c.slug}`}
+                class="text-[var(--footer-text)] text-[15px] hover:text-white transition-colors"
+              >&rarr; {c.name.replace("Centro ", "")}</a>
+            ))
+          }
+          <a
+            href={`tel:${siteConfig.phone}`}
+            class="text-[var(--footer-text)] text-[15px] hover:text-white transition-colors"
+          >{centers[0].phone}</a>
+          <a
+            href={`mailto:${siteConfig.email}`}
+            class="text-[var(--footer-text)] text-[15px] hover:text-white transition-colors"
+          >{siteConfig.email}</a>
+        </FooterLinksColumn>
+      </div>
+    </div>
+
+    <FooterBottom />
+  </div>
+</footer>

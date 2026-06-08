@@ -1,7 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
 import type { HomeData } from "@/server/repositories/types";
-import LayoutWrapper from "./layout-wrapper.astro";
+import LayoutWrapper from "../layout/layout-wrapper.astro";
 
 interface Props {
 	data: HomeData["heroSection"];
@@ -36,7 +36,7 @@ const { data } = Astro.props;
 				</h1>
 
 				<p
-					class="text-center lg:text-left text-[14px] lg:text-subtitle leading-[1.6] lg:leading-normal text-[var(--neutral-600)] lg:text-[var(--brand-dark)] max-w-[300px] lg:max-w-[540px]"
+					class="text-center lg:text-left text-[14px] lg:text-[20px] leading-[1.6] lg:leading-[1.7] text-[var(--neutral-600)] lg:text-[var(--brand-dark)] max-w-[300px] lg:max-w-[540px]"
 				>
 					{data.description}
 				</p>
@@ -51,7 +51,7 @@ const { data } = Astro.props;
 						<Icon name="lucide:message-circle" size={16} />WhatsApp
 					</a>
 					<a
-						href="/centro"
+						href="#sobre-nosotros"
 						class="inline-flex items-center justify-center gap-2 px-7 lg:px-8 h-[46px] lg:h-auto lg:py-4 rounded-[23px] lg:rounded-[28px] border-[1.5px] border-[#3A4540] lg:border-2 lg:border-brand-dark bg-transparent text-sm font-medium lg:font-bold lg:tracking-[2px] lg:uppercase text-[var(--brand-dark)] no-underline hover:opacity-80 lg:hover:bg-brand-dark lg:hover:text-white transition-all duration-150"
 					>
 						Conócenos

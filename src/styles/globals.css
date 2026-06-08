@@ -1,6 +1,10 @@
 @import "tailwindcss";
 @plugin '@tailwindcss/typography';
 
+html {
+  scroll-behavior: smooth;
+}
+
 :target {
   scroll-margin-top: 90px;
 }
@@ -155,7 +159,7 @@ footer {
   .text-card-title {
     font-family: "Avenir", ui-sans-serif, system-ui, sans-serif;
     font-size: 26px;
-    font-weight: 800;
+    font-weight: 900;
   }
 
   .text-title {

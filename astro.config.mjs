@@ -23,5 +23,8 @@ export default defineConfig({
     css: {
       postcss: './postcss.config.mjs',
     },
+    optimizeDeps: {
+      include: ['astro-leaflet > leaflet'],
+    },
   },
 });
