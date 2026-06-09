@@ -1,0 +1,48 @@
+title: Osteopatía
+description: Recupera tu bienestar con nuestras sesiones de osteopatía en Sant Cugat. Tratamientos personalizados para adultos y deportistas.
+descriptionHtml: Tratamiento manual integral que <strong>restablece</strong> el equilibrio natural del cuerpo, buscando el origen del problema y no solo los síntomas.
+titleImage: /images/hero-service-design.jpg
+contentImage: /images/content-osteopatia.jpg
+order: 1
+treatments:
+  - icon: activity
+    title: Dolor de espalda
+    description: Cervicalgias, lumbalgias, hernias discales y contracturas crónicas.
+  - icon: heart-pulse
+    title: Migrañas
+    description: Cefaleas tensionales, migrañas crónicas y dolor orofacial.
+  - icon: flower-2
+    title: Salud femenina
+    description: Dolor menstrual, preparación al parto y recuperación postparto.
+  - icon: bone
+    title: Lesiones deportivas
+    description: Esguinces, tendinitis, fascitis plantar y recuperación post-lesión.
+  - icon: shield-check
+    title: Estrés y ansiedad
+    description: Tensión muscular, insomnio, bruxismo y somatizaciones.
+  - icon: baby
+    title: Pediatría
+    description: Cólicos, tortícolis congénita, plagiocefalia y alteraciones del sueño.
+ctaTitle: '¿Te identificas con alguna de estas dolencias?'
+ctaDescription: Cuéntanos tu caso y te orientaremos sin compromiso.
+methodSteps:
+  - num: '01'
+    title: Escuchamos
+    description: >-
+      Primera consulta detallada donde analizamos tu historial, hábitos y
+      síntomas para entender el origen.
+  - num: '02'
+    title: Evaluamos
+    description: >-
+      Exploración manual completa para identificar las restricciones de
+      movilidad y las zonas de tensión.
+  - num: '03'
+    title: Tratamos
+    description: >-
+      Técnicas manuales específicas y personalizadas para restaurar el
+      equilibrio natural de tu cuerpo.
+  - num: '04'
+    title: Acompañamos
+    description: >-
+      Seguimiento con pautas y ejercicios para mantener los resultados y
+      prevenir recaídas.

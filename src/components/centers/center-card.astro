@@ -1,5 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
+import Button from '@/components/shared/button.astro';
 
 interface Props {
   name: string;
@@ -33,11 +34,8 @@ const { name, address, phone, image, link, alt = false } = Astro.props;
       <Icon name="lucide:phone" size={18} class="text-[var(--brand-primary)] shrink-0" />
       <span class="text-body-sm text-[var(--neutral-600)]">{phone}</span>
     </div>
-    <a
-      href={link}
-      class="self-start rounded-[24px] bg-[var(--brand-primary)] text-white text-body-xs font-semibold px-6 py-[14px] transition-opacity hover:opacity-90"
-    >
+    <Button href={link} class="self-start text-body-xs font-semibold px-6 py-[14px] rounded-[24px]">
       Ver ficha del centro
-    </a>
+    </Button>
   </div>
 </div>

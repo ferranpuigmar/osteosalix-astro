@@ -1,0 +1,35 @@
+---
+export type ButtonVariant = 'primary' | 'outline' | 'ghost';
+
+interface Props {
+  variant?: ButtonVariant;
+  href?: string;
+  class?: string;
+}
+
+const { variant = 'primary', href, class: className } = Astro.props;
+
+const variants: Record<ButtonVariant, string> = {
+  primary:
+    'text-white bg-[var(--brand-primary)] hover:opacity-90',
+  outline:
+    'text-[var(--brand-dark)] bg-transparent border-2 border-[var(--brand-dark)] hover:bg-[var(--brand-dark)] hover:text-white',
+  ghost:
+    'text-[var(--brand-primary)] hover:bg-[var(--brand-primary)]/10',
+};
+
+const base =
+  'inline-flex items-center justify-center no-underline transition-all duration-150';
+---
+
+{
+  href ? (
+    <a href={href} class={`${base} ${variants[variant]} ${className}`}>
+      <slot />
+    </a>
+  ) : (
+    <button type="button" class={`${base} ${variants[variant]} ${className}`}>
+      <slot />
+    </button>
+  )
+}

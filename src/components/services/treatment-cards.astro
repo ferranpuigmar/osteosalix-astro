@@ -1,0 +1,33 @@
+---
+import type { Treatment } from "./treatment-card.astro";
+import LayoutWrapper from "../layout/layout-wrapper.astro";
+import TreatmentCard from "./treatment-card.astro";
+
+interface Props {
+	treatments: Treatment[];
+}
+
+const { treatments } = Astro.props;
+---
+
+<LayoutWrapper>
+	<div class="flex flex-col lg:flex-row gap-[60px] pb-20 pt-[80px]">
+		<div class="flex flex-col gap-4 max-w-[400px]">
+			<span class="section-label">QUÉ TRATAMOS</span>
+			<h2 class="font-heading text-h2 text-[var(--neutral-900)]">
+				Dolencias que podemos ayudarte
+			</h2>
+			<p class="text-body text-[var(--neutral-600)] max-w-[360px]">
+				Abordamos cada dolencia desde su origen, no solo el síntoma. Nuestro
+				enfoque integral nos permite tratar una amplia variedad de condiciones.
+			</p>
+		</div>
+		<div class="grid grid-cols-1 lg:grid-cols-2 gap-4 flex-1">
+			{
+				treatments.map((t) => {
+					return <TreatmentCard treatment={t} />;
+				})
+			}
+		</div>
+	</div>
+</LayoutWrapper>

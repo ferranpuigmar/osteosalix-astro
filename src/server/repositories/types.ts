@@ -80,4 +80,9 @@ export interface ServiceEntry {
   titleImage?: string;
   contentImage?: string;
   order?: number;
+  descriptionHtml?: string;
+  treatments?: Array<{ icon: string; title: string; description: string }>;
+  ctaTitle?: string;
+  ctaDescription?: string;
+  methodSteps?: Array<{ num: string; title: string; description: string }>;
 }

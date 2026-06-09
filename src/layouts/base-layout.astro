@@ -14,6 +14,7 @@ export interface Props {
 }
 
 const { title, description, canonical } = Astro.props;
+const isHomePage = Astro.url.pathname === '/';
 ---
 
 <!doctype html>
@@ -50,7 +51,9 @@ const { title, description, canonical } = Astro.props;
 	</head>
 	<body>
 		<Header />
-		<slot />
+		<div class:list={[!isHomePage && 'pt-[60px] lg:pt-[90px]']}>
+			<slot />
+		</div>
 		<Footer />
 	</body>
 </html>

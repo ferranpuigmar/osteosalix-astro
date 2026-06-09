@@ -2,6 +2,7 @@
 import { Icon } from "astro-icon/components";
 import type { HomeData } from "@/server/repositories/types";
 import LayoutWrapper from "../layout/layout-wrapper.astro";
+import Button from "../shared/button.astro";
 
 interface Props {
 	data: HomeData["heroSection"];
@@ -44,18 +45,19 @@ const { data } = Astro.props;
 				<div
 					class="flex flex-wrap items-center justify-center lg:justify-start gap-3 lg:gap-4"
 				>
-					<a
+					<Button
 						href="https://wa.me/34600000000"
-						class="inline-flex items-center justify-center gap-2 px-7 lg:px-8 h-[46px] lg:h-auto lg:py-4 rounded-[23px] lg:rounded-[28px] bg-[#74896F] lg:bg-brand-primary text-white text-sm font-semibold lg:font-bold lg:tracking-[2px] lg:uppercase no-underline hover:opacity-90 transition-all duration-150"
+						class="gap-2 px-7 lg:px-8 h-[46px] lg:h-auto lg:py-4 rounded-[23px] lg:rounded-[28px] text-sm font-semibold lg:font-bold lg:tracking-[2px] lg:uppercase"
 					>
 						<Icon name="lucide:message-circle" size={16} />WhatsApp
-					</a>
-					<a
+					</Button>
+					<Button
 						href="#sobre-nosotros"
-						class="inline-flex items-center justify-center gap-2 px-7 lg:px-8 h-[46px] lg:h-auto lg:py-4 rounded-[23px] lg:rounded-[28px] border-[1.5px] border-[#3A4540] lg:border-2 lg:border-brand-dark bg-transparent text-sm font-medium lg:font-bold lg:tracking-[2px] lg:uppercase text-[var(--brand-dark)] no-underline hover:opacity-80 lg:hover:bg-brand-dark lg:hover:text-white transition-all duration-150"
+						variant="outline"
+						class="gap-2 px-7 lg:px-8 h-[46px] lg:h-auto lg:py-4 rounded-[23px] lg:rounded-[28px] text-sm font-medium lg:font-bold lg:tracking-[2px] lg:uppercase"
 					>
 						Conócenos
-					</a>
+					</Button>
 				</div>
 			</div>
 			

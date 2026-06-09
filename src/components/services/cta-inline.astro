@@ -1,0 +1,37 @@
+---
+import { Icon } from "astro-icon/components";
+import { siteConfig } from "@/data/site-config";
+import LayoutWrapper from "../layout/layout-wrapper.astro";
+
+interface Props {
+	title: string;
+	description: string;
+}
+
+const { title, description } = Astro.props;
+const whatsappUrl = `https://wa.me/${siteConfig.phone}`;
+---
+
+<section class="bg-[var(--brand-primary)]/8">
+  <LayoutWrapper>
+    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 py-10">
+      <div class="flex flex-col gap-1">
+        <p class="font-heading text-[22px] font-[500] text-[var(--neutral-900)]">
+          {title}
+        </p>
+        <p class="text-body-sm text-[var(--neutral-600)]">
+          {description}
+        </p>
+      </div>
+      <a
+        href={whatsappUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 rounded-[28px] bg-[var(--brand-primary)] text-white text-[15px] font-[600] px-7 py-[14px] no-underline transition-opacity hover:opacity-90 shrink-0"
+      >
+        <Icon name="lucide:message-circle" size={18} class="text-white" />
+        Contactar por WhatsApp
+      </a>
+    </div>
+  </LayoutWrapper>
+</section>

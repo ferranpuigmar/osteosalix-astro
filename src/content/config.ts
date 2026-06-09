@@ -11,15 +11,32 @@ const seoPages = defineCollection({
   }),
 });
 
+const treatmentSchema = z.object({
+  icon: z.string(),
+  title: z.string(),
+  description: z.string(),
+});
+
+const methodStepSchema = z.object({
+  num: z.string(),
+  title: z.string(),
+  description: z.string(),
+});
+
 const services = defineCollection({
-  type: 'content',
+  type: 'data',
   schema: z.object({
     title: z.string(),
     description: z.string(),
+    descriptionHtml: z.string().optional(),
     titleImage: z.string().optional(),
     contentImage: z.string().optional(),
     order: z.number().optional(),
     publishedAt: z.date().optional(),
+    treatments: z.array(treatmentSchema).optional(),
+    ctaTitle: z.string().optional(),
+    ctaDescription: z.string().optional(),
+    methodSteps: z.array(methodStepSchema).optional(),
   }),
 });
 

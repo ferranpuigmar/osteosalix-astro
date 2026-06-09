@@ -1,9 +1,12 @@
 ---
-import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import BaseLayout from '@/layouts/base-layout.astro';
-import Container from '@/components/layout/container.astro';
-import HeroHeader from '@/components/shared/hero-header.astro';
+import ContactSection from '@/components/shared/contact-section.astro';
+import ServiceBackground from '@/components/services/service-background.astro';
+import ServiceHero from '@/components/services/service-hero.astro';
+import TreatmentCards from '@/components/services/treatment-cards.astro';
+import CtaInline from '@/components/services/cta-inline.astro';
+import MethodSteps from '@/components/services/method-steps.astro';
 import { getAllServices } from '@/pages/api/services-list';
 
 export async function getStaticPaths() {
@@ -15,34 +18,20 @@ export async function getStaticPaths() {
 }
 
 const { slug } = Astro.props;
-const [service] = (await getCollection('services')).filter((e) => e.slug === slug);
-const { Content } = await service.render();
+const [service] = (await getCollection('services')).filter((e) => e.id === slug);
 
-const plainTitle = service.data.title.replace(/<[^>]+>/g, '').trim();
+const { title, description, descriptionHtml, titleImage, treatments, ctaTitle, ctaDescription, methodSteps } = service.data;
+const heroImage = titleImage ?? '/images/hero-service-design.jpg';
 ---
 
-<BaseLayout title={service.data.title.replace(/<\/?[^>]+>/g, '').trim()} description={service.data.description}>
+<BaseLayout title={title} description={description}>
   <main>
-    <HeroHeader image={service.data.titleImage} alt={plainTitle}>
-      <div class="prose-h1:text-4xl tracking-wider px-12 absolute top-1/2 -translate-y-[calc(50%-32px)] text-center lg:px-0" set:html={service.data.title} />
-    </HeroHeader>
-    <div class="w-full py-10 md:py-24 md:p-12">
-      <Container>
-        <div class={`grid grid-cols-1 ${service.data.contentImage ? 'grid-cols-3 gap-20' : ''}`}>
-          {
-            service.data.contentImage && (
-              <div class="hidden lg:block">
-                <div class="relative rounded-full overflow-hidden aspect-square lg:w-full">
-                  <Image src={service.data.contentImage} alt={plainTitle} width={500} height={500} class="object-cover w-full h-full" />
-                </div>
-              </div>
-            )
-          }
-          <div class={`${service.data.contentImage ? 'col-span-3 lg:col-span-2' : ''} prose prose-h2:mb-6 prose-h2:pt-3 prose-h2:inline-block prose-h2:relative prose-h2:text-[2.25rem] prose-h2:leading-[1.25] prose-h2:font-[mobile-sans] prose-h2:tracking-[0.025em] prose-p:text-lg prose-p:pb-4 prose-p:tracking-wider`}>
-            <Content />
-          </div>
-        </div>
-      </Container>
-    </div>
+    <ServiceBackground image={heroImage} alt={title}>
+      <ServiceHero title={title} description={descriptionHtml ?? description} />
+      <TreatmentCards treatments={treatments ?? []} />
+    </ServiceBackground>
+    <CtaInline title={ctaTitle ?? ''} description={ctaDescription ?? ''} />
+    <MethodSteps steps={methodSteps ?? []} />
+    <ContactSection />
   </main>
 </BaseLayout>

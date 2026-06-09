@@ -1,0 +1,35 @@
+---
+import LayoutWrapper from "../layout/layout-wrapper.astro";
+
+export interface MethodStep {
+  num: string;
+  title: string;
+  description: string;
+}
+
+interface Props {
+  steps: MethodStep[];
+}
+
+const { steps } = Astro.props;
+---
+
+<section class="bg-[#e0d6cc]/45">
+  <LayoutWrapper>
+    <div class="flex flex-col gap-12 py-20">
+      <div class="flex flex-col gap-4">
+        <span class="section-label">NUESTRO MÉTODO</span>
+        <h2 class="font-heading text-h2 text-[var(--neutral-900)]">Cómo trabajamos</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {steps.map((s) => (
+          <div class="card-organic p-8 flex flex-col gap-4">
+            <span class="font-heading text-[40px] font-[800] text-[var(--brand-accent)]/70 leading-none">{s.num}</span>
+            <h3 class="font-heading text-[22px] font-[800] text-[var(--neutral-900)]">{s.title}</h3>
+            <p class="text-body-sm text-[var(--neutral-600)] leading-[1.7]">{s.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </LayoutWrapper>
+</section>
