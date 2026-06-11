@@ -1,4 +1,4 @@
-import { gqlSdk } from '@/lib/graphql/client';
+import { gqlSdk } from '@/server/infrastructure/graphql/client';
 import type { HeaderData } from '../../../application/interfaces/header-repository';
 import type { IHeaderRepository } from '../../../application/interfaces/header-repository';
 import type { MenuGroup } from '@/server/domain/models';
