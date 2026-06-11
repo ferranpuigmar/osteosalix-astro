@@ -1,4 +1,4 @@
-import type { MenuItem } from '@/server/types';
+import type { MenuItem } from '@/server/domain/models';
 
 interface Props {
   items: MenuItem[];

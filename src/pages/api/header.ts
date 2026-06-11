@@ -1,4 +1,4 @@
-import { getHeader } from '@/server/services/header';
+import { getHeader } from '@/server/application/services/header';
 
 export { getHeader };
 

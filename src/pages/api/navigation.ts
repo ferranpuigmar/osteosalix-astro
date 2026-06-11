@@ -1,4 +1,4 @@
-import { getNavigation } from '@/server/services/navigation';
+import { getNavigation } from '@/server/application/services/navigation';
 
 export { getNavigation };
 

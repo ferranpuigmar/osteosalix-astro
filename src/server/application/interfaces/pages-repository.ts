@@ -1,4 +1,4 @@
-import type { PageEntry } from '@/server/types';
+import type { PageEntry } from '@/server/domain/models';
 
 export interface IPagesRepository {
   getAll(): Promise<PageEntry[]>;

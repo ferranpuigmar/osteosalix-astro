@@ -1,5 +1,5 @@
 import SVG from 'react-inlinesvg';
-import type { LogoData } from '@/server/types';
+import type { LogoData } from '@/server/domain/models';
 
 interface Props {
   logo: LogoData;

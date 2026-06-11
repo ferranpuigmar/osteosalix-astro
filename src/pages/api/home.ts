@@ -1,4 +1,4 @@
-import { getHomeData } from '@/server/services/home';
+import { getHomeData } from '@/server/application/services/home';
 
 export { getHomeData };
 

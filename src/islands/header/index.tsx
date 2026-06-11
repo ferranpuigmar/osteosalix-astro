@@ -4,7 +4,7 @@ import { DesktopNav } from './components/desktop-nav';
 import { PhoneButton } from './components/phone-button';
 import { MenuToggle } from './components/menu-toggle';
 import { MobileMenu } from './components/mobile-menu';
-import type { LogoData, MenuGroup } from '@/server/types';
+import type { LogoData, MenuGroup } from '@/server/domain/models';
 
 interface Props {
   pathname: string;

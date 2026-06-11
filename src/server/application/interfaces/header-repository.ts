@@ -1,4 +1,4 @@
-import type { MenuGroup } from '@/server/types';
+import type { MenuGroup } from '@/server/domain/models';
 
 export interface HeaderData {
   logo: string;

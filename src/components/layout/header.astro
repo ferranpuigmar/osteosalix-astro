@@ -1,7 +1,7 @@
 ---
 import HeaderIsland from '@/islands/header';
 import { getHeader } from '@/pages/api/header';
-import type { LogoData } from '@/server/types';
+import type { LogoData } from '@/server/domain/models';
 const pathname = Astro.url.pathname;
 const { navigation, logoTextEnd, logoTextStart, logo: logoUrl, whatsappNumber } = await getHeader();
 

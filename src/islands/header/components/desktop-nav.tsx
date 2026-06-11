@@ -3,7 +3,7 @@ import { useClickOutside } from '../hooks';
 import { NavLink } from './nav-link';
 import { ChevronArrow } from './chevron-arrow';
 import { DesktopSubmenu } from './desktop-submenu';
-import type { MenuGroup } from '@/server/types';
+import type { MenuGroup } from '@/server/domain/models';
 
 interface Props {
   navigation: MenuGroup[];

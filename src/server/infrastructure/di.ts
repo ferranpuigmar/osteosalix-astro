@@ -1,5 +1,5 @@
-import { mdxProvider } from './implementations/mdx/provider';
-import { strapiProvider } from './implementations/strapi/provider';
+import { mdxProvider } from './repositories/mdx/provider';
+import { strapiProvider } from './repositories/strapi/provider';
 import type { RepositoryProvider } from './types';
 
 export type { RepositoryProvider } from './types';

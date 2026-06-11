@@ -1,4 +1,4 @@
-import { getAllServices } from '@/server/services/services';
+import { getAllServices } from '@/server/application/services/services';
 
 export { getAllServices };
 

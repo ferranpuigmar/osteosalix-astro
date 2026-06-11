@@ -1,6 +1,6 @@
 import { getCollection } from 'astro:content';
-import type { ServiceEntry } from '@/server/types';
-import type { IServicesRepository } from '../../interfaces/services';
+import type { ServiceEntry } from '@/server/domain/models';
+import type { IServicesRepository } from '../../../application/interfaces/services-repository';
 
 export class MdxServicesRepository implements IServicesRepository {
   async getAll(): Promise<ServiceEntry[]> {

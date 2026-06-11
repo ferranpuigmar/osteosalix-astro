@@ -1,4 +1,4 @@
-import { getAllServices, getServiceBySlug } from '@/server/services/services';
+import { getAllServices, getServiceBySlug } from '@/server/application/services/services';
 
 export { getAllServices, getServiceBySlug };
 

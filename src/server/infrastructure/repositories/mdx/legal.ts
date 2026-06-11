@@ -1,6 +1,6 @@
 import { getCollection } from 'astro:content';
-import type { LegalEntry } from '@/server/types';
-import type { ILegalRepository } from '../../interfaces/legal';
+import type { LegalEntry } from '@/server/domain/models';
+import type { ILegalRepository } from '../../../application/interfaces/legal-repository';
 
 export class MdxLegalRepository implements ILegalRepository {
   async getAll(): Promise<LegalEntry[]> {

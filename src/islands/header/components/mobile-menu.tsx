@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { navigate } from 'astro:transitions/client';
 import { MdClose } from 'react-icons/md';
 import { ChevronArrow } from './chevron-arrow';
-import type { MenuGroup } from '@/server/types';
+import type { MenuGroup } from '@/server/domain/models';
 
 interface Props {
   navigation: MenuGroup[];

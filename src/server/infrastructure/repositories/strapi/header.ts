@@ -1,7 +1,7 @@
 import { gqlSdk } from '@/lib/graphql/client';
-import type { HeaderData } from '../../interfaces/header';
-import type { IHeaderRepository } from '../../interfaces/header';
-import type { MenuGroup } from '@/server/types';
+import type { HeaderData } from '../../../application/interfaces/header-repository';
+import type { IHeaderRepository } from '../../../application/interfaces/header-repository';
+import type { MenuGroup } from '@/server/domain/models';
 
 const STRAPI_URL = import.meta.env.STRAPI_URL || 'http://localhost:1337';
 

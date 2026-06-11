@@ -1,4 +1,4 @@
-import { getAllLegalPages, getLegalPage } from '@/server/services/legal';
+import { getAllLegalPages, getLegalPage } from '@/server/application/services/legal';
 
 export { getAllLegalPages, getLegalPage };
 

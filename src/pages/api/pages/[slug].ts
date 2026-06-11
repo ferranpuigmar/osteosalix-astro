@@ -1,4 +1,4 @@
-import { getAllPages, getPageBySlug } from '@/server/services/pages';
+import { getAllPages, getPageBySlug } from '@/server/application/services/pages';
 
 export { getAllPages, getPageBySlug };
 
