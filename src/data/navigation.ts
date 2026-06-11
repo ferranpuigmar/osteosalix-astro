@@ -1,21 +1,16 @@
-export interface MenuItem {
-  id: string;
-  title: string;
-  link: string;
-}
-
-export interface MenuGroup {
-  menuItem: MenuItem;
-  submenuItem: MenuItem[];
-}
+import type { MenuGroup } from '@/server/types';
 
 export const navigation: MenuGroup[] = [
   {
-    menuItem: { id: '1', title: 'El centro', link: '/#el-centro' },
+    id: '1',
+    title: 'El centro',
+    link: '/#el-centro',
     submenuItem: [],
   },
   {
-    menuItem: { id: '2', title: 'Servicios', link: '/#servicios' },
+    id: '2',
+    title: 'Servicios',
+    link: '/#servicios',
     submenuItem: [
       { id: '2a', title: 'Osteopatía', link: '/servicios/osteopatia' },
       { id: '2b', title: 'Fisioterapia', link: '/servicios/fisioterapia' },
@@ -24,7 +19,9 @@ export const navigation: MenuGroup[] = [
     ],
   },
   {
-    menuItem: { id: '3', title: 'Dónde estamos', link: '/#donde-estamos' },
+    id: '3',
+    title: 'Dónde estamos',
+    link: '/#donde-estamos',
     submenuItem: [],
   },
 ];

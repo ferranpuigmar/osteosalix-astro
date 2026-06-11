@@ -1,8 +1,15 @@
 ---
-import { getNavigation } from '@/pages/api/navigation';
-import HeaderIsland from '@/islands/Header/index';
+import HeaderIsland from '@/islands/header';
+import { getHeader } from '@/pages/api/header';
+import type { LogoData } from '@/server/types';
 const pathname = Astro.url.pathname;
-const navigation = await getNavigation();
+const { navigation, logoTextEnd, logoTextStart, logo: logoUrl, whatsappNumber } = await getHeader();
+
+const logo: LogoData = {
+    textStart: logoTextStart,
+    textEnd: logoTextEnd,
+    logo: logoUrl,
+};
 ---
 
-<HeaderIsland pathname={pathname} navigation={navigation} client:load />
+<HeaderIsland pathname={pathname} navigation={navigation} logo={logo} whatsappNumber={whatsappNumber} client:load />

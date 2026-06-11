@@ -4,6 +4,12 @@ import { centers } from "@/data/centers";
 import FooterBrand from "@/components/layout/footer/footer-brand.astro";
 import FooterLinksColumn from "@/components/layout/footer/footer-links-column.astro";
 import FooterBottom from "@/components/layout/footer/footer-bottom.astro";
+
+const pathname = Astro.url.pathname;
+const centroMatch = pathname.match(/^\/centro\/(.+)$/);
+const centerSlug = centroMatch ? centroMatch[1] : null;
+const center = centerSlug ? centers.find((c) => c.slug === centerSlug) : null;
+const city = center ? center.name.replace("Centro ", "") : "Sant Cugat";
 ---
 
 <footer class="bg-[var(--brand-dark)] min-h-[380px] flex flex-col">
@@ -11,7 +17,7 @@ import FooterBottom from "@/components/layout/footer/footer-bottom.astro";
     <div
       class="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-12 lg:gap-0"
     >
-      <FooterBrand />
+      <FooterBrand city={city} />
 
       <div class="flex flex-wrap gap-x-20 gap-y-10">
         <FooterLinksColumn title="Servicios">

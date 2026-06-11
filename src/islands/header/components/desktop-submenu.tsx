@@ -1,4 +1,4 @@
-import type { MenuItem } from '@/server/repositories/types';
+import type { MenuItem } from '@/server/types';
 
 interface Props {
   items: MenuItem[];

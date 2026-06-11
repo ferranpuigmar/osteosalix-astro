@@ -1,4 +1,4 @@
-import type { ServiceEntry } from '../types';
+import type { ServiceEntry } from '@/server/types';
 
 export interface IServicesRepository {
   getAll(): Promise<ServiceEntry[]>;

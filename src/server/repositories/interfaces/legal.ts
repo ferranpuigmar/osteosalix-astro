@@ -1,4 +1,4 @@
-import type { LegalEntry } from '../types';
+import type { LegalEntry } from '@/server/types';
 
 export interface ILegalRepository {
   getAll(): Promise<LegalEntry[]>;

@@ -1,0 +1,82 @@
+export interface MenuItem {
+  id: string;
+  title: string;
+  link: string;
+}
+
+export interface MenuGroup {
+  id: string;
+  title: string;
+  link: string | null;
+  submenuItem: MenuItem[];
+}
+
+export interface LogoData {
+  textStart: string;
+  logo: string;
+  textEnd: string;
+}
+
+export interface HomeData {
+  heroSection: {
+    badge: string;
+    title: string;
+    description: string;
+    bgImageUrl: string;
+    bgOverlayUrl: string;
+    heroImageUrl: string;
+  };
+  center: {
+    title: string;
+    subtitle: string;
+    content: string;
+    button: {
+      title: string;
+      link: string;
+    };
+    image: string;
+  };
+  services: {
+    title: string;
+    subtitle: string;
+    service: {
+      id: string;
+      title: string;
+      description: string;
+      link: string;
+      image: string;
+    }[];
+  };
+  philosophy: {
+    textureUrl: string;
+  };
+}
+
+export interface LegalEntry {
+  slug: string;
+  title: string;
+  description: string;
+  label: string;
+}
+
+export interface PageEntry {
+  slug: string;
+  title: string;
+  description: string;
+  titleImage?: string;
+  contentImage?: string;
+}
+
+export interface ServiceEntry {
+  slug: string;
+  title: string;
+  description: string;
+  titleImage?: string;
+  contentImage?: string;
+  order?: number;
+  descriptionHtml?: string;
+  treatments?: Array<{ icon: string; title: string; description: string }>;
+  ctaTitle?: string;
+  ctaDescription?: string;
+  methodSteps?: Array<{ num: string; title: string; description: string }>;
+}

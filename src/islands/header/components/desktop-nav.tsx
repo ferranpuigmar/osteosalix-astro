@@ -3,7 +3,7 @@ import { useClickOutside } from '../hooks';
 import { NavLink } from './nav-link';
 import { ChevronArrow } from './chevron-arrow';
 import { DesktopSubmenu } from './desktop-submenu';
-import type { MenuGroup } from '@/server/repositories/types';
+import type { MenuGroup } from '@/server/types';
 
 interface Props {
   navigation: MenuGroup[];
@@ -30,10 +30,10 @@ export function DesktopNav({ navigation, pathname }: Props) {
         {navigation.map((group, index) => {
           const hasSubmenu = group.submenuItem.length > 0;
           const isOpen = openIndex === index;
-          const isActive = pathname === group.menuItem.link || group.submenuItem.some((s) => pathname === s.link);
+          const isActive = pathname === group.link || group.submenuItem.some((s) => pathname === s.link);
 
           return (
-            <li key={group.menuItem.id} className="relative">
+            <li key={group.id} className="relative">
               {hasSubmenu ? (
                 <div className="flex flex-col items-center">
                   <button
@@ -46,7 +46,7 @@ export function DesktopNav({ navigation, pathname }: Props) {
                         isActive ? 'text-primary font-medium' : 'text-primary hover:text-brand-primary'
                       }`}
                     >
-                      {group.menuItem.title}
+                      {group.title}
                     </span>
                     <ChevronArrow isOpen={isOpen} />
                   </button>
@@ -58,8 +58,8 @@ export function DesktopNav({ navigation, pathname }: Props) {
                   />
                 </div>
               ) : (
-                <NavLink href={group.menuItem.link} isActive={isActive}>
-                  {group.menuItem.title}
+                <NavLink href={group.link ?? '#'} isActive={isActive}>
+                  {group.title}
                 </NavLink>
               )}
             </li>

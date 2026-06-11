@@ -7421,12 +7421,6 @@
           ]
         },
         {
-          "id": "b73ln",
-          "type": "ref",
-          "ref": "vhJme",
-          "name": "Contact Section"
-        },
-        {
           "type": "frame",
           "id": "Fnvml",
           "name": "Cómo Trabajamos",
@@ -7737,6 +7731,12 @@
               ]
             }
           ]
+        },
+        {
+          "id": "b73ln",
+          "type": "ref",
+          "ref": "vhJme",
+          "name": "Contact Section"
         },
         {
           "id": "SBjv2",

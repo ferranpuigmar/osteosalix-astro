@@ -1,5 +1,5 @@
 import { getCollection } from 'astro:content';
-import type { LegalEntry } from '../../types';
+import type { LegalEntry } from '@/server/types';
 import type { ILegalRepository } from '../../interfaces/legal';
 
 export class MdxLegalRepository implements ILegalRepository {

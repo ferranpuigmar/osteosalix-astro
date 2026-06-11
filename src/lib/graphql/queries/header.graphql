@@ -1,0 +1,23 @@
+query Header {
+  header {
+    logo {
+      url
+    }
+    logoTextStart
+    logoTextEnd
+    whatsappNumber
+    navigation {
+      title
+      items {
+        id
+        title
+        link
+        submenuItem {
+          id
+          title
+          link
+        }
+      }
+    }
+  }
+}

@@ -1,5 +1,5 @@
 import { repositories } from '@/server/repositories';
-import type { ServiceEntry } from '@/server/repositories/types';
+import type { ServiceEntry } from '@/server/types';
 
 export async function getAllServices(): Promise<ServiceEntry[]> {
   return repositories.services.getAll();

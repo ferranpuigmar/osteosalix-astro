@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
-import type { HomeData } from '@/server/repositories/types';
+import type { HomeData } from '@/server/types';
 import LayoutWrapper from '../layout/layout-wrapper.astro';
 
 interface Props {
@@ -11,7 +11,7 @@ interface Props {
 const { data } = Astro.props;
 ---
 
-<section id="sobre-nosotros" class="w-full bg-[var(--neutral-50)] min-h-[625px] relative max-lg:z-10 max-lg:-mt-8 rounded-[24px]">
+<section id="el-centro" class="w-full bg-[var(--neutral-50)] min-h-[625px] relative max-lg:z-10 max-lg:-mt-8 rounded-[24px]">
   <LayoutWrapper class="lg:py-[100px] lg:pb-0 max-lg:-mt-8 max-lg:px-0">
 
     <!-- card wrapper: white on mobile (FWXOo), transparent on desktop -->

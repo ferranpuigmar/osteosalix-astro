@@ -4,3 +4,4 @@ dist/
 .env
 .env.local
 *.log
+src/lib/graphql/generated.ts

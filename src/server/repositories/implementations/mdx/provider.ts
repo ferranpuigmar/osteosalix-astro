@@ -4,6 +4,7 @@ import { MdxNavigationRepository } from './navigation';
 import { MdxServicesRepository } from './services';
 import { MdxLegalRepository } from './legal';
 import { MdxPagesRepository } from './pages';
+import { MdxHeaderRepository } from './header';
 
 export const mdxProvider: RepositoryProvider = {
   home: new MdxHomeRepository(),
@@ -11,4 +12,5 @@ export const mdxProvider: RepositoryProvider = {
   services: new MdxServicesRepository(),
   legal: new MdxLegalRepository(),
   pages: new MdxPagesRepository(),
+  header: new MdxHeaderRepository(),
 };

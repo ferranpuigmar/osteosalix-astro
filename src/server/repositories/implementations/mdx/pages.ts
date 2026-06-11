@@ -1,5 +1,5 @@
 import { getCollection } from 'astro:content';
-import type { PageEntry } from '../../types';
+import type { PageEntry } from '@/server/types';
 import type { IPagesRepository } from '../../interfaces/pages';
 
 export class MdxPagesRepository implements IPagesRepository {

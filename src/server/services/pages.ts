@@ -1,5 +1,5 @@
 import { repositories } from '@/server/repositories';
-import type { PageEntry } from '@/server/repositories/types';
+import type { PageEntry } from '@/server/types';
 
 export async function getAllPages(): Promise<PageEntry[]> {
   return repositories.pages.getAll();

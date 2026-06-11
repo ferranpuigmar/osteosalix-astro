@@ -1,4 +1,4 @@
-import type { HomeData } from '../types';
+import type { HomeData } from '@/server/types';
 
 export interface IHomeRepository {
   get(): Promise<HomeData>;

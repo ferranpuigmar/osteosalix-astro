@@ -7,7 +7,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "lint": "astro check"
+    "lint": "astro check",
+    "codegen": "graphql-codegen --config codegen.ts"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
@@ -23,17 +24,26 @@
     "astro-icon": "^1.1.5",
     "astro-leaflet": "^1.12.0",
     "astro-splide": "^2.1.1",
+    "graphql": "^16.14.2",
+    "graphql-request": "^7.4.0",
+    "graphql-tag": "^2.12.6",
     "nodemailer": "^7.0.2",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "react-hook-form": "^7.77.0",
     "react-icons": "^5.6.0",
+    "react-inlinesvg": "^4.4.1",
     "tailwindcss": "^4.1.7",
     "typescript": "^5.8.3",
     "vite-plugin-svgr": "^5.2.0",
     "zod": "^3.25.76"
   },
   "devDependencies": {
-    "@types/nodemailer": "^6.4.17"
+    "@graphql-codegen/cli": "^7.1.2",
+    "@graphql-codegen/typescript": "^6.0.2",
+    "@graphql-codegen/typescript-graphql-request": "^7.1.0",
+    "@graphql-codegen/typescript-operations": "^6.0.3",
+    "@types/nodemailer": "^6.4.17",
+    "dotenv": "^17.4.2"
   }
 }

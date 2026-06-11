@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { navigate } from 'astro:transitions/client';
 import { MdClose } from 'react-icons/md';
 import { ChevronArrow } from './chevron-arrow';
-import type { MenuGroup } from '@/server/repositories/types';
+import type { MenuGroup } from '@/server/types';
 
 interface Props {
   navigation: MenuGroup[];
@@ -50,11 +50,11 @@ export function MobileMenu({ navigation, pathname, isOpen, onClose }: Props) {
         <ul className="w-full pb-10">
         {navigation.map((group, idx) => {
           const hasSubmenu = group.submenuItem.length > 0;
-          const isSubmenuOpen = openSubmenu === group.menuItem.id;
-          const isAnchor = group.menuItem.link.startsWith('#') || group.menuItem.link.startsWith('/#');
+          const isSubmenuOpen = openSubmenu === group.id;
+          const isAnchor = (group.link ?? '').startsWith('#') || (group.link ?? '').startsWith('/#');
 
           return (
-            <li key={group.menuItem.id} className={`w-full pb-2 flex flex-col ${!isOpen ? 'opacity-0' : ''}`}
+            <li key={group.id} className={`w-full pb-2 flex flex-col ${!isOpen ? 'opacity-0' : ''}`}
               style={{
                 animation: isOpen
                   ? `fadeSlideIn 0.3s ease-out ${idx * 0.1}s both`
@@ -65,9 +65,9 @@ export function MobileMenu({ navigation, pathname, isOpen, onClose }: Props) {
                 <>
                   <button
                     className="flex items-center justify-center w-full gap-2 cursor-pointer"
-                    onClick={() => setOpenSubmenu(isSubmenuOpen ? null : group.menuItem.id)}
+                    onClick={() => setOpenSubmenu(isSubmenuOpen ? null : group.id)}
                   >
-                    <span className="text-lg text-primary">{group.menuItem.title}</span>
+                    <span className="text-lg text-primary">{group.title}</span>
                     {isSubmenuOpen ? <MdClose size={20} className="text-primary" /> : <ChevronArrow />}
                   </button>
                   <div
@@ -101,17 +101,17 @@ export function MobileMenu({ navigation, pathname, isOpen, onClose }: Props) {
               ) : isAnchor ? (
                 <button
                   className="text-lg text-primary w-full text-center py-4"
-                  onClick={() => handleAnchorLink(group.menuItem.link)}
+                  onClick={() => handleAnchorLink(group.link ?? '')}
                 >
-                  {group.menuItem.title}
+                  {group.title}
                 </button>
               ) : (
                 <a
-                  href={group.menuItem.link}
+                  href={group.link ?? '#'}
                   className="text-lg text-primary w-full text-center py-4 no-underline"
                   onClick={onClose}
                 >
-                  {group.menuItem.title}
+                  {group.title}
                 </a>
               )}
             </li>

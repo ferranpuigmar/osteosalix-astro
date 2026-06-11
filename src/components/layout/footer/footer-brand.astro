@@ -1,6 +1,12 @@
 ---
 import { Icon } from "astro-icon/components";
 import LogoIcon from "@/components/shared/logo-icon.astro";
+
+interface Props {
+  city?: string;
+}
+
+const { city = "Sant Cugat" } = Astro.props;
 ---
 
 <div class="flex flex-col gap-6 w-full lg:w-[320px]">
@@ -11,7 +17,7 @@ import LogoIcon from "@/components/shared/logo-icon.astro";
     >osteo<span class="text-white/67">salix</span></span>
   </div>
   <p class="font-editorial text-[15px] leading-[1.7] text-[var(--footer-text)]">
-    Osteopatía y fisioterapia en Sant Cugat.<br />Cuidamos de tu salud
+    Osteopatía y fisioterapia en {city}.<br />Cuidamos de tu salud
     con dedicación<br />y profesionalidad.
   </p>
   <div class="flex gap-3">

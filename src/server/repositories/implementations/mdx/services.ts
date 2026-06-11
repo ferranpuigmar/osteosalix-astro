@@ -1,5 +1,5 @@
 import { getCollection } from 'astro:content';
-import type { ServiceEntry } from '../../types';
+import type { ServiceEntry } from '@/server/types';
 import type { IServicesRepository } from '../../interfaces/services';
 
 export class MdxServicesRepository implements IServicesRepository {

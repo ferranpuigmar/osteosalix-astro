@@ -10,7 +10,7 @@ export const siteConfig = {
     country: 'ES',
   },
   logo: {
-    url: '/images/logo-white.svg',
+    url: '/images/logo-icon.svg',
     width: 151,
     height: 20,
     alt: 'Osteosalix Logo',
