@@ -1,9 +1,9 @@
-import type { IHomeRepository } from '@/server/application/interfaces/home-repository';
-import type { INavigationRepository } from '@/server/application/interfaces/navigation-repository';
-import type { IServicesRepository } from '@/server/application/interfaces/services-repository';
-import type { ILegalRepository } from '@/server/application/interfaces/legal-repository';
-import type { IPagesRepository } from '@/server/application/interfaces/pages-repository';
-import type { IHeaderRepository } from '@/server/application/interfaces/header-repository';
+import type { IHomeRepository } from '@/server/application/ports/home-repository';
+import type { INavigationRepository } from '@/server/application/ports/navigation-repository';
+import type { IServicesRepository } from '@/server/application/ports/services-repository';
+import type { ILegalRepository } from '@/server/application/ports/legal-repository';
+import type { IPagesRepository } from '@/server/application/ports/pages-repository';
+import type { IHeaderRepository } from '@/server/application/ports/header-repository';
 
 export interface RepositoryProvider {
   home: IHomeRepository;

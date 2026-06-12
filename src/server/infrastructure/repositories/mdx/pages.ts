@@ -1,6 +1,6 @@
 import { getCollection } from 'astro:content';
 import type { PageEntry } from '@/server/domain/models';
-import type { IPagesRepository } from '../../../application/interfaces/pages-repository';
+import type { IPagesRepository } from '../../../application/ports/pages-repository';
 
 export class MdxPagesRepository implements IPagesRepository {
   async getAll(): Promise<PageEntry[]> {
