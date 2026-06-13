@@ -156,7 +156,7 @@ export type FloatFilterInput = {
   startsWith?: InputMaybe<Scalars['Float']['input']>;
 };
 
-export type GenericMorph = ComponentNavigationMenuGroup | ComponentNavigationMenuItem | Header | I18NLocale | Navigation | ReviewWorkflowsWorkflow | ReviewWorkflowsWorkflowStage | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = ComponentHomeButton | ComponentHomeCenter | ComponentHomeHeroSection | ComponentHomeValue | ComponentNavigationMenuGroup | ComponentNavigationMenuItem | Header | Home | I18NLocale | Navigation | ReviewWorkflowsWorkflow | ReviewWorkflowsWorkflowStage | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type Header = {
   __typename?: 'Header';
@@ -169,6 +169,147 @@ export type Header = {
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
   whatsappNumber: Scalars['String']['output'];
+};
+
+export type ComponentHomeButton = {
+  __typename?: 'ComponentHomeButton';
+  id: Scalars['ID']['output'];
+  link: Scalars['String']['output'];
+  title: Scalars['String']['output'];
+};
+
+export type ComponentHomeButtonFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentHomeButtonFiltersInput>>>;
+  link?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ComponentHomeButtonFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentHomeButtonFiltersInput>>>;
+  title?: InputMaybe<StringFilterInput>;
+};
+
+export type ComponentHomeButtonInput = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+  link?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type ComponentHomeCenter = {
+  __typename?: 'ComponentHomeCenter';
+  id: Scalars['ID']['output'];
+  button: ComponentHomeButton;
+  content: Scalars['String']['output'];
+  image: UploadFile;
+  image2: UploadFile;
+  label: Scalars['String']['output'];
+  title: Scalars['String']['output'];
+  values: Array<Maybe<ComponentHomeValue>>;
+};
+
+
+export type ComponentHomeCenterValuesArgs = {
+  filters?: InputMaybe<ComponentHomeValueFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type ComponentHomeValue = {
+  __typename?: 'ComponentHomeValue';
+  id: Scalars['ID']['output'];
+  icon: Scalars['String']['output'];
+  title: Scalars['String']['output'];
+};
+
+export type ComponentHomeValueFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentHomeValueFiltersInput>>>;
+  icon?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ComponentHomeValueFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentHomeValueFiltersInput>>>;
+  title?: InputMaybe<StringFilterInput>;
+};
+
+export type ComponentHomeValueInput = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+  icon?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type ComponentHomeCenterFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentHomeCenterFiltersInput>>>;
+  button?: InputMaybe<ComponentHomeButtonFiltersInput>;
+  content?: InputMaybe<StringFilterInput>;
+  label?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ComponentHomeCenterFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentHomeCenterFiltersInput>>>;
+  title?: InputMaybe<StringFilterInput>;
+  values?: InputMaybe<ComponentHomeValueFiltersInput>;
+};
+
+export type ComponentHomeCenterInput = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+  button?: InputMaybe<ComponentHomeButtonInput>;
+  content?: InputMaybe<Scalars['String']['input']>;
+  image?: InputMaybe<Scalars['ID']['input']>;
+  image2?: InputMaybe<Scalars['ID']['input']>;
+  label?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  values?: InputMaybe<Array<InputMaybe<ComponentHomeValueInput>>>;
+};
+
+export type ComponentHomeHeroSection = {
+  __typename?: 'ComponentHomeHeroSection';
+  id: Scalars['ID']['output'];
+  badge: Scalars['String']['output'];
+  bgImage: UploadFile;
+  description: Scalars['String']['output'];
+  heroImage: UploadFile;
+  title: Scalars['String']['output'];
+};
+
+export type ComponentHomeHeroSectionFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentHomeHeroSectionFiltersInput>>>;
+  badge?: InputMaybe<StringFilterInput>;
+  description?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ComponentHomeHeroSectionFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentHomeHeroSectionFiltersInput>>>;
+  title?: InputMaybe<StringFilterInput>;
+};
+
+export type ComponentHomeHeroSectionInput = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+  badge?: InputMaybe<Scalars['String']['input']>;
+  bgImage?: InputMaybe<Scalars['ID']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  heroImage?: InputMaybe<Scalars['ID']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type Home = {
+  __typename?: 'Home';
+  center: Array<Maybe<ComponentHomeCenter>>;
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  documentId: Scalars['ID']['output'];
+  heroSection: Array<Maybe<ComponentHomeHeroSection>>;
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+
+export type HomeCenterArgs = {
+  filters?: InputMaybe<ComponentHomeCenterFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type HomeHeroSectionArgs = {
+  filters?: InputMaybe<ComponentHomeHeroSectionFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type HomeInput = {
+  center?: InputMaybe<ComponentHomeCenterInput>;
+  heroSection?: InputMaybe<ComponentHomeHeroSectionInput>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type HeaderInput = {
@@ -312,6 +453,7 @@ export type Mutation = {
   /** Reset user password. Confirm with a code (resetToken from forgotPassword) */
   resetPassword?: Maybe<UsersPermissionsLoginPayload>;
   updateHeader?: Maybe<Header>;
+  updateHome?: Maybe<Home>;
   updateNavigation?: Maybe<Navigation>;
   updateReviewWorkflowsWorkflow?: Maybe<ReviewWorkflowsWorkflow>;
   updateReviewWorkflowsWorkflowStage?: Maybe<ReviewWorkflowsWorkflowStage>;
@@ -410,6 +552,12 @@ export type MutationUpdateHeaderArgs = {
 };
 
 
+export type MutationUpdateHomeArgs = {
+  data: HomeInput;
+  status?: InputMaybe<PublicationStatus>;
+};
+
+
 export type MutationUpdateNavigationArgs = {
   data: NavigationInput;
   status?: InputMaybe<PublicationStatus>;
@@ -504,6 +652,7 @@ export enum PublicationStatus {
 export type Query = {
   __typename?: 'Query';
   header?: Maybe<Header>;
+  home?: Maybe<Home>;
   i18NLocale?: Maybe<I18NLocale>;
   i18NLocales: Array<Maybe<I18NLocale>>;
   i18NLocales_connection?: Maybe<I18NLocaleEntityResponseCollection>;
@@ -528,6 +677,13 @@ export type Query = {
 
 
 export type QueryHeaderArgs = {
+  hasPublishedVersion?: InputMaybe<Scalars['Boolean']['input']>;
+  publicationFilter?: InputMaybe<PublicationFilter>;
+  status?: InputMaybe<PublicationStatus>;
+};
+
+
+export type QueryHomeArgs = {
   hasPublishedVersion?: InputMaybe<Scalars['Boolean']['input']>;
   publicationFilter?: InputMaybe<PublicationFilter>;
   status?: InputMaybe<PublicationStatus>;
@@ -1104,6 +1260,11 @@ export type HeaderQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type HeaderQuery = { header: { logoTextStart: string, logoTextEnd: string, whatsappNumber: string, logo: { url: string }, navigation: { title: string, items: Array<{ id: string, title: string, link: string | null, submenuItem: Array<{ id: string, title: string, link: string } | null> | null } | null> } } | null };
 
+export type HomeQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type HomeQuery = { home: { heroSection: Array<{ id: string, badge: string, title: string, description: string, bgImage: { url: string }, heroImage: { url: string } } | null>, center: Array<{ id: string, label: string, title: string, content: string, values: Array<{ id: string, icon: string, title: string } | null>, button: { id: string, title: string, link: string }, image: { url: string }, image2: { url: string } } | null> } | null };
+
 
 export const HeaderDocument = gql`
     query Header {
@@ -1131,6 +1292,47 @@ export const HeaderDocument = gql`
 }
     `;
 
+export const HomeDocument = gql`
+    query Home {
+  home {
+    heroSection {
+      id
+      badge
+      title
+      description
+      bgImage {
+        url
+      }
+      heroImage {
+        url
+      }
+    }
+    center {
+      id
+      label
+      title
+      content
+      values {
+        id
+        icon
+        title
+      }
+      button {
+        id
+        title
+        link
+      }
+      image {
+        url
+      }
+      image2 {
+        url
+      }
+    }
+  }
+}
+    `;
+
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string, variables?: any) => Promise<T>;
 
 
@@ -1140,6 +1342,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
   return {
     Header(variables?: HeaderQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<HeaderQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<HeaderQuery>({ document: HeaderDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'Header', 'query', variables);
+    },
+    Home(variables?: HomeQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<HomeQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<HomeQuery>({ document: HomeDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'Home', 'query', variables);
     }
   };
 }

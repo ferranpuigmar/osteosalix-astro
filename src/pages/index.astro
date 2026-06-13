@@ -5,15 +5,18 @@ import Introduction from "@/components/home/introduction.astro";
 import Services from "@/components/home/services.astro";
 import PhilosophyBanner from "@/components/home/philosophy-banner.astro";
 import { getHomeData } from "@/pages/api/home";
+import { getHeader } from "@/pages/api/header";
 import ContactSection from "@/components/shared/contact-section.astro";
 import CentrosSection from "@/components/centers/centros-section.astro";
 
 const homeData = await getHomeData();
+const { whatsappNumber } = await getHeader();
+
 ---
 
-<BaseLayout>
+<BaseLayout canonical="https://osteosalix.com/">
 	<main class="relative z-0">
-		<HeroBanner data={homeData.heroSection} />
+		<HeroBanner data={homeData.heroSection} whatsappNumber={whatsappNumber} />
 		<Introduction data={homeData.center} />
 		<Services data={homeData.services} />
 		<PhilosophyBanner textureUrl={homeData.philosophy.textureUrl} />

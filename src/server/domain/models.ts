@@ -27,14 +27,19 @@ export interface HomeData {
     heroImageUrl: string;
   };
   center: {
+    label: string;
     title: string;
-    subtitle: string;
     content: string;
+    values: {
+      icon: string;
+      title: string;
+    }[];
     button: {
       title: string;
       link: string;
     };
     image: string;
+    image2: string;
   };
   services: {
     title: string;

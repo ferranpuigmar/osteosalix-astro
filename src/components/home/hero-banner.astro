@@ -6,9 +6,10 @@ import Button from "../shared/button.astro";
 
 interface Props {
 	data: HomeData["heroSection"];
+	whatsappNumber: string;
 }
 
-const { data } = Astro.props;
+const { data, whatsappNumber } = Astro.props;
 ---
 
 <section
@@ -46,7 +47,7 @@ const { data } = Astro.props;
 					class="flex flex-wrap items-center justify-center lg:justify-start gap-3 lg:gap-4"
 				>
 					<Button
-						href="https://wa.me/34600000000"
+						href={`https://wa.me/${whatsappNumber}`}
 						class="gap-2 px-7 lg:px-8 h-[46px] lg:h-auto lg:py-4 rounded-[23px] lg:rounded-[28px] text-sm font-semibold lg:font-bold lg:tracking-[2px] lg:uppercase"
 					>
 						<Icon name="lucide:message-circle" size={16} />WhatsApp

@@ -1,0 +1,38 @@
+query Home {
+  home {
+    heroSection {
+      id
+      badge
+      title
+      description
+      bgImage {
+        url
+      }
+      heroImage {
+        url
+      }
+    }
+    center {
+      id
+      label
+      title
+      content
+      values {
+        id
+        icon
+        title
+      }
+      button {
+        id
+        title
+        link
+      }
+      image {
+        url
+      }
+      image2 {
+        url
+      }
+    }
+  }
+}

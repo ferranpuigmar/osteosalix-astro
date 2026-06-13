@@ -8,14 +8,19 @@ export interface HomeData {
     heroImageUrl: string;
   };
   center: {
+    label: string;
     title: string;
-    subtitle: string;
     content: string;
+    values: {
+      icon: string;
+      title: string;
+    }[];
     button: {
       title: string;
       link: string;
     };
     image: string;
+    image2: string;
   };
   services: {
     title: string;
@@ -35,22 +40,27 @@ export interface HomeData {
 
 export const homeData: HomeData = {
   heroSection: {
-    badge: 'Osteopatía y fisioterapia en Sant Cugat',
+    badge: 'Osteopatía y fisioterapia en Sant Cugat y Terrassa',
     title: 'Cuidamos de ti de forma integral',
     description: 'Un espacio dedicado a tu salud donde combinamos técnicas manuales y un enfoque holístico para devolverte el equilibrio que necesitas.',
-    bgImageUrl: '/images/hero-bg.jpg',
+    bgImageUrl: 'https://images.unsplash.com/photo-1519824145371-296894a0daa9?fm=jpg&q=80&w=1440&auto=format&fit=crop',
     bgOverlayUrl: 'https://images.unsplash.com/photo-1519824145371-296894a0daa9?fm=jpg&q=80&w=1440&auto=format&fit=crop',
     heroImageUrl: 'https://images.unsplash.com/photo-1519823551278-64ac92734fb1?fm=jpg&q=80&w=1080&auto=format&fit=crop',
   },
   center: {
-    title: '<p>El centro</p>',
-    subtitle: '<h2><strong>Profesionales especializados en osteopatía y fisioterapia en Sant Cugat del Vallés</strong></h2>',
+    label: 'Sobre nosotros',
+    title: '<h2><strong>Un enfoque diferente<br />para tu bienestar</strong></h2>',
     content: '<p>Desde 2018, en Osteosalix combinamos experiencia y formación continua para ofrecerte el mejor tratamiento. Creemos en la capacidad natural del cuerpo para sanarse cuando se le dan las condiciones adecuadas.</p>',
+    values: [
+      { title: 'Trato cercano', icon: 'heart' },
+      { title: 'Profesionales', icon: 'shield-check' },
+    ],
     button: {
       title: 'Contactar',
       link: '#contactar',
     },
-    image: '/images/el-centro.jpg',
+    image: 'https://images.unsplash.com/photo-1741522509438-a120c0bb5e88?fm=jpg&q=80&w=1080&auto=format&fit=crop',
+    image2: 'https://images.unsplash.com/photo-1668422550557-f096364b72b4?fm=jpg&q=80&w=1080&auto=format&fit=crop',
   },
   services: {
     title: 'Nuestros servicios',

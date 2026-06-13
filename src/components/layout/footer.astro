@@ -9,7 +9,7 @@ const pathname = Astro.url.pathname;
 const centroMatch = pathname.match(/^\/centro\/(.+)$/);
 const centerSlug = centroMatch ? centroMatch[1] : null;
 const center = centerSlug ? centers.find((c) => c.slug === centerSlug) : null;
-const city = center ? center.name.replace("Centro ", "") : "Sant Cugat";
+const city = center ? center.name.replace("Centro ", "") : "Sant Cugat y Terrassa";
 ---
 
 <footer class="bg-[var(--brand-dark)] min-h-[380px] flex flex-col">

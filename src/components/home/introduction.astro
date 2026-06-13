@@ -11,6 +11,13 @@ interface Props {
 const { data } = Astro.props;
 ---
 
+<style>
+  .intro-title br { display: none; }
+  @media (min-width: 1024px) {
+    .intro-title br { display: block; }
+  }
+</style>
+
 <section id="el-centro" class="w-full bg-[var(--neutral-50)] min-h-[625px] relative max-lg:z-10 max-lg:-mt-8 rounded-[24px]">
   <LayoutWrapper class="lg:py-[100px] lg:pb-0 max-lg:-mt-8 max-lg:px-0">
 
@@ -21,35 +28,26 @@ const { data } = Astro.props;
       <div class="flex flex-col gap-5 lg:gap-7 lg:w-[500px] lg:shrink-0">
 
         <!-- label: different case/color on mobile vs desktop -->
-        <span class="text-overline text-[var(--brand-accent-dark)] lg:text-[var(--brand-accent)] uppercase lg:normal-case">
-          <span class="lg:hidden">SOBRE NOSOTROS</span>
-          <span class="hidden lg:inline">Sobre nosotros</span>
-        </span>
+        <span class="text-overline text-[var(--brand-accent-dark)] lg:text-[var(--brand-accent)] uppercase lg:normal-case" set:html={data.label} />
 
         <!-- title: 26px mobile, 48px desktop, max-w 310 mobile -->
-        <h2 class="font-heading font-[500] leading-[1.15] text-[var(--neutral-900)] text-[26px] max-w-[310px] lg:text-[48px] lg:max-w-none">
-          Un enfoque diferente<span class="hidden lg:inline"><br /></span><span class="lg:hidden"> </span>para tu bienestar
-        </h2>
+        <div class="font-heading font-[500] leading-[1.15] text-[var(--neutral-900)] text-[26px] max-w-[310px] lg:text-[48px] lg:max-w-none intro-title" set:html={data.title} />
 
         <!-- description: 14px/lh1.7/#444 mobile → 18px/lh1.9/$neutral-600 desktop, max-w 290 → 480 -->
         <div class="font-editorial italic [&_p]:m-0 text-[14px] leading-[1.7] text-[#444444] max-w-[290px] lg:text-[18px] lg:leading-[1.9] lg:text-[var(--neutral-600)] lg:max-w-[480px]">
           <Fragment set:html={data.content} />
         </div>
 
-        <!-- values row: desktop only (no existe en mobile) -->
+        <!-- values row: desktop only -->
         <div class="hidden lg:flex gap-10">
-          <div class="flex items-center gap-3">
-            <div class="flex items-center justify-center w-10 h-10 rounded-[20px] bg-[#74896F15]">
-              <Icon name="lucide:heart" size={18} class="text-[var(--brand-primary)]" />
+          {data.values.map((v) => (
+            <div class="flex items-center gap-3">
+              <div class="flex items-center justify-center w-10 h-10 rounded-[20px] bg-[#74896F15]">
+                <Icon name={`lucide:${v.icon}`} size={18} class="text-[var(--brand-primary)]" />
+              </div>
+              <span class="text-body-sm font-medium text-[var(--neutral-900)]">{v.title}</span>
             </div>
-            <span class="text-body-sm font-medium text-[var(--neutral-900)]">Trato cercano</span>
-          </div>
-          <div class="flex items-center gap-3">
-            <div class="flex items-center justify-center w-10 h-10 rounded-[20px] bg-[#74896F15]">
-              <Icon name="lucide:shield-check" size={18} class="text-[var(--brand-primary)]" />
-            </div>
-            <span class="text-body-sm font-medium text-[var(--neutral-900)]">Profesionales</span>
-          </div>
+          ))}
         </div>
 
       </div>
@@ -59,7 +57,7 @@ const { data } = Astro.props;
       <!-- mobile image (vZhvJ): fill_container h-200 radius [60,16,60,16] -->
       <div class="lg:hidden w-full h-[200px] rounded-tl-[60px] rounded-tr-[16px] rounded-br-[60px] rounded-bl-[16px] overflow-hidden">
         <Image
-          src="https://images.unsplash.com/photo-1741522509438-a120c0bb5e88?fm=jpg&q=80&w=1080&auto=format&fit=crop"
+          src={data.image}
           alt=""
           width={600}
           height={200}
@@ -67,22 +65,20 @@ const { data } = Astro.props;
         />
       </div>
 
-      <!-- desktop images (4lz2g): 600x500 container with 2 absolutely-positioned images -->
+      <!-- desktop images: 600x500 container with 2 absolutely-positioned images -->
       <div class="hidden lg:block relative shrink-0 xl:w-[600px] h-[500px] ">
-        <!-- aboutImg2a (Ub1Zz): x:0 y:0, 320x400, radius [80,20,80,20] -->
         <div class="absolute top-[0px] left-[0px] w-[320px] h-[400px] rounded-tl-[80px] rounded-tr-[20px] rounded-br-[80px] rounded-bl-[20px] overflow-hidden">
           <Image
-            src="https://images.unsplash.com/photo-1741522509438-a120c0bb5e88?fm=jpg&q=80&w=1080&auto=format&fit=crop"
+            src={data.image}
             alt=""
             width={320}
             height={400}
             class="w-full h-full object-cover"
           />
         </div>
-        <!-- aboutImg2b (tapS6): x:280 y:100, 280x350, radius [20,80,20,80] -->
         <div class="absolute top-[100px] left-[280px] w-[280px] h-[350px] rounded-tl-[20px] rounded-tr-[80px] rounded-br-[20px] rounded-bl-[80px] overflow-hidden hidden xl:block">
           <Image
-            src="https://images.unsplash.com/photo-1668422550557-f096364b72b4?fm=jpg&q=80&w=1080&auto=format&fit=crop"
+            src={data.image2}
             alt=""
             width={280}
             height={350}

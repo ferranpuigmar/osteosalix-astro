@@ -6,12 +6,17 @@ import type { MenuGroup } from '@/server/domain/models';
 const STRAPI_URL = import.meta.env.STRAPI_URL || 'http://localhost:1337';
 
 export class StrapiHeaderRepository implements IHeaderRepository {
+  private cache: HeaderData | null = null;
+
   async get(): Promise<HeaderData> {
+    if (this.cache) return this.cache;
+
     const data = await gqlSdk.Header();
     const header = data.header;
 
     if (!header) {
-      return { logo: '', logoTextStart: '', logoTextEnd: '', whatsappNumber: '', navigation: [] };
+      this.cache = { logo: '', logoTextStart: '', logoTextEnd: '', whatsappNumber: '', navigation: [] };
+      return this.cache;
     }
 
     const navigation: MenuGroup[] = (header.navigation?.items ?? [])
@@ -25,12 +30,13 @@ export class StrapiHeaderRepository implements IHeaderRepository {
         ),
       }));
 
-    return {
+    this.cache = {
       logo: header.logo ? `${STRAPI_URL}${header.logo.url}` : '',
       logoTextStart: header.logoTextStart,
       logoTextEnd: header.logoTextEnd,
       whatsappNumber: header.whatsappNumber,
       navigation,
     };
+    return this.cache;
   }
 }

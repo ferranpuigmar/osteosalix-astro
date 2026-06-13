@@ -7,5 +7,6 @@ export type { RepositoryProvider } from './types';
 export const repositories: RepositoryProvider = {
   ...strapiProvider,
   ...mdxProvider,
+  home: strapiProvider.home,
   header: strapiProvider.header,
 };
