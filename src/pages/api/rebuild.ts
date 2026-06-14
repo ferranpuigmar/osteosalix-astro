@@ -63,9 +63,22 @@ export const POST: APIRoute = async ({ request }) => {
 
   console.log('[rebuild] Webhook event:', eventName, 'model:', model);
 
+  const debug = {
+    hasToken: !!GITHUB_TOKEN,
+    tokenLength: GITHUB_TOKEN?.length ?? 0,
+    owner: GITHUB_REPO_OWNER,
+    repo: GITHUB_REPO_NAME,
+    workflow: GITHUB_WORKFLOW_ID,
+    event: eventName,
+    model,
+  };
+
   if (!GITHUB_TOKEN) {
     console.error('[rebuild] GITHUB_TOKEN is not set');
-    return new Response('GitHub token not configured', { status: 500 });
+    return new Response(
+      JSON.stringify({ ok: false, error: 'GitHub token not configured', debug }),
+      { status: 500, headers: { 'Content-Type': 'application/json' } }
+    );
   }
 
   const githubUrl = `https://api.github.com/repos/${GITHUB_REPO_OWNER}/${GITHUB_REPO_NAME}/actions/workflows/${GITHUB_WORKFLOW_ID}/dispatches`;
@@ -92,7 +105,7 @@ export const POST: APIRoute = async ({ request }) => {
     const error = await response.text();
     console.error('[rebuild] GitHub API error:', response.status, error);
     return new Response(
-      JSON.stringify({ ok: false, error: `GitHub API: ${response.status}`, detail: error }),
+      JSON.stringify({ ok: false, error: `GitHub API: ${response.status}`, detail: error, debug }),
       { status: 502, headers: { 'Content-Type': 'application/json' } }
     );
   }
