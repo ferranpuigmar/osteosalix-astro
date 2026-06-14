@@ -5,3 +5,5 @@ dist/
 .env.local
 *.log
 src/lib/graphql/generated.ts
+.vercel
+.env*
