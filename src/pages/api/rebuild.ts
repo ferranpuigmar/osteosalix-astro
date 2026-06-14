@@ -94,9 +94,8 @@ export const POST: APIRoute = async ({ request }) => {
     body: JSON.stringify({
       ref: 'main',
       inputs: {
-        triggeredBy: 'strapi-webhook',
-        event: eventName,
-        model,
+      triggeredBy: 'strapi-webhook',
+      model,
       },
     }),
   });
