@@ -10,4 +10,6 @@ export const repositories: RepositoryProvider = {
   home: strapiProvider.home,
   header: strapiProvider.header,
   services: strapiProvider.services,
+  contact: strapiProvider.contact,
+  center: strapiProvider.center,
 };

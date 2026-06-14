@@ -1,10 +1,16 @@
 ---
-import type { CenterData } from '@/data/centers';
 import LayoutWrapper from '../layout/layout-wrapper.astro';
 import ServiceCard from '../shared/service-card.astro';
 
+interface CenterService {
+  slug: string;
+  title: string;
+  description: string;
+  cardImage?: string;
+}
+
 interface Props {
-  services: CenterData['services'];
+  services: CenterService[];
 }
 
 const { services } = Astro.props;
@@ -24,8 +30,8 @@ const mtOffsets = ['', 'lg:mt-12', '', 'lg:mt-12'];
           <ServiceCard
             title={service.title}
             description={service.description}
-            image={service.image}
-            link={service.link}
+            image={service.cardImage ?? ''}
+            link={`/servicios/${service.slug}`}
             alt={i % 2 !== 0}
           />
         </div>

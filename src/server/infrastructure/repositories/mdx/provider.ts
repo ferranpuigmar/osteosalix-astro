@@ -6,6 +6,10 @@ import { MdxLegalRepository } from './legal';
 import { MdxPagesRepository } from './pages';
 import { MdxHeaderRepository } from './header';
 
+function notImplemented(): never {
+  throw new Error('MDX repository not implemented for this field');
+}
+
 export const mdxProvider: RepositoryProvider = {
   home: new MdxHomeRepository(),
   navigation: new MdxNavigationRepository(),
@@ -13,4 +17,6 @@ export const mdxProvider: RepositoryProvider = {
   legal: new MdxLegalRepository(),
   pages: new MdxPagesRepository(),
   header: new MdxHeaderRepository(),
+  contact: { get: notImplemented },
+  center: { getAll: notImplemented, getBySlug: notImplemented },
 };

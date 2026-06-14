@@ -5,6 +5,9 @@ import Container from "@/components/layout/container.astro";
 import { getAllLegalPages } from "@/pages/api/legal-list";
 import ContactSection from "@/components/shared/contact-section.astro";
 import CentrosSection from "@/components/centers/centros-section.astro";
+import { getHomeData } from "@/pages/api/home";
+
+const homeData = await getHomeData();
 
 export async function getStaticPaths() {
 	const entries = await getAllLegalPages();
@@ -33,7 +36,11 @@ const { Content } = await legal.render();
 				</div>
 			</Container>
 			<ContactSection />
-			<CentrosSection />
+			<CentrosSection
+				title={homeData.centers.title}
+				subtitle={homeData.centers.subtitle}
+				centers={homeData.centers.list}
+			/>
 		</div>
 	</main>
 </BaseLayout>

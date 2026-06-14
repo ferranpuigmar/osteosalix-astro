@@ -1,18 +1,19 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { contactSchema, type ContactData } from './schema';
+import { createContactSchema, type ContactData, type ContactFormConfig } from './schema';
 import type { SubmitStatus } from './types';
 
 interface UseContactFormOptions {
   formEndpoint: string;
+  config?: ContactFormConfig;
 }
 
-export function useContactForm({ formEndpoint }: UseContactFormOptions) {
+export function useContactForm({ formEndpoint, config }: UseContactFormOptions) {
   const [status, setStatus] = useState<SubmitStatus>('idle');
 
   const form = useForm<ContactData>({
-    resolver: zodResolver(contactSchema),
+    resolver: zodResolver(createContactSchema(config)),
   });
 
   const onSubmit = form.handleSubmit(async (data) => {

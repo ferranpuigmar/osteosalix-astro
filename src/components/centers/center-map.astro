@@ -1,9 +1,13 @@
 ---
 import { Leaflet, CreateLeafletIcon } from "astro-leaflet";
-import type { CenterData } from "@/data/centers";
+
+interface CenterCoords {
+  lat: number;
+  lng: number;
+}
 
 interface Props {
-  center: CenterData;
+  center: CenterCoords;
 }
 
 const { center } = Astro.props;

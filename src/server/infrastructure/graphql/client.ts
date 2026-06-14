@@ -4,7 +4,10 @@ import { getSdk } from './generated';
 const STRAPI_URL = import.meta.env.STRAPI_URL || 'http://localhost:1337';
 const STRAPI_TOKEN = import.meta.env.STRAPI_TOKEN;
 
-const headers: Record<string, string> = {};
+const headers: Record<string, string> = {
+  'Content-Type': 'application/json',
+  'apollo-require-preflight': 'true',
+};
 if (STRAPI_TOKEN) {
   headers.Authorization = `Bearer ${STRAPI_TOKEN}`;
 }

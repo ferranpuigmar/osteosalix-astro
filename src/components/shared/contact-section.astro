@@ -1,10 +1,21 @@
 ---
-import { siteConfig } from '@/data/site-config';
 import { Icon } from 'astro-icon/components';
 import LayoutWrapper from '../layout/layout-wrapper.astro';
 import ContactFormReact from '@/islands/contact-form/index';
+import { getContactConfig } from '@/server/application/services/contact';
 
-const phoneFormatted = siteConfig.phone.replace(/(\d{3})(\d{3})(\d{3})/, '$1 $2 $3');
+const config = await getContactConfig();
+const phoneFormatted = config.phone.replace(/(\d{3})(\d{3})(\d{3})/, '$1 $2 $3');
+
+const formConfig = {
+  fields: config.fields,
+  checkboxError: config.checkboxError,
+  checkboxText: config.checkboxText,
+  submitLabel: config.submitLabel,
+  submitLoadingLabel: config.submitLoadingLabel,
+  successMessage: config.successMessage,
+  errorMessage: config.errorMessage,
+};
 ---
 
 <section id="contacto" class="relative overflow-hidden">
@@ -15,19 +26,16 @@ const phoneFormatted = siteConfig.phone.replace(/(\d{3})(\d{3})(\d{3})/, '$1 $2 
   <LayoutWrapper>
     <div class="relative flex flex-col lg:flex-row gap-10 lg:gap-[100px] py-[60px] lg:py-[80px]">
       <div class="flex flex-col gap-8 lg:gap-[32px] lg:max-w-[480px]">
-        <span class="text-overline-sm text-xs text-[var(--brand-accent)]">Contacto</span>
-        <h2 class="text-h1 text-[var(--neutral-900)]">¿Hablamos?</h2>
-        <p class="text-body text-[var(--neutral-600)]">
-          Cuéntanos tu caso y te asesoraremos sobre el mejor tratamiento para ti.
-          Estamos aquí para ayudarte a recuperar tu bienestar.
-        </p>
+        <span class="text-overline-sm text-xs text-[var(--brand-accent)]">{config.subtitle}</span>
+        <h2 class="text-h1 text-[var(--neutral-900)]">{config.heading}</h2>
+        <p class="text-body text-[var(--neutral-600)]">{config.description}</p>
         <div class="flex gap-6 flex-col sm:flex-row lg:flex-col">
           <div class="flex items-center gap-4">
             <div class="flex items-center justify-center w-[52px] h-[52px] rounded-full bg-[var(--brand-primary)]/10 shrink-0">
               <Icon name="lucide:phone" size={22} class="text-[var(--brand-primary)]" />
             </div>
             <div class="flex flex-col gap-1">
-              <span class="text-caption text-[var(--neutral-500)]">Teléfono</span>
+              <span class="text-caption text-[var(--neutral-500)]">{config.phoneLabel}</span>
               <span class="font-heading text-[22px] font-[800] text-[var(--neutral-900)]">{phoneFormatted}</span>
             </div>
           </div>
@@ -36,15 +44,15 @@ const phoneFormatted = siteConfig.phone.replace(/(\d{3})(\d{3})(\d{3})/, '$1 $2 
               <Icon name="lucide:mail" size={22} class="text-[var(--brand-primary)]" />
             </div>
             <div class="flex flex-col gap-1">
-              <span class="text-caption text-[var(--neutral-500)]">Email</span>
-              <span class="font-heading text-[22px] font-[800] text-[var(--neutral-900)]">{siteConfig.email}</span>
+              <span class="text-caption text-[var(--neutral-500)]">{config.emailLabel}</span>
+              <span class="font-heading text-[22px] font-[800] text-[var(--neutral-900)]">{config.email}</span>
             </div>
           </div>
         </div>
       </div>
 
       <div class="w-full lg:w-[580px] bg-white rounded-[48px_12px_48px_12px] shadow-[0_24px_80px_rgba(0,0,0,0.04)] p-8 lg:p-12">
-        <ContactFormReact formEndpoint={siteConfig.formEndpoint} client:load />
+        <ContactFormReact formEndpoint={config.formEndpoint} config={formConfig} client:load />
       </div>
     </div>
   </LayoutWrapper>

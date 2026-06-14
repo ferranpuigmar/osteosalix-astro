@@ -45,5 +45,28 @@ query Home {
         url
       }
     }
+    philosophy {
+      title
+      description
+      textureImage {
+        url
+      }
+      philosophyItems {
+        icon
+        text
+      }
+    }
+    centersTitle
+    centersSubtitle
+    centers {
+      documentId
+      slug
+      name
+      address
+      phone
+      image {
+        url
+      }
+    }
   }
 }

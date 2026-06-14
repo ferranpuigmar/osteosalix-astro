@@ -19,8 +19,17 @@ const { whatsappNumber } = await getHeader();
 		<HeroBanner data={homeData.heroSection} whatsappNumber={whatsappNumber} />
 		<Introduction data={homeData.center} />
 		<Services data={homeData.services} />
-		<PhilosophyBanner textureUrl={homeData.philosophy.textureUrl} />
+		<PhilosophyBanner
+			textureUrl={homeData.philosophy.textureUrl}
+			title={homeData.philosophy.title}
+			description={homeData.philosophy.description}
+			items={homeData.philosophy.items}
+		/>
 		<ContactSection />
-		<CentrosSection />
+		<CentrosSection
+			title={homeData.centers.title}
+			subtitle={homeData.centers.subtitle}
+			centers={homeData.centers.list}
+		/>
 	</main>
 </BaseLayout>

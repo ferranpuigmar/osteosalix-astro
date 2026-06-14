@@ -67,7 +67,27 @@ export class StrapiHomeRepository implements IHomeRepository {
             cardImage: assetUrl(s.cardImage?.url),
           })),
       },
-      philosophy: { textureUrl: '' },
+      philosophy: {
+        textureUrl: assetUrl(home?.philosophy?.textureImage?.url),
+        title: home?.philosophy?.title ?? '',
+        description: home?.philosophy?.description ?? '',
+        items: (home?.philosophy?.philosophyItems ?? [])
+          .filter((i): i is NonNullable<typeof i> => i !== null)
+          .map((i) => ({ icon: i.icon, text: i.text })),
+      },
+      centers: {
+        title: home?.centersTitle ?? '',
+        subtitle: home?.centersSubtitle ?? '',
+        list: (home?.centers ?? [])
+          .filter((c): c is NonNullable<typeof c> => c !== null)
+          .map((c) => ({
+            slug: c.slug,
+            name: c.name,
+            address: c.address,
+            phone: c.phone,
+            image: assetUrl(c.image?.url),
+          })),
+      },
     };
     return this.cache;
   }

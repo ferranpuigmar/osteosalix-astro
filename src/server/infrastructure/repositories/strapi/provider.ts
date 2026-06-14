@@ -1,4 +1,6 @@
 import type { RepositoryProvider } from '../../types';
+import { StrapiCenterRepository } from './center';
+import { StrapiContactRepository } from './contact';
 import { StrapiHeaderRepository } from './header';
 import { StrapiHomeRepository } from './home';
 import { StrapiServicesRepository } from './services';
@@ -14,4 +16,6 @@ export const strapiProvider: RepositoryProvider = {
   legal: { getAll: notImplemented, getBySlug: notImplemented },
   pages: { getAll: notImplemented, getBySlug: notImplemented },
   header: new StrapiHeaderRepository(),
+  contact: new StrapiContactRepository(),
+  center: new StrapiCenterRepository(),
 };

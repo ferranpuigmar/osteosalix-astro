@@ -1,0 +1,26 @@
+query Contact {
+  contact {
+    subtitle
+    heading
+    description
+    phone
+    phoneLabel
+    email
+    emailLabel
+    fields {
+      field
+      type
+      label
+      placeholder
+      requiredError
+      formatError
+    }
+    checkboxText
+    checkboxError
+    submitLabel
+    submitLoadingLabel
+    successMessage
+    errorMessage
+    formEndpoint
+  }
+}

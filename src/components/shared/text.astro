@@ -9,9 +9,11 @@ interface Props {
   color?: TypographyColor;
   tag?: keyof HTMLElementTagNameMap;
   class?: string;
+  href?: string;
+  'set:html'?: string;
 }
 
-const { size = 'body', color, tag, class: className } = Astro.props;
+const { size = 'body', color, tag, class: className, href, 'set:html': html } = Astro.props;
 
 const entry = typographySizes[size] ?? typographySizes.body!;
 const Tag = tag || entry.tag;
@@ -19,6 +21,6 @@ const colorClass = color ? typographyColors[color] : undefined;
 const allClasses = [...entry.classes, colorClass, className].filter(Boolean).join(' ');
 ---
 
-<Tag class={allClasses}>
-  <slot />
+<Tag class={allClasses} href={href}>
+  {html ? <Fragment set:html={html} /> : <slot />}
 </Tag>

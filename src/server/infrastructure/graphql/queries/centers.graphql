@@ -1,0 +1,12 @@
+query CentersList {
+  centers(sort: "name:asc") {
+    documentId
+    slug
+    name
+    address
+    phone
+    image {
+      url
+    }
+  }
+}

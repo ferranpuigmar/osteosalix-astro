@@ -1,0 +1,28 @@
+query CenterBySlug($slug: String!) {
+  centers(filters: { slug: { eq: $slug } }) {
+    documentId
+    slug
+    name
+    subtitle
+    address
+    phone
+    hours
+    lat
+    lng
+    image {
+      url
+    }
+    galleryImages {
+      url
+    }
+    services {
+      documentId
+      title
+      description
+      slug
+      cardImage {
+        url
+      }
+    }
+  }
+}

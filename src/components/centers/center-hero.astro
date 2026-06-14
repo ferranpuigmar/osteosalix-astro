@@ -1,11 +1,21 @@
 ---
 import { Icon } from "astro-icon/components";
-import type { CenterData } from "@/data/centers";
 import LayoutWrapper from "../layout/layout-wrapper.astro";
+import Text from "../shared/text.astro";
 import CenterMap from "./center-map.astro";
 
+interface CenterEntry {
+  name: string;
+  subtitle: string;
+  address: string;
+  phone: string;
+  hours: string;
+  lat: number;
+  lng: number;
+}
+
 interface Props {
-	center: CenterData;
+  center: CenterEntry;
 }
 
 const { center } = Astro.props;
@@ -17,33 +27,49 @@ const { center } = Astro.props;
 			<div
 				class="w-full lg:w-[531px] bg-white lg:rounded-[60px_16px_60px_16px] shadow-[0_10px_40px_rgba(0,0,0,0.08)] p-10 flex flex-col gap-6 lg:pointer-events-auto"
 			>
-				<nav class="flex items-center gap-2 text-body-xs">
-					<a
+				<nav class="flex items-center gap-2">
+					<Text
+						tag="a"
 						href="/"
-						class="text-[var(--neutral-600)] hover:text-[var(--brand-primary)] transition-colors no-underline"
-						>Inicio</a
+						size="body-xs"
+						color="neutral-600"
+						class="no-underline hover:text-brand-primary transition-colors"
 					>
-					<span class="text-[var(--neutral-600)]">/</span>
-					<a
+						Inicio
+					</Text>
+					<Text tag="span" size="body-xs" color="neutral-600">/</Text>
+					<Text
+						tag="a"
 						href="/#donde-estamos"
-						class="text-[var(--neutral-600)] hover:text-[var(--brand-primary)] transition-colors no-underline"
-						>Centros</a
+						size="body-xs"
+						color="neutral-600"
+						class="no-underline hover:text-brand-primary transition-colors"
 					>
-					<span class="text-[var(--neutral-600)]">/</span>
-					<span class="font-semibold text-[var(--brand-primary)]"
-						>{center.name}</span
+						Centros
+					</Text>
+					<Text tag="span" size="body-xs" color="neutral-600">/</Text>
+					<Text
+						tag="span"
+						size="body-xs"
+						color="brand-primary"
+						class="font-semibold"
 					>
+						{center.name}
+					</Text>
 				</nav>
 
-				<h1
-					class="font-heading text-[48px] font-[500] leading-[1.1] tracking-[-1px] text-[var(--neutral-900)]"
+				<Text
+					tag="h1"
+					size="h1"
+					color="neutral-900"
+					class="text-[48px] leading-[1.1]"
 				>
 					{center.name}
-				</h1>
+				</Text>
 
-				<p class="text-body text-[var(--neutral-600)] max-w-[370px]">
+				<Text size="body" color="neutral-600" class="max-w-[370px]">
 					{center.subtitle}
-				</p>
+				</Text>
 
 				<div class="flex flex-col gap-4">
 					<div class="flex items-center gap-3">
@@ -52,9 +78,12 @@ const { center } = Astro.props;
 							size={18}
 							class="text-[var(--brand-accent)] shrink-0"
 						/>
-						<span class="text-body-sm text-[var(--neutral-600)]"
-							>{center.address}</span
-						>
+						<Text
+							tag="span"
+							size="body-sm"
+							color="neutral-600"
+							set:html={center.address}
+						/>
 					</div>
 					<div class="flex items-center gap-3">
 						<Icon
@@ -62,9 +91,9 @@ const { center } = Astro.props;
 							size={18}
 							class="text-[var(--brand-accent)] shrink-0"
 						/>
-						<span class="text-body-sm text-[var(--neutral-600)]"
-							>{center.phone}</span
-						>
+						<Text tag="span" size="body-sm" color="neutral-600">
+							{center.phone}
+						</Text>
 					</div>
 					<div class="flex items-center gap-3">
 						<Icon
@@ -72,9 +101,9 @@ const { center } = Astro.props;
 							size={18}
 							class="text-[var(--brand-accent)] shrink-0"
 						/>
-						<span class="text-body-sm text-[var(--neutral-600)]"
-							>{center.hours}</span
-						>
+						<Text tag="span" size="body-sm" color="neutral-600">
+							{center.hours}
+						</Text>
 					</div>
 				</div>
 			</div>

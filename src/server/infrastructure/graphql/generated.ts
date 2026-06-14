@@ -1352,7 +1352,7 @@ export type HeaderQuery = { header: { logoTextStart: string, logoTextEnd: string
 export type HomeQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type HomeQuery = { home: { heroSection: Array<{ id: string, badge: string, title: string, description: string, bgImage: { url: string }, heroImage: { url: string } } | null>, center: Array<{ id: string, label: string, title: string, content: string, values: Array<{ id: string, icon: string, title: string } | null>, button: { id: string, title: string, link: string }, image: { url: string }, image2: { url: string } } | null>, servicesTitle?: string | null, servicesSubtitle?: string | null, services?: Array<{ documentId: string, title: string, description: string, slug: string, cardImage: { url: string } | null } | null> | null } | null };
+export type HomeQuery = { home: { heroSection: Array<{ id: string, badge: string, title: string, description: string, bgImage: { url: string }, heroImage: { url: string } } | null>, center: Array<{ id: string, label: string, title: string, content: string, values: Array<{ id: string, icon: string, title: string } | null>, button: { id: string, title: string, link: string }, image: { url: string }, image2: { url: string } } | null>, servicesTitle?: string | null, servicesSubtitle?: string | null, services?: Array<{ documentId: string, title: string, description: string, slug: string, cardImage: { url: string } | null } | null> | null, philosophy?: { title: string, description: string, textureImage?: { url: string } | null, philosophyItems?: Array<{ icon: string, text: string } | null> | null } | null, centersTitle?: string | null, centersSubtitle?: string | null, centers?: Array<{ documentId: string, slug: string, name: string, address: string, phone: string, image: { url: string } | null } | null> | null } | null };
 
 export type ServiceBySlugQueryVariables = Exact<{
   slug: Scalars['String']['input'];
@@ -1364,6 +1364,23 @@ export type ServiceBySlugQuery = { services: Array<{ documentId: string, title: 
 export type ServicesListQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type ServicesListQuery = { services: Array<{ documentId: string, title: string, description: string, slug: string, order?: number | null, cardImage: { url: string } | null } | null> };
+
+export type ContactQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type ContactQuery = { contact: { subtitle: string, heading: string, description: string, phone: string, phoneLabel: string, email: string, emailLabel: string, fields: Array<{ field: string, type?: string | null, label: string, placeholder: string, requiredError: string, formatError?: string | null } | null>, checkboxText: string, checkboxError: string, submitLabel: string, submitLoadingLabel: string, successMessage: string, errorMessage: string, formEndpoint?: string | null } | null };
+
+export type CentersListQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type CentersListQuery = { centers: Array<{ documentId: string, slug: string, name: string, address: string, phone: string, image: { url: string } | null } | null> };
+
+export type CenterBySlugQueryVariables = Exact<{
+  slug: Scalars['String']['input'];
+}>;
+
+
+export type CenterBySlugQuery = { centers: Array<{ documentId: string, slug: string, name: string, subtitle: string, address: string, phone: string, hours: string, lat: number, lng: number, image: { url: string } | null, galleryImages: Array<{ url: string } | null>, services: Array<{ documentId: string, title: string, description: string, slug: string, cardImage: { url: string } | null } | null> | null } | null> };
 
 
 export const HeaderDocument = gql`
@@ -1440,6 +1457,29 @@ export const HomeDocument = gql`
         url
       }
     }
+    philosophy {
+      title
+      description
+      textureImage {
+        url
+      }
+      philosophyItems {
+        icon
+        text
+      }
+    }
+    centersTitle
+    centersSubtitle
+    centers {
+      documentId
+      slug
+      name
+      address
+      phone
+      image {
+        url
+      }
+    }
   }
 }
     `;
@@ -1493,6 +1533,81 @@ export const ServicesListDocument = gql`
 }
     `;
 
+export const ContactDocument = gql`
+    query Contact {
+  contact {
+    subtitle
+    heading
+    description
+    phone
+    phoneLabel
+    email
+    emailLabel
+    fields {
+      field
+      type
+      label
+      placeholder
+      requiredError
+      formatError
+    }
+    checkboxText
+    checkboxError
+    submitLabel
+    submitLoadingLabel
+    successMessage
+    errorMessage
+    formEndpoint
+  }
+}
+    `;
+
+export const CentersListDocument = gql`
+    query CentersList {
+  centers(sort: "name:asc") {
+    documentId
+    slug
+    name
+    address
+    phone
+    image {
+      url
+    }
+  }
+}
+    `;
+
+export const CenterBySlugDocument = gql`
+    query CenterBySlug($slug: String!) {
+  centers(filters: { slug: { eq: $slug } }) {
+    documentId
+    slug
+    name
+    subtitle
+    address
+    phone
+    hours
+    lat
+    lng
+    image {
+      url
+    }
+    galleryImages {
+      url
+    }
+    services {
+      documentId
+      title
+      description
+      slug
+      cardImage {
+        url
+      }
+    }
+  }
+}
+    `;
+
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string, variables?: any) => Promise<T>;
 
 
@@ -1511,6 +1626,15 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     ServicesList(variables?: ServicesListQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<ServicesListQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<ServicesListQuery>({ document: ServicesListDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'ServicesList', 'query', variables);
+    },
+    Contact(variables?: ContactQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<ContactQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<ContactQuery>({ document: ContactDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'Contact', 'query', variables);
+    },
+    CentersList(variables?: CentersListQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<CentersListQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CentersListQuery>({ document: CentersListDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'CentersList', 'query', variables);
+    },
+    CenterBySlug(variables: CenterBySlugQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<CenterBySlugQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CenterBySlugQuery>({ document: CenterBySlugDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'CenterBySlug', 'query', variables);
     }
   };
 }

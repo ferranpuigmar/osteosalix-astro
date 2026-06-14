@@ -1,10 +1,11 @@
 ---
 import { siteConfig } from "@/data/site-config";
-import { centers } from "@/data/centers";
+import { getAllCenters } from "@/server/application/services/centers";
 import FooterBrand from "@/components/layout/footer/footer-brand.astro";
 import FooterLinksColumn from "@/components/layout/footer/footer-links-column.astro";
 import FooterBottom from "@/components/layout/footer/footer-bottom.astro";
 
+const centers = await getAllCenters();
 const pathname = Astro.url.pathname;
 const centroMatch = pathname.match(/^\/centro\/(.+)$/);
 const centerSlug = centroMatch ? centroMatch[1] : null;

@@ -2,51 +2,39 @@
 import LayoutWrapper from '../layout/layout-wrapper.astro';
 import CenterCard from './center-card.astro';
 
-interface Center {
+interface CenterCardData {
+  slug: string;
   name: string;
   address: string;
   phone: string;
-  image: string;
-  link: string;
-  alt: boolean;
+  image?: string;
 }
 
-const centers: Center[] = [
-  {
-    name: 'Centro Sant Cugat',
-    address: 'Avinguda de Gràcia, 74<br />08172 Sant Cugat',
-    phone: '615 026 425',
-    image: 'https://images.unsplash.com/photo-1705854672193-554f6f2b682e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
-    link: '/centro/centro-sant-cugat',
-    alt: false,
-  },
-  {
-    name: 'Centro Terrassa',
-    address: 'Carrer del Teatre, 52<br />08221 Terrassa',
-    phone: '615 026 425',
-    image: 'https://images.unsplash.com/photo-1722227768655-324634ffc3e2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
-    link: '/centro/centro-terrassa',
-    alt: true,
-  },
-];
+interface Props {
+  title: string;
+  subtitle: string;
+  centers: CenterCardData[];
+}
+
+const { title, subtitle, centers } = Astro.props;
 ---
 
 <section id="donde-estamos" class="bg-neutral-200 overflow-hidden py-[60px] lg:py-[80px]">
   <LayoutWrapper>
     <div class="flex flex-col items-center gap-4 mb-10 lg:mb-[70px]">
-      <span class="text-overline-sm text-xs text-[var(--brand-accent)]">Nuestros centros</span>
-      <h2 class="text-h2 text-center">Visítanos</h2>
+      <span class="text-overline-sm text-xs text-[var(--brand-accent)]">{title}</span>
+      <h2 class="text-h2 text-center">{subtitle}</h2>
     </div>
     <div class="flex flex-col lg:flex-row items-center justify-center gap-6 lg:gap-12">
       {
-        centers.map((center) => (
+        centers.map((center, i) => (
           <CenterCard
             name={center.name}
             address={center.address}
             phone={center.phone}
-            image={center.image}
-            link={center.link}
-            alt={center.alt}
+            image={center.image ?? ''}
+            link={`/centro/${center.slug}`}
+            alt={i % 2 !== 0}
           />
         ))
       }

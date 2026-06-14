@@ -42,7 +42,4 @@ export const siteConfig = {
     url: "https://osteosalix.com",
   },
   cookieYesId: 'd4d23c6a4e4a1254d6ec2c97',
-  // For the contact form, set to your Formspree endpoint or keep empty to use the local API
-  // Get a free endpoint at: https://formspree.io
-  formEndpoint: '',
 } as const;

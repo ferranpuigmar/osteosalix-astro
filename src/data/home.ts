@@ -1,3 +1,11 @@
+export interface CenterCardData {
+  slug: string;
+  name: string;
+  address: string;
+  phone: string;
+  image?: string;
+}
+
 export interface HomeData {
   heroSection: {
     badge: string;
@@ -34,6 +42,14 @@ export interface HomeData {
   };
   philosophy: {
     textureUrl: string;
+    title: string;
+    description: string;
+    items: { icon: string; text: string }[];
+  };
+  centers: {
+    title: string;
+    subtitle: string;
+    list: CenterCardData[];
   };
 }
 
@@ -96,5 +112,32 @@ export const homeData: HomeData = {
   },
   philosophy: {
     textureUrl: 'https://images.unsplash.com/photo-1702094680205-3cd48dadbe53?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzA1NzkyMTZ8&ixlib=rb-4.1.0&q=80&w=1080',
+    title: 'Nuestra<br />filosofía',
+    description: 'Creemos en un abordaje donde el cuerpo es un todo. Escuchamos, observamos y tratamos la causa, no solo el síntoma. Cada persona es única y merece un plan personalizado que respete su ritmo y su historia.',
+    items: [
+      { icon: 'lucide:circle-check', text: 'Visión holística' },
+      { icon: 'lucide:circle-check', text: 'Trato personalizado' },
+      { icon: 'lucide:circle-check', text: 'Escucha activa' },
+    ],
+  },
+  centers: {
+    title: 'Nuestros centros',
+    subtitle: 'Visítanos',
+    list: [
+      {
+        slug: 'centro-sant-cugat',
+        name: 'Centro Sant Cugat',
+        address: 'Avinguda de Gràcia, 74<br />08172 Sant Cugat',
+        phone: '615 026 425',
+        image: 'https://images.unsplash.com/photo-1705854672193-554f6f2b682e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      },
+      {
+        slug: 'centro-terrassa',
+        name: 'Centro Terrassa',
+        address: 'Carrer del Teatre, 52<br />08221 Terrassa',
+        phone: '615 026 425',
+        image: 'https://images.unsplash.com/photo-1722227768655-324634ffc3e2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      },
+    ],
   },
 };
