@@ -20,7 +20,12 @@ export function assetUrl(path?: string): string {
 export async function inlineSvg(url?: string): Promise<string> {
   if (!url) return '';
   const resolved = resolveImageUrl(url);
-  const response = await fetch(resolved);
-  if (!response.ok) return '';
-  return response.text();
+  try {
+    const response = await fetch(resolved);
+    if (!response.ok) return '';
+    return response.text();
+  } catch (err) {
+    console.error(`[inlineSvg] fetch failed for ${resolved}:`, (err as Error).message);
+    return '';
+  }
 }
