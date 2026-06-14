@@ -4,7 +4,7 @@ import { createHmac, timingSafeEqual } from 'node:crypto';
 export const prerender = false;
 
 const GITHUB_TOKEN = import.meta.env.GITHUB_TOKEN;
-const GITHUB_REPO_OWNER = import.meta.env.GITHUB_REPO_OWNER ?? 'ferranpuig';
+const GITHUB_REPO_OWNER = import.meta.env.GITHUB_REPO_OWNER ?? 'ferranpuigmar';
 const GITHUB_REPO_NAME = import.meta.env.GITHUB_REPO_NAME ?? 'osteosalix-astro';
 const GITHUB_WORKFLOW_ID = import.meta.env.GITHUB_WORKFLOW_ID ?? 'deploy.yml';
 const STRAPI_WEBHOOK_SECRET = import.meta.env.STRAPI_WEBHOOK_SECRET;
@@ -33,26 +33,34 @@ function verifySignature(payload: string, signature: string, secret: string): bo
   return timingSafeEqual(sigBuffer, digBuffer);
 }
 
-export const POST: APIRoute = async ({ request }) => {
-  if (!STRAPI_WEBHOOK_SECRET) {
-    console.error('[rebuild] STRAPI_WEBHOOK_SECRET is not set');
-    return new Response('Webhook secret not configured', { status: 500 });
-  }
+function isAuthorized(request: Request): boolean {
+  if (!STRAPI_WEBHOOK_SECRET) return true;
 
+  const headerSecret = request.headers.get('x-webhook-secret');
+  if (headerSecret === STRAPI_WEBHOOK_SECRET) return true;
+
+  return false;
+}
+
+function isSignatureValid(request: Request, payload: string): boolean {
+  if (!STRAPI_WEBHOOK_SECRET) return true;
+
+  const signature = request.headers.get('x-strapi-signature');
+  if (signature && verifySignature(payload, signature, STRAPI_WEBHOOK_SECRET)) return true;
+
+  return false;
+}
+
+export const POST: APIRoute = async ({ request }) => {
   if (!GITHUB_TOKEN) {
     console.error('[rebuild] GITHUB_TOKEN is not set');
     return new Response('GitHub token not configured', { status: 500 });
   }
 
-  const signature = request.headers.get('x-strapi-signature');
-  if (!signature) {
-    return new Response('Missing signature', { status: 401 });
-  }
-
   const payload = await request.text();
 
-  if (!verifySignature(payload, signature, STRAPI_WEBHOOK_SECRET)) {
-    return new Response('Invalid signature', { status: 401 });
+  if (!isAuthorized(request) && !isSignatureValid(request, payload)) {
+    return new Response('Unauthorized', { status: 401 });
   }
 
   let event: Record<string, unknown>;
