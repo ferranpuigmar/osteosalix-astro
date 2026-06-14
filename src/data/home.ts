@@ -3,7 +3,6 @@ export interface HomeData {
     badge: string;
     title: string;
     description: string;
-    bgImageUrl: string;
     bgOverlayUrl: string;
     heroImageUrl: string;
   };
@@ -43,7 +42,6 @@ export const homeData: HomeData = {
     badge: 'Osteopatía y fisioterapia en Sant Cugat y Terrassa',
     title: 'Cuidamos de ti de forma integral',
     description: 'Un espacio dedicado a tu salud donde combinamos técnicas manuales y un enfoque holístico para devolverte el equilibrio que necesitas.',
-    bgImageUrl: 'https://images.unsplash.com/photo-1519824145371-296894a0daa9?fm=jpg&q=80&w=1440&auto=format&fit=crop',
     bgOverlayUrl: 'https://images.unsplash.com/photo-1519824145371-296894a0daa9?fm=jpg&q=80&w=1440&auto=format&fit=crop',
     heroImageUrl: 'https://images.unsplash.com/photo-1519823551278-64ac92734fb1?fm=jpg&q=80&w=1080&auto=format&fit=crop',
   },

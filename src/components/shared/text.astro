@@ -1,0 +1,24 @@
+---
+import { typographySizes, typographyColors } from '@/styles/typography';
+import type { TypographySize, TypographyColor } from '@/styles/typography';
+
+export type { TypographySize, TypographyColor };
+
+interface Props {
+  size?: TypographySize;
+  color?: TypographyColor;
+  tag?: keyof HTMLElementTagNameMap;
+  class?: string;
+}
+
+const { size = 'body', color, tag, class: className } = Astro.props;
+
+const entry = typographySizes[size] ?? typographySizes.body!;
+const Tag = tag || entry.tag;
+const colorClass = color ? typographyColors[color] : undefined;
+const allClasses = [...entry.classes, colorClass, className].filter(Boolean).join(' ');
+---
+
+<Tag class={allClasses}>
+  <slot />
+</Tag>

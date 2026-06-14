@@ -1,0 +1,108 @@
+---
+import BaseLayout from '@/layouts/base-layout.astro';
+import Text from '@/components/shared/text.astro';
+import { typographySizes } from '@/styles/typography';
+import type { TypographySize } from '@/components/shared/text.astro';
+---
+
+<BaseLayout title="Design System — Osteosalix">
+  <main class="max-w-3xl mx-auto py-12 px-6">
+    <Text size="h2">Typography Scale</Text>
+
+    <div class="mt-10 flex flex-col gap-8">
+      <div>
+        <Text size="caption-sm" color="neutral-500" class="uppercase tracking-[2px] mb-4 block border-b border-[var(--stroke-default)] pb-2">
+          Headings — Avenir
+        </Text>
+        {(['display', 'h1', 'h2', 'h3', 'h4', 'h5', 'card-title'] as TypographySize[]).map((s) => (
+          <div class="mb-4">
+            <Text size="caption-sm" color="brand-primary" class="font-mono bg-[var(--brand-primary)]/10 px-2 py-0.5 rounded">
+              {s}
+            </Text>
+            <Text size="caption-sm" color="neutral-500" class="font-mono mt-1 block">
+              {typographySizes[s].classes.join(' ')}
+            </Text>
+            <div class="mt-1 p-4 rounded-lg bg-[var(--bg-surface)] border border-[var(--stroke-default)]">
+              <Text size={s}>The quick brown fox jumps over the lazy dog</Text>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <Text size="caption-sm" color="neutral-500" class="uppercase tracking-[2px] mb-4 block border-b border-[var(--stroke-default)] pb-2">
+          Body — DM Sans
+        </Text>
+        {(['subtitle', 'body-lg', 'body', 'body-sm', 'body-xs'] as TypographySize[]).map((s) => (
+          <div class="mb-4">
+            <Text size="caption-sm" color="brand-primary" class="font-mono bg-[var(--brand-primary)]/10 px-2 py-0.5 rounded">
+              {s}
+            </Text>
+            <Text size="caption-sm" color="neutral-500" class="font-mono mt-1 block">
+              {typographySizes[s].classes.join(' ')}
+            </Text>
+            <div class="mt-1 p-4 rounded-lg bg-[var(--bg-surface)] border border-[var(--stroke-default)]">
+              <Text size={s}>The quick brown fox jumps over the lazy dog. Pack my box with five dozen liquor jugs.</Text>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <Text size="caption-sm" color="neutral-500" class="uppercase tracking-[2px] mb-4 block border-b border-[var(--stroke-default)] pb-2">
+          Labels — DM Sans
+        </Text>
+        {(['label', 'overline', 'overline-sm', 'caption', 'caption-sm'] as TypographySize[]).map((s) => (
+          <div class="mb-4">
+            <Text size="caption-sm" color="brand-primary" class="font-mono bg-[var(--brand-primary)]/10 px-2 py-0.5 rounded">
+              {s}
+            </Text>
+            <Text size="caption-sm" color="neutral-500" class="font-mono mt-1 block">
+              {typographySizes[s].classes.join(' ')}
+            </Text>
+            <div class="mt-1 p-4 rounded-lg bg-[var(--bg-surface)] border border-[var(--stroke-default)]">
+              <Text size={s}>Sample {s} text</Text>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <Text size="caption-sm" color="neutral-500" class="uppercase tracking-[2px] mb-4 block border-b border-[var(--stroke-default)] pb-2">
+          Editorial — Lora Italic
+        </Text>
+        <div class="mb-4">
+            <Text size="caption-sm" color="brand-primary" class="font-mono bg-[var(--brand-primary)]/10 px-2 py-0.5 rounded">
+              editorial
+            </Text>
+            <Text size="caption-sm" color="neutral-500" class="font-mono mt-1 block">
+              {typographySizes.editorial.classes.join(' ')}
+            </Text>
+          <div class="mt-1 p-4 rounded-lg bg-[var(--bg-surface)] border border-[var(--stroke-default)]">
+            <Text size="editorial">The quick brown fox jumps over the lazy dog. Pack my box with five dozen liquor jugs. How vexingly quick daft zebras jump!</Text>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <Text size="caption-sm" color="neutral-500" class="uppercase tracking-[2px] mb-4 block border-b border-[var(--stroke-default)] pb-2">
+          Colors
+        </Text>
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+          {(['brand-primary', 'brand-dark', 'brand-accent', 'brand-accent-dark', 'neutral-900', 'neutral-600', 'neutral-500', 'neutral-300', 'neutral-0'] as const).map((c) => (
+            <div class="p-4 rounded-lg border border-[var(--stroke-default)]" style="background: var(--bg-surface);">
+              <div class="h-8 rounded mb-2" style={`background: var(--${c})`} />
+              <Text size="caption-sm">{c}</Text>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .font-mono {
+    font-family: "SF Mono", "Fira Code", "Cascadia Code", monospace;
+  }
+</style>

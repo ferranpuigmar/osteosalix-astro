@@ -2,6 +2,7 @@
 import { Icon } from "astro-icon/components";
 import type { HomeData } from '@/server/domain/models';
 import LayoutWrapper from "../layout/layout-wrapper.astro";
+import Text from "../shared/text.astro";
 import Button from "../shared/button.astro";
 
 interface Props {
@@ -26,22 +27,31 @@ const { data, whatsappNumber } = Astro.props;
 			<div
 				class="flex flex-col items-center lg:items-start justify-center gap-5 lg:gap-8 max-w-[341px] lg:max-w-[600px] mx-auto lg:mx-0"
 			>
-				<span
-					class="hidden lg:inline-block px-4 py-2 rounded-[20px] text-center lg:text-left text-white bg-(--brand-accent)/70 text-overline-sm text-[10px] lg:text-xs w-[70%] lg:w-auto"
-					>{data.badge}</span
+				<Text
+					tag="span"
+					size="overline-sm"
+					color="text-inverse"
+					class="hidden lg:inline-block px-4 py-2 rounded-[20px] text-center lg:text-left bg-(--brand-accent)/70 text-[10px] lg:text-xs w-[70%] lg:w-auto"
 				>
+					{data.badge}
+				</Text>
 
-				<h1
-					class="font-heading text-[34px] lg:text-[48px] xl:text-[56px] 2xl:text-[64px] font-[500] leading-[1.1] text-center lg:text-left text-[var(--brand-dark)] max-w-[300px] lg:max-w-none"
+				<Text
+					tag="h1"
+					size="display"
+					color="brand-dark"
+					class="tracking-normal text-[34px] lg:text-[48px] xl:text-[56px] 2xl:text-6xl text-center lg:text-left max-w-[300px] lg:max-w-none"
 				>
 					{data.title}
-				</h1>
+				</Text>
 
-				<p
-					class="text-center lg:text-left text-[14px] lg:text-[20px] leading-[1.6] lg:leading-[1.7] text-[var(--neutral-600)] lg:text-[var(--brand-dark)] max-w-[300px] lg:max-w-[540px]"
+				<Text
+					tag="p"
+					size="body-lg"
+					class="text-center lg:text-left text-[14px] lg:text-xl leading-[1.6] lg:leading-[1.7] text-neutral-600 lg:text-brand-dark max-w-[300px] lg:max-w-[540px]"
 				>
 					{data.description}
-				</p>
+				</Text>
 
 				<div
 					class="flex flex-wrap items-center justify-center lg:justify-start gap-3 lg:gap-4"

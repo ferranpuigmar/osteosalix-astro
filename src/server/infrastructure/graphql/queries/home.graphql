@@ -34,5 +34,16 @@ query Home {
         url
       }
     }
+    servicesTitle
+    servicesSubtitle
+    services {
+      documentId
+      title
+      description
+      slug
+      cardImage {
+        url
+      }
+    }
   }
 }

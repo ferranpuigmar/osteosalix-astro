@@ -51,7 +51,7 @@ Los archivos MDX usan **frontmatter** para los metadatos y el cuerpo del MDX par
 title: '<h1>Osteopatía</h1>'
 description: 'Recupera tu bienestar con nuestras sesiones de osteopatía...'
 titleImage: '/images/hero-osteopatia.jpg'
-contentImage: '/images/content-osteopatia.jpg'
+order: 1
 order: 1
 ---
 
@@ -84,7 +84,7 @@ Necesitarás al menos:
 | `hero-fisioterapia.jpg` | ... |
 | `hero-pediatrica.jpg` | ... |
 | `hero-ginecologica.jpg` | ... |
-| `content-*.jpg` | Imágenes de contenido |
+
 | `destacado-1.jpg` | Imagen destacada |
 | `destacado-2.jpg` | ... |
 | `bg-map.jpg` | Fondo de la sección del mapa |

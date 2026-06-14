@@ -1,5 +1,4 @@
 ---
-import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import BaseLayout from "@/layouts/base-layout.astro";
 import Container from "@/components/layout/container.astro";
@@ -36,27 +35,8 @@ const plainTitle = page.data.title.replace(/<[^>]+>/g, "").trim();
 		</HeroHeader>
 		<div class="w-full py-10 md:py-24 md:p-12">
 			<Container>
-				<div
-					class={`grid grid-cols-1 ${page.data.contentImage ? "grid-cols-3 gap-20" : ""}`}
-				>
-					{
-						page.data.contentImage && (
-							<div class="hidden lg:block">
-								<div class="relative rounded-full overflow-hidden aspect-square lg:w-full">
-									<Image
-										src={page.data.contentImage}
-										alt={plainTitle}
-										width={500}
-										height={500}
-										class="object-cover w-full h-full"
-									/>
-								</div>
-							</div>
-						)
-					}
-					<div
-						class={`${page.data.contentImage ? "col-span-3 lg:col-span-2" : ""} prose prose-h2:mb-6 prose-h2:pt-3 prose-h2:inline-block prose-h2:relative prose-h2:text-[2.25rem] prose-h2:leading-[1.25] prose-h2:font-[mobile-sans] prose-h2:tracking-[0.025em] prose-p:text-lg prose-p:pb-4 prose-p:tracking-wider`}
-					>
+				<div class="grid grid-cols-1">
+					<div class="prose prose-h2:mb-6 prose-h2:pt-3 prose-h2:inline-block prose-h2:relative prose-h2:text-[2.25rem] prose-h2:leading-[1.25] prose-h2:font-[mobile-sans] prose-h2:tracking-[0.025em] prose-p:text-lg prose-p:pb-4 prose-p:tracking-wider">
 						<Content />
 					</div>
 				</div>

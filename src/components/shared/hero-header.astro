@@ -14,13 +14,21 @@ const { image, alt } = Astro.props;
     <slot />
   </div>
   <div class="absolute inset-0 z-[1]">
-    <Image
-      src={image ?? '/'}
-      alt={`Cabecera de ${alt}`}
-      width={1920}
-      height={300}
-      class="object-cover object-center w-full h-full"
-    />
-    <div class="absolute inset-0 bg-white opacity-50" />
+    {
+      image ? (
+        <>
+          <Image
+            src={image}
+            alt={`Cabecera de ${alt}`}
+            width={1920}
+            height={300}
+            class="object-cover object-center w-full h-full"
+          />
+          <div class="absolute inset-0 bg-white opacity-50" />
+        </>
+      ) : (
+        <div class="w-full h-full bg-[var(--brand-accent)]" />
+      )
+    }
   </div>
 </div>

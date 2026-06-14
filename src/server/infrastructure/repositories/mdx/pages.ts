@@ -10,7 +10,6 @@ export class MdxPagesRepository implements IPagesRepository {
       title: entry.data.title,
       description: entry.data.description,
       titleImage: entry.data.titleImage,
-      contentImage: entry.data.contentImage,
     }));
   }
 
@@ -23,7 +22,6 @@ export class MdxPagesRepository implements IPagesRepository {
       title: entry.data.title,
       description: entry.data.description,
       titleImage: entry.data.titleImage,
-      contentImage: entry.data.contentImage,
     };
   }
 }

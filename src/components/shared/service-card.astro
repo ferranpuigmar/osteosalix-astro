@@ -13,22 +13,28 @@ interface Props {
 const { title, description, image, link, alt } = Astro.props;
 ---
 
-<div class={`w-full flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${alt ? 'card-organic-alt' : 'card-organic'} cursor-pointer pb-5`}>
-  <div class="w-full h-[200px] overflow-hidden">
-    <Image
-      src={image}
-      alt={title}
-      width={600}
-      height={400}
-      class="w-full h-full object-cover"
-    />
-  </div>
+<a href={link} class={`w-full flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${alt ? 'card-organic-alt' : 'card-organic'} pb-5`}>
+  {
+    image ? (
+      <div class="w-full h-[200px] overflow-hidden">
+        <Image
+          src={image}
+          alt={title}
+          width={600}
+          height={400}
+          class="w-full h-full object-cover"
+        />
+      </div>
+    ) : (
+      <div class="w-full h-[200px] bg-gradient-to-br from-[var(--brand-accent)] to-[var(--brand-primary)]" />
+    )
+  }
   <div class="flex flex-col justify-center gap-3 p-7">
     <h3 class="text-card-title text-[var(--neutral-900)]">{title}</h3>
     <p class="text-body-sm text-[var(--neutral-600)]">{description}</p>
-    <a href={link} class="flex items-center gap-2 mt-2 text-[var(--brand-accent)] text-body-xs font-semibold">
+    <span class="flex items-center gap-2 mt-2 text-[var(--brand-accent)] text-body-xs font-semibold">
       Descubrir
       <Icon name="lucide:arrow-right" size={16} class="text-[var(--brand-primary)]" />
-    </a>
+    </span>
   </div>
 </div>

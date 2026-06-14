@@ -22,7 +22,6 @@ export interface HomeData {
     badge: string;
     title: string;
     description: string;
-    bgImageUrl: string;
     bgOverlayUrl: string;
     heroImageUrl: string;
   };
@@ -49,7 +48,7 @@ export interface HomeData {
       title: string;
       description: string;
       link: string;
-      image: string;
+      cardImage: string;
     }[];
   };
   philosophy: {
@@ -69,19 +68,24 @@ export interface PageEntry {
   title: string;
   description: string;
   titleImage?: string;
-  contentImage?: string;
+}
+
+export interface MethodStep {
+  num: string;
+  title: string;
+  description: string;
 }
 
 export interface ServiceEntry {
   slug: string;
   title: string;
   description: string;
+  cardImage?: string;
   titleImage?: string;
-  contentImage?: string;
   order?: number;
   descriptionHtml?: string;
   treatments?: Array<{ icon: string; title: string; description: string }>;
   ctaTitle?: string;
   ctaDescription?: string;
-  methodSteps?: Array<{ num: string; title: string; description: string }>;
+  methodSteps?: MethodStep[];
 }

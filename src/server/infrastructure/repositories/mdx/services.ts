@@ -10,13 +10,11 @@ export class MdxServicesRepository implements IServicesRepository {
       title: entry.data.title,
       description: entry.data.description,
       titleImage: entry.data.titleImage,
-      contentImage: entry.data.contentImage,
       order: entry.data.order,
       descriptionHtml: entry.data.descriptionHtml,
       treatments: entry.data.treatments,
       ctaTitle: entry.data.ctaTitle,
       ctaDescription: entry.data.ctaDescription,
-      methodSteps: entry.data.methodSteps,
     }));
   }
 
@@ -29,13 +27,11 @@ export class MdxServicesRepository implements IServicesRepository {
       title: entry.data.title,
       description: entry.data.description,
       titleImage: entry.data.titleImage,
-      contentImage: entry.data.contentImage,
       order: entry.data.order,
       descriptionHtml: entry.data.descriptionHtml,
       treatments: entry.data.treatments,
       ctaTitle: entry.data.ctaTitle,
       ctaDescription: entry.data.ctaDescription,
-      methodSteps: entry.data.methodSteps,
     };
   }
 }

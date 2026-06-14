@@ -232,6 +232,54 @@ export type ComponentHomeValueInput = {
   title?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type ComponentServiceTreatment = {
+  __typename?: 'ComponentServiceTreatment';
+  id: Scalars['ID']['output'];
+  icon: Scalars['String']['output'];
+  title: Scalars['String']['output'];
+  description: Scalars['String']['output'];
+};
+
+export type ComponentServiceTreatmentFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentServiceTreatmentFiltersInput>>>;
+  description?: InputMaybe<StringFilterInput>;
+  icon?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ComponentServiceTreatmentFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentServiceTreatmentFiltersInput>>>;
+  title?: InputMaybe<StringFilterInput>;
+};
+
+export type ComponentServiceTreatmentInput = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+  icon?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type ComponentServiceMethodStep = {
+  __typename?: 'ComponentServiceMethodStep';
+  id: Scalars['ID']['output'];
+  num: Scalars['String']['output'];
+  title: Scalars['String']['output'];
+  description: Scalars['String']['output'];
+};
+
+export type ComponentServiceMethodStepFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentServiceMethodStepFiltersInput>>>;
+  description?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ComponentServiceMethodStepFiltersInput>;
+  num?: InputMaybe<StringFilterInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentServiceMethodStepFiltersInput>>>;
+  title?: InputMaybe<StringFilterInput>;
+};
+
+export type ComponentServiceMethodStepInput = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+  num?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type ComponentHomeCenterFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<ComponentHomeCenterFiltersInput>>>;
   button?: InputMaybe<ComponentHomeButtonFiltersInput>;
@@ -289,6 +337,9 @@ export type Home = {
   documentId: Scalars['ID']['output'];
   heroSection: Array<Maybe<ComponentHomeHeroSection>>;
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  services?: Maybe<Array<Maybe<Service>>>;
+  servicesTitle?: Maybe<Scalars['String']['output']>;
+  servicesSubtitle?: Maybe<Scalars['String']['output']>;
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
 };
 
@@ -310,6 +361,44 @@ export type HomeInput = {
   center?: InputMaybe<ComponentHomeCenterInput>;
   heroSection?: InputMaybe<ComponentHomeHeroSectionInput>;
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  services?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  servicesTitle?: InputMaybe<Scalars['String']['input']>;
+  servicesSubtitle?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type Service = {
+  __typename?: 'Service';
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  ctaDescription?: Maybe<Scalars['String']['output']>;
+  ctaTitle?: Maybe<Scalars['String']['output']>;
+  description: Scalars['String']['output'];
+  descriptionHtml?: Maybe<Scalars['String']['output']>;
+  documentId: Scalars['ID']['output'];
+  cardImage?: Maybe<UploadFile>;
+  home?: Maybe<Home>;
+  methodSteps?: Maybe<Array<Maybe<ComponentServiceMethodStep>>>;
+  order?: Maybe<Scalars['Int']['output']>;
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  slug: Scalars['String']['output'];
+  title: Scalars['String']['output'];
+  titleImage?: Maybe<UploadFile>;
+  treatments?: Maybe<Array<Maybe<ComponentServiceTreatment>>>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+export type ServiceEntityResponseCollection = {
+  __typename?: 'ServiceEntityResponseCollection';
+  nodes: Array<Service>;
+  pageInfo: Pagination;
+};
+
+export type ServiceFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ServiceFiltersInput>>>;
+  description?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ServiceFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ServiceFiltersInput>>>;
+  slug?: InputMaybe<StringFilterInput>;
+  title?: InputMaybe<StringFilterInput>;
 };
 
 export type HeaderInput = {
@@ -1263,7 +1352,18 @@ export type HeaderQuery = { header: { logoTextStart: string, logoTextEnd: string
 export type HomeQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type HomeQuery = { home: { heroSection: Array<{ id: string, badge: string, title: string, description: string, bgImage: { url: string }, heroImage: { url: string } } | null>, center: Array<{ id: string, label: string, title: string, content: string, values: Array<{ id: string, icon: string, title: string } | null>, button: { id: string, title: string, link: string }, image: { url: string }, image2: { url: string } } | null> } | null };
+export type HomeQuery = { home: { heroSection: Array<{ id: string, badge: string, title: string, description: string, bgImage: { url: string }, heroImage: { url: string } } | null>, center: Array<{ id: string, label: string, title: string, content: string, values: Array<{ id: string, icon: string, title: string } | null>, button: { id: string, title: string, link: string }, image: { url: string }, image2: { url: string } } | null>, servicesTitle?: string | null, servicesSubtitle?: string | null, services?: Array<{ documentId: string, title: string, description: string, slug: string, cardImage: { url: string } | null } | null> | null } | null };
+
+export type ServiceBySlugQueryVariables = Exact<{
+  slug: Scalars['String']['input'];
+}>;
+
+
+export type ServiceBySlugQuery = { services: Array<{ documentId: string, title: string, description: string, slug: string, order?: number | null, descriptionHtml?: string | null, ctaTitle?: string | null, ctaDescription?: string | null, treatments?: Array<{ id: string, icon: string, title: string, description: string } | null> | null, method?: { methodSteps?: Array<{ num: string, title: string, description: string } | null> | null } | null, cardImage: { url: string } | null, titleImage: { url: string } | null } | null> };
+
+export type ServicesListQueryVariables = Exact<{ [key: string]: never; }>;
+
+export type ServicesListQuery = { services: Array<{ documentId: string, title: string, description: string, slug: string, order?: number | null, cardImage: { url: string } | null } | null> };
 
 
 export const HeaderDocument = gql`
@@ -1329,6 +1429,66 @@ export const HomeDocument = gql`
         url
       }
     }
+    servicesTitle
+    servicesSubtitle
+    services {
+      documentId
+      title
+      description
+      slug
+      cardImage {
+        url
+      }
+    }
+  }
+}
+    `;
+
+export const ServiceBySlugDocument = gql`
+    query ServiceBySlug($slug: String!) {
+  services(filters: { slug: { eq: $slug } }) {
+    documentId
+    title
+    description
+    slug
+    order
+    descriptionHtml
+    treatments {
+      id
+      icon
+      title
+      description
+    }
+    ctaTitle
+    ctaDescription
+    method {
+      methodSteps {
+        num
+        title
+        description
+      }
+    }
+    cardImage {
+      url
+    }
+    titleImage {
+      url
+    }
+  }
+}
+    `;
+
+export const ServicesListDocument = gql`
+    query ServicesList {
+  services(sort: "order:asc") {
+    documentId
+    title
+    description
+    slug
+    order
+    cardImage {
+      url
+    }
   }
 }
     `;
@@ -1345,6 +1505,12 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     Home(variables?: HomeQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<HomeQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<HomeQuery>({ document: HomeDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'Home', 'query', variables);
+    },
+    ServiceBySlug(variables: ServiceBySlugQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<ServiceBySlugQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<ServiceBySlugQuery>({ document: ServiceBySlugDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'ServiceBySlug', 'query', variables);
+    },
+    ServicesList(variables?: ServicesListQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<ServicesListQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<ServicesListQuery>({ document: ServicesListDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'ServicesList', 'query', variables);
     }
   };
 }

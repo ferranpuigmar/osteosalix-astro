@@ -6,7 +6,6 @@ const seoPages = defineCollection({
     title: z.string(),
     description: z.string(),
     titleImage: z.string().optional(),
-    contentImage: z.string().optional(),
     publishedAt: z.date().optional(),
   }),
 });
@@ -30,7 +29,6 @@ const services = defineCollection({
     description: z.string(),
     descriptionHtml: z.string().optional(),
     titleImage: z.string().optional(),
-    contentImage: z.string().optional(),
     order: z.number().optional(),
     publishedAt: z.date().optional(),
     treatments: z.array(treatmentSchema).optional(),

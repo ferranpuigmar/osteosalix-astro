@@ -2,6 +2,7 @@
 import type { HomeData } from '@/server/domain/models';
 import LayoutWrapper from '../layout/layout-wrapper.astro';
 import ServiceCard from '../shared/service-card.astro';
+import Text from '../shared/text.astro';
 
 interface Props {
   data: HomeData['services'];
@@ -10,13 +11,15 @@ interface Props {
 const { data } = Astro.props;
 
 const mtOffsets = ['', 'lg:mt-20', '', 'lg:mt-20'];
+
+console.log('🚀 ~ data:', data.service);
 ---
 
 <section id="servicios" class="bg-gradient-to-b from-[#F7F5F2] via-[#EAE6E0] to-white py-[60px]">
   <LayoutWrapper class="pt4">
     <div class="flex flex-col items-center lg:items-start gap-5 lg:gap-[20px] mb-12">
-      <span class="text-overline-sm text-xs text-[var(--brand-accent)]">Nuestros servicios</span>
-      <h2 class="text-center lg:text-left text-h2">Tratamientos que te transforman</h2>
+      <Text size="overline" color="accent">{data.title}</Text>
+      <Text size="h2" class="text-center lg:text-left">{data.subtitle}</Text>
     </div>
 
     <div class="flex flex-wrap items-start gap-6 lg:gap-x-[30px]">
@@ -26,7 +29,7 @@ const mtOffsets = ['', 'lg:mt-20', '', 'lg:mt-20'];
             <ServiceCard
               title={service.title}
               description={service.description}
-              image={service.image}
+              image={service.cardImage}
               link={service.link}
               alt={i % 2 !== 0}
             />

@@ -1,8 +1,9 @@
 ---
 import { Image } from 'astro:assets';
-import { Icon } from 'astro-icon/components';
 import type { HomeData } from '@/server/domain/models';
 import LayoutWrapper from '../layout/layout-wrapper.astro';
+import Text from '../shared/text.astro';
+import ValueChip from '../shared/value-chip.astro';
 
 interface Props {
   data: HomeData['center'];
@@ -21,32 +22,38 @@ const { data } = Astro.props;
 <section id="el-centro" class="w-full bg-[var(--neutral-50)] min-h-[625px] relative max-lg:z-10 max-lg:-mt-8 rounded-[24px]">
   <LayoutWrapper class="lg:py-[100px] lg:pb-0 max-lg:-mt-8 max-lg:px-0">
 
-    <!-- card wrapper: white on mobile (FWXOo), transparent on desktop -->
     <div class="p-[48px_28px] lg:bg-transparent lg:rounded-none lg:p-0 flex flex-col lg:flex-row lg:items-center lg:gap-20 gap-5">
 
-      <!-- left column: text content -->
       <div class="flex flex-col gap-5 lg:gap-7 lg:w-[500px] lg:shrink-0">
 
-        <!-- label: different case/color on mobile vs desktop -->
-        <span class="text-overline text-[var(--brand-accent-dark)] lg:text-[var(--brand-accent)] uppercase lg:normal-case" set:html={data.label} />
+        <Text
+          size="overline"
+          color="brand-accent-dark"
+          class="lg:text-brand-accent uppercase lg:normal-case"
+        >
+          <Fragment set:html={data.label} />
+        </Text>
 
-        <!-- title: 26px mobile, 48px desktop, max-w 310 mobile -->
-        <div class="font-heading font-[500] leading-[1.15] text-[var(--neutral-900)] text-[26px] max-w-[310px] lg:text-[48px] lg:max-w-none intro-title" set:html={data.title} />
+        <Text
+          tag="h2"
+          size="h2"
+          class="text-[26px] lg:text-5xl max-w-[310px] lg:max-w-none intro-title"
+        >
+          <Fragment set:html={data.title} />
+        </Text>
 
-        <!-- description: 14px/lh1.7/#444 mobile → 18px/lh1.9/$neutral-600 desktop, max-w 290 → 480 -->
-        <div class="font-editorial italic [&_p]:m-0 text-[14px] leading-[1.7] text-[#444444] max-w-[290px] lg:text-[18px] lg:leading-[1.9] lg:text-[var(--neutral-600)] lg:max-w-[480px]">
+        <Text
+          tag="div"
+          size="editorial"
+          class="[&_p]:m-0 text-[14px] lg:text-lg leading-[1.7] lg:leading-[1.9] text-[#444444] lg:text-neutral-600 max-w-[290px] lg:max-w-[480px]"
+        >
           <Fragment set:html={data.content} />
-        </div>
+        </Text>
 
         <!-- values row: desktop only -->
         <div class="hidden lg:flex gap-10">
           {data.values.map((v) => (
-            <div class="flex items-center gap-3">
-              <div class="flex items-center justify-center w-10 h-10 rounded-[20px] bg-[#74896F15]">
-                <Icon name={`lucide:${v.icon}`} size={18} class="text-[var(--brand-primary)]" />
-              </div>
-              <span class="text-body-sm font-medium text-[var(--neutral-900)]">{v.title}</span>
-            </div>
+            <ValueChip icon={v.icon} title={v.title} />
           ))}
         </div>
 
@@ -54,38 +61,45 @@ const { data } = Astro.props;
 
       <!-- right column: 1 image on mobile (FWXOo vZhvJ), 2 stacked images on desktop (4lz2g) -->
 
-      <!-- mobile image (vZhvJ): fill_container h-200 radius [60,16,60,16] -->
-      <div class="lg:hidden w-full h-[200px] rounded-tl-[60px] rounded-tr-[16px] rounded-br-[60px] rounded-bl-[16px] overflow-hidden">
-        <Image
-          src={data.image}
-          alt=""
-          width={600}
-          height={200}
-          class="w-full h-full object-cover"
-        />
-      </div>
-
-      <!-- desktop images: 600x500 container with 2 absolutely-positioned images -->
-      <div class="hidden lg:block relative shrink-0 xl:w-[600px] h-[500px] ">
-        <div class="absolute top-[0px] left-[0px] w-[320px] h-[400px] rounded-tl-[80px] rounded-tr-[20px] rounded-br-[80px] rounded-bl-[20px] overflow-hidden">
-          <Image
-            src={data.image}
-            alt=""
-            width={320}
-            height={400}
-            class="w-full h-full object-cover"
-          />
-        </div>
-        <div class="absolute top-[100px] left-[280px] w-[280px] h-[350px] rounded-tl-[20px] rounded-tr-[80px] rounded-br-[20px] rounded-bl-[80px] overflow-hidden hidden xl:block">
-          <Image
-            src={data.image2}
-            alt=""
-            width={280}
-            height={350}
-            class="w-full h-full object-cover"
-          />
-        </div>
-      </div>
+      {
+        data.image ? (
+          <>
+            <div class="lg:hidden w-full h-[200px] rounded-tl-[60px] rounded-tr-[16px] rounded-br-[60px] rounded-bl-[16px] overflow-hidden">
+              <Image
+                src={data.image}
+                alt=""
+                width={600}
+                height={200}
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <div class="hidden lg:block relative shrink-0 xl:w-[600px] h-[500px] ">
+              <div class="absolute top-[0px] left-[0px] w-[320px] h-[400px] rounded-tl-[80px] rounded-tr-[20px] rounded-br-[80px] rounded-bl-[20px] overflow-hidden">
+                <Image
+                  src={data.image}
+                  alt=""
+                  width={320}
+                  height={400}
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              {
+                data.image2 ? (
+                  <div class="absolute top-[100px] left-[280px] w-[280px] h-[350px] rounded-tl-[20px] rounded-tr-[80px] rounded-br-[20px] rounded-bl-[80px] overflow-hidden hidden xl:block">
+                    <Image
+                      src={data.image2}
+                      alt=""
+                      width={280}
+                      height={350}
+                      class="w-full h-full object-cover"
+                    />
+                  </div>
+                ) : null
+              }
+            </div>
+          </>
+        ) : null
+      }
 
     </div>
   </LayoutWrapper>

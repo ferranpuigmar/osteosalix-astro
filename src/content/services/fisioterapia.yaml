@@ -2,7 +2,6 @@ title: Fisioterapia
 description: Sesiones de fisioterapia para tratar lesiones, contracturas y mejorar tu movilidad. Atención profesional y cercana en Sant Cugat.
 descriptionHtml: Tratamiento manual integral que restablece el equilibrio natural del cuerpo, buscando el origen del problema y no solo los síntomas.
 titleImage: /images/hero-service-design.jpg
-contentImage: /images/content-fisioterapia.jpg
 order: 2
 treatments:
   - icon: activity

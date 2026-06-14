@@ -1,0 +1,31 @@
+query ServiceBySlug($slug: String!) {
+  services(filters: { slug: { eq: $slug } }) {
+    documentId
+    title
+    description
+    slug
+    order
+    descriptionHtml
+    treatments {
+      id
+      icon
+      title
+      description
+    }
+    ctaTitle
+    ctaDescription
+    cardImage {
+      url
+    }
+    titleImage {
+      url
+    }
+    method {
+      methodSteps {
+        num
+        title
+        description
+      }
+    }
+  }
+}

@@ -1,8 +1,7 @@
 import { gqlSdk } from '@/server/infrastructure/graphql/client';
+import { assetUrl } from '@/server/infrastructure/strapi-url';
 import type { HomeData } from '@/server/domain/models';
 import type { IHomeRepository } from '../../../application/ports/home-repository';
-
-const STRAPI_URL = import.meta.env.STRAPI_URL || 'http://localhost:1337';
 
 // CKEditor envuelve todo en bloques HTML (<p>, <h2>, etc).
 // stripBlocks los elimina, conservando solo tags inline (<strong>, <em>, <br>, <a>, <span>).
@@ -35,11 +34,10 @@ export class StrapiHomeRepository implements IHomeRepository {
             badge: heroSection.badge,
             title: heroSection.title,
             description: heroSection.description,
-            bgImageUrl: heroSection.bgImage ? `${STRAPI_URL}${heroSection.bgImage.url}` : '',
-            bgOverlayUrl: '',
-            heroImageUrl: heroSection.heroImage ? `${STRAPI_URL}${heroSection.heroImage.url}` : '',
+            bgOverlayUrl: assetUrl(heroSection.bgImage?.url),
+            heroImageUrl: assetUrl(heroSection.heroImage?.url),
           }
-        : { badge: '', title: '', description: '', bgImageUrl: '', bgOverlayUrl: '', heroImageUrl: '' },
+        : { badge: '', title: '', description: '', bgOverlayUrl: '', heroImageUrl: '' },
       center: center
         ? {
             label: stripBlocks(center.label),
@@ -52,11 +50,23 @@ export class StrapiHomeRepository implements IHomeRepository {
               title: center.button.title,
               link: center.button.link,
             },
-            image: center.image ? `${STRAPI_URL}${center.image.url}` : '',
-            image2: center.image2 ? `${STRAPI_URL}${center.image2.url}` : '',
+            image: assetUrl(center.image?.url),
+            image2: assetUrl(center.image2?.url),
           }
         : { label: '', title: '', content: '', values: [], button: { title: '', link: '' }, image: '', image2: '' },
-      services: { title: '', subtitle: '', service: [] },
+      services: {
+        title: home?.servicesTitle ?? '',
+        subtitle: home?.servicesSubtitle ?? '',
+        service: (home?.services ?? [])
+          .filter((s): s is NonNullable<typeof s> => s !== null)
+          .map((s) => ({
+            id: s.documentId,
+            title: s.title,
+            description: s.description,
+            link: `/servicios/${s.slug}`,
+            cardImage: assetUrl(s.cardImage?.url),
+          })),
+      },
       philosophy: { textureUrl: '' },
     };
     return this.cache;

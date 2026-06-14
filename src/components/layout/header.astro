@@ -1,15 +1,11 @@
 ---
 import HeaderIsland from '@/islands/header';
 import { getHeader } from '@/pages/api/header';
-import type { LogoData } from '@/server/domain/models';
+import { inlineSvg } from '@/server/infrastructure/strapi-url';
 const pathname = Astro.url.pathname;
 const { navigation, logoTextEnd, logoTextStart, logo: logoUrl, whatsappNumber } = await getHeader();
 
-const logo: LogoData = {
-    textStart: logoTextStart,
-    textEnd: logoTextEnd,
-    logo: logoUrl,
-};
+const logoSvg = await inlineSvg(logoUrl);
 ---
 
-<HeaderIsland pathname={pathname} navigation={navigation} logo={logo} whatsappNumber={whatsappNumber} client:load />
+<HeaderIsland pathname={pathname} navigation={navigation} logoSvg={logoSvg} textStart={logoTextStart} textEnd={logoTextEnd} whatsappNumber={whatsappNumber} client:load />

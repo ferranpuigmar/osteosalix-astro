@@ -1,6 +1,6 @@
-import { getAllServices } from '@/server/application/services/services';
+import { getAllServices, getServiceBySlug } from '@/server/application/services/services';
 
-export { getAllServices };
+export { getAllServices, getServiceBySlug };
 
 export async function GET() {
   const data = await getAllServices();
