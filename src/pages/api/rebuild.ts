@@ -3,11 +3,11 @@ import { createHmac, timingSafeEqual } from 'node:crypto';
 
 export const prerender = false;
 
-const GITHUB_TOKEN = import.meta.env.GITHUB_TOKEN;
-const GITHUB_REPO_OWNER = import.meta.env.GITHUB_REPO_OWNER ?? 'ferranpuigmar';
-const GITHUB_REPO_NAME = import.meta.env.GITHUB_REPO_NAME ?? 'osteosalix-astro';
-const GITHUB_WORKFLOW_ID = import.meta.env.GITHUB_WORKFLOW_ID ?? 'deploy.yml';
-const STRAPI_WEBHOOK_SECRET = import.meta.env.STRAPI_WEBHOOK_SECRET;
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+const GITHUB_REPO_OWNER = process.env.GITHUB_REPO_OWNER ?? 'ferranpuigmar';
+const GITHUB_REPO_NAME = process.env.GITHUB_REPO_NAME ?? 'osteosalix-astro';
+const GITHUB_WORKFLOW_ID = process.env.GITHUB_WORKFLOW_ID ?? 'deploy.yml';
+const STRAPI_WEBHOOK_SECRET = process.env.STRAPI_WEBHOOK_SECRET;
 
 function verifySignature(payload: string, signature: string, secret: string): boolean {
   const hmac = createHmac('sha256', secret);
