@@ -34,7 +34,10 @@ function verifySignature(payload: string, signature: string, secret: string): bo
 }
 
 function isAuthorized(request: Request): boolean {
-  if (!STRAPI_WEBHOOK_SECRET) return true;
+  if (!STRAPI_WEBHOOK_SECRET) {
+    console.warn('[rebuild] STRAPI_WEBHOOK_SECRET is not set; accepting request without auth');
+    return true;
+  }
 
   const headerSecret = request.headers.get('x-webhook-secret');
   if (headerSecret === STRAPI_WEBHOOK_SECRET) return true;
@@ -52,11 +55,6 @@ function isSignatureValid(request: Request, payload: string): boolean {
 }
 
 export const POST: APIRoute = async ({ request }) => {
-  if (!GITHUB_TOKEN) {
-    console.error('[rebuild] GITHUB_TOKEN is not set');
-    return new Response('GitHub token not configured', { status: 500 });
-  }
-
   const payload = await request.text();
 
   if (!isAuthorized(request) && !isSignatureValid(request, payload)) {
@@ -70,13 +68,24 @@ export const POST: APIRoute = async ({ request }) => {
     return new Response('Invalid JSON payload', { status: 400 });
   }
 
-  if (event.event !== 'entry.publish') {
-    return new Response('Ignored: not a publish event', { status: 200 });
+  const eventName = typeof event.event === 'string' ? event.event : '';
+  const model = typeof event.model === 'string' ? event.model : '';
+
+  // Strapi's "Test-trigger" button sends a generic test event; accept it as a health check.
+  const isTest = eventName === 'test-trigger' || eventName === '';
+  const isPublish = eventName === 'entry.publish' || eventName === 'entry.unpublish';
+
+  if (!isTest && !isPublish) {
+    return new Response(`Ignored: event ${eventName || '(empty)'} not tracked`, { status: 200 });
   }
 
-  const model = typeof event.model === 'string' ? event.model : '';
-  if (model && !ALLOWED_MODELS.has(model)) {
+  if (!isTest && model && !ALLOWED_MODELS.has(model)) {
     return new Response(`Ignored: model ${model} not tracked`, { status: 200 });
+  }
+
+  if (!GITHUB_TOKEN) {
+    console.error('[rebuild] GITHUB_TOKEN is not set');
+    return new Response('GitHub token not configured', { status: 500 });
   }
 
   const githubUrl = `https://api.github.com/repos/${GITHUB_REPO_OWNER}/${GITHUB_REPO_NAME}/actions/workflows/${GITHUB_WORKFLOW_ID}/dispatches`;
@@ -105,7 +114,7 @@ export const POST: APIRoute = async ({ request }) => {
   }
 
   return new Response(
-    JSON.stringify({ ok: true, message: 'Build triggered', model }),
+    JSON.stringify({ ok: true, message: 'Build triggered', model, event: eventName }),
     {
       status: 200,
       headers: { 'Content-Type': 'application/json' },
