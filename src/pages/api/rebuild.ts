@@ -9,19 +9,6 @@ const GITHUB_REPO_NAME = import.meta.env.GITHUB_REPO_NAME ?? 'osteosalix-astro';
 const GITHUB_WORKFLOW_ID = import.meta.env.GITHUB_WORKFLOW_ID ?? 'deploy.yml';
 const STRAPI_WEBHOOK_SECRET = import.meta.env.STRAPI_WEBHOOK_SECRET;
 
-const ALLOWED_MODELS = new Set([
-  'home',
-  'service',
-  'center',
-  'page',
-  'method',
-  'contact',
-  'legal',
-  'header',
-  'navigation',
-  'philosophy',
-]);
-
 function verifySignature(payload: string, signature: string, secret: string): boolean {
   const hmac = createHmac('sha256', secret);
   const digest = hmac.update(payload, 'utf8').digest('hex');
@@ -56,8 +43,10 @@ function isSignatureValid(request: Request, payload: string): boolean {
 
 export const POST: APIRoute = async ({ request }) => {
   const payload = await request.text();
+  console.log('[rebuild] Received webhook payload:', payload.slice(0, 500));
 
   if (!isAuthorized(request) && !isSignatureValid(request, payload)) {
+    console.error('[rebuild] Unauthorized request');
     return new Response('Unauthorized', { status: 401 });
   }
 
@@ -65,23 +54,14 @@ export const POST: APIRoute = async ({ request }) => {
   try {
     event = JSON.parse(payload);
   } catch {
+    console.error('[rebuild] Invalid JSON payload');
     return new Response('Invalid JSON payload', { status: 400 });
   }
 
   const eventName = typeof event.event === 'string' ? event.event : '';
   const model = typeof event.model === 'string' ? event.model : '';
 
-  // Strapi's "Test-trigger" button sends a generic test event; accept it as a health check.
-  const isTest = eventName === 'test-trigger' || eventName === '';
-  const isPublish = eventName === 'entry.publish' || eventName === 'entry.unpublish';
-
-  if (!isTest && !isPublish) {
-    return new Response(`Ignored: event ${eventName || '(empty)'} not tracked`, { status: 200 });
-  }
-
-  if (!isTest && model && !ALLOWED_MODELS.has(model)) {
-    return new Response(`Ignored: model ${model} not tracked`, { status: 200 });
-  }
+  console.log('[rebuild] Webhook event:', eventName, 'model:', model);
 
   if (!GITHUB_TOKEN) {
     console.error('[rebuild] GITHUB_TOKEN is not set');
@@ -102,6 +82,7 @@ export const POST: APIRoute = async ({ request }) => {
       ref: 'main',
       inputs: {
         triggeredBy: 'strapi-webhook',
+        event: eventName,
         model,
       },
     }),
@@ -113,6 +94,7 @@ export const POST: APIRoute = async ({ request }) => {
     return new Response('Failed to trigger build', { status: 502 });
   }
 
+  console.log('[rebuild] GitHub workflow triggered successfully');
   return new Response(
     JSON.stringify({ ok: true, message: 'Build triggered', model, event: eventName }),
     {
