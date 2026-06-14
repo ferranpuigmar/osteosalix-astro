@@ -1,7 +1,7 @@
 const isLocal = (host: string) =>
   host.includes('localhost') || host.includes('127.0.0.1') || host.includes('::1');
 
-const rawUrl = import.meta.env.STRAPI_URL || '';
+const rawUrl = (import.meta.env.STRAPI_URL || '').trim();
 const STRAPI_URL = rawUrl
   ? isLocal(rawUrl)
     ? rawUrl
