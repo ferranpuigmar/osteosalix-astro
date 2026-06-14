@@ -91,7 +91,10 @@ export const POST: APIRoute = async ({ request }) => {
   if (!response.ok) {
     const error = await response.text();
     console.error('[rebuild] GitHub API error:', response.status, error);
-    return new Response('Failed to trigger build', { status: 502 });
+    return new Response(
+      JSON.stringify({ ok: false, error: `GitHub API: ${response.status}`, detail: error }),
+      { status: 502, headers: { 'Content-Type': 'application/json' } }
+    );
   }
 
   console.log('[rebuild] GitHub workflow triggered successfully');
