@@ -1,11 +1,16 @@
 import { GraphQLClient } from 'graphql-request';
 import { getSdk } from './generated';
 
-const rawUrl = import.meta.env.STRAPI_URL || 'http://localhost:1337';
-const STRAPI_URL =
-  rawUrl.includes('localhost') || rawUrl.includes('127.0.0.1')
+const isLocal = (host: string) =>
+  host.includes('localhost') || host.includes('127.0.0.1') || host.includes('::1');
+
+const rawUrl = import.meta.env.STRAPI_URL || '';
+const STRAPI_URL = rawUrl
+  ? isLocal(rawUrl)
     ? rawUrl
-    : rawUrl.replace(/^http:\/\//, 'https://');
+    : rawUrl.replace(/^http:\/\//, 'https://')
+  : 'https://cms.osteosalix.com';
+
 const STRAPI_TOKEN = import.meta.env.STRAPI_TOKEN;
 
 const headers: Record<string, string> = {
@@ -17,9 +22,5 @@ if (STRAPI_TOKEN) {
 }
 
 export const gqlSdk = getSdk(
-  new GraphQLClient(`${STRAPI_URL}/graphql`, {
-    headers,
-    fetch: (url, init) =>
-      fetch(url, { ...init, redirect: 'manual' }),
-  })
+  new GraphQLClient(`${STRAPI_URL}/graphql`, { headers })
 );
