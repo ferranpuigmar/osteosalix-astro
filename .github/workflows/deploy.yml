@@ -17,6 +17,10 @@ on:
         default: ''
         type: string
 
+concurrency:
+  group: deploy-main
+  cancel-in-progress: true
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
