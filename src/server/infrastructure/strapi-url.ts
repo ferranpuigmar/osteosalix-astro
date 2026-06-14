@@ -1,4 +1,12 @@
-const STRAPI_URL = import.meta.env.STRAPI_URL || 'http://localhost:1337';
+const isLocal = (host: string) =>
+  host.includes('localhost') || host.includes('127.0.0.1') || host.includes('::1');
+
+const rawUrl = import.meta.env.STRAPI_URL || '';
+const STRAPI_URL = rawUrl
+  ? isLocal(rawUrl)
+    ? rawUrl
+    : rawUrl.replace(/^http:\/\//, 'https://')
+  : 'https://cms.osteosalix.com';
 
 function resolveImageUrl(url: string): string {
   if (!url) return '';
