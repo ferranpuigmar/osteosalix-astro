@@ -24,13 +24,5 @@ if (STRAPI_TOKEN) {
 const graphqlUrl = `${STRAPI_URL}/graphql`;
 
 export const gqlSdk = getSdk(
-  new GraphQLClient(graphqlUrl, {
-    headers,
-    fetch: async (url, init) => {
-      console.log(`[gql] fetching ${url} method=${init?.method}`);
-      const res = await fetch(url, { ...init, redirect: 'manual' });
-      console.log(`[gql] response status=${res.status} ok=${res.ok}`);
-      return res;
-    },
-  })
+  new GraphQLClient(graphqlUrl, { headers })
 );
