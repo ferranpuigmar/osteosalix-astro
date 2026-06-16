@@ -19,17 +19,17 @@ const { data } = Astro.props;
   }
 </style>
 
-<section id="el-centro" class="w-full bg-[var(--neutral-50)] min-h-[625px] relative max-lg:z-10 max-lg:-mt-8 rounded-[24px]">
+<section id="el-centro" class="w-full bg-white md:bg-[var(--neutral-50)] min-h-[625px] relative max-lg:z-10 max-lg:-mt-8 rounded-[24px]">
   <LayoutWrapper class="lg:py-[100px] lg:pb-0 max-lg:-mt-8 max-lg:px-0">
 
-    <div class="p-[48px_28px] lg:bg-transparent lg:rounded-none lg:p-0 flex flex-col lg:flex-row lg:items-center lg:gap-20 gap-5">
+    <div class="p-[48px_28px] lg:bg-transparent lg:rounded-none lg:p-0 flex flex-col md:flex-row lg:items-center lg:gap-20 gap-5">
 
-      <div class="flex flex-col gap-5 lg:gap-7 lg:w-[500px] lg:shrink-0">
+      <div class="flex flex-col gap-5 md:gap-7 md:w-[400px] lg:w-[500px] md:shrink-0">
 
         <Text
           size="overline"
           color="brand-accent-dark"
-          class="lg:text-brand-accent uppercase lg:normal-case"
+          class="md:text-brand-accent uppercase md:normal-case"
         >
           <Fragment set:html={data.label} />
         </Text>
@@ -37,7 +37,7 @@ const { data } = Astro.props;
         <Text
           tag="h2"
           size="h2"
-          class="text-[26px] lg:text-5xl max-w-[310px] lg:max-w-none intro-title"
+          class="md:text-4xl lg:text-5xl md:max-w-none intro-title"
         >
           <Fragment set:html={data.title} />
         </Text>
@@ -45,13 +45,13 @@ const { data } = Astro.props;
         <Text
           tag="div"
           size="editorial"
-          class="[&_p]:m-0 text-[14px] lg:text-lg leading-[1.7] lg:leading-[1.9] text-[#444444] lg:text-neutral-600 max-w-[290px] lg:max-w-[480px]"
+          class="[&_p]:m-0 text-[14px] md:text-lg leading-[1.7] md:leading-[1.9] text-[#444444] md:text-neutral-600 md:max-w-[480px]"
         >
           <Fragment set:html={data.content} />
         </Text>
 
-        <!-- values row: desktop only -->
-        <div class="hidden lg:flex gap-10">
+        <!-- values grid: 2 cols on mobile, row on desktop -->
+        <div class="grid grid-cols-2 mb-3 md:mb-0 md:flex md:gap-10 gap-5">
           {data.values.map((v) => (
             <ValueChip icon={v.icon} title={v.title} />
           ))}
@@ -64,17 +64,18 @@ const { data } = Astro.props;
       {
         data.image ? (
           <>
-            <div class="lg:hidden w-full h-[200px] rounded-tl-[60px] rounded-tr-[16px] rounded-br-[60px] rounded-bl-[16px] overflow-hidden">
+            <div class="md:hidden w-full h-[200px] rounded-tl-[60px] rounded-tr-[16px] rounded-br-[60px] rounded-bl-[16px] overflow-hidden">
               <Image
                 src={data.image}
                 alt=""
-                width={600}
+                width={320}
                 height={200}
                 class="w-full h-full object-cover"
               />
             </div>
-            <div class="hidden lg:block relative shrink-0 xl:w-[600px] h-[500px] ">
-              <div class="absolute top-[0px] left-[0px] w-[320px] h-[400px] rounded-tl-[80px] rounded-tr-[20px] rounded-br-[80px] rounded-bl-[20px] overflow-hidden">
+
+            <div class="relative w-full md:flex-1 xl:w-[600px] md:h-[500px]">
+              <div class="hidden md:block absolute top-[0px] left-[0px] md:left-auto md:right-0 lg:right-auto w-full lg:w-[320px] h-[400px] rounded-tl-[80px] rounded-tr-[20px] rounded-br-[80px] rounded-bl-[20px] overflow-hidden">
                 <Image
                   src={data.image}
                   alt=""

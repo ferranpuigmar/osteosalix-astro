@@ -4,9 +4,9 @@ export interface TypographyEntry {
 }
 
 export const typographySizes: Record<string, TypographyEntry> = {
-  display:    { classes: ['text-[64px]', 'font-[500]', 'leading-[1.1]', 'tracking-[-1px]', 'font-heading'], tag: 'h1' },
+  display:    { classes: ['text-[48px]', 'md:text-[56px]', 'lg:text-[64px]', 'font-[500]', 'leading-[1.1]', 'tracking-[-1px]', 'font-heading'], tag: 'h1' },
   h1:         { classes: ['text-[56px]', 'font-[500]', 'tracking-[-1px]', 'font-heading'], tag: 'h1' },
-  h2:         { classes: ['text-5xl', 'font-[500]', 'leading-[1.15]', 'font-heading'], tag: 'h2' },
+  h2:         { classes: ['text-[26px] md:text-5xl', 'font-[600] md:font-[500]', 'leading-[1.15]', 'font-heading'], tag: 'h2' },
   h3:         { classes: ['text-[40px]', 'font-[500]', 'font-heading'], tag: 'h3' },
   h4:         { classes: ['text-[28px]', 'font-[500]', 'font-heading'], tag: 'h4' },
   h5:         { classes: ['text-[22px]', 'font-[800]', 'font-heading'], tag: 'h5' },
