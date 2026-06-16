@@ -15,12 +15,12 @@ const { name, address, phone, image, link, alt = false } = Astro.props;
 ---
 
 <div
-  class={`w-full max-w-[480px] h-[320px] flex overflow-hidden bg-white shadow-[0_16px_60px_rgba(0,0,0,0.03)] ${alt ? 'rounded-[12px_48px_12px_48px]' : 'rounded-[48px_12px_48px_12px]'}`}
+  class={`w-full max-w-[480px] h-auto md:h-[320px] flex flex-col md:flex-row overflow-hidden bg-white shadow-[0_16px_60px_rgba(0,0,0,0.03)] ${alt ? 'rounded-[12px_48px_12px_48px]' : 'rounded-[48px_12px_48px_12px]'}`}
 >
   <img
     src={image}
     alt={name}
-    class={`w-[200px] h-full shrink-0 object-cover ${alt ? 'order-last' : ''}`}
+    class={`w-full h-[200px] md:w-[200px] md:h-full shrink-0 object-cover ${alt ? 'md:order-last' : ''}`}
     loading="lazy"
     decoding="async"
   />
