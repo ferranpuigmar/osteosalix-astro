@@ -33,7 +33,7 @@ const { data, whatsappNumber } = Astro.props;
 		<div
 			class={cn(
 				"relative z-20 h-full flex items-center justify-between",
-				"md:items-start md:mt-6 lg:mt-16"
+				"md:items-start md:mt-6 lg:mt-16 p-6 md:p-0"
 			)}
 		>
 			<div
@@ -68,16 +68,16 @@ const { data, whatsappNumber } = Astro.props;
 
 				<Text
 					tag="p"
-					size="body-lg"
+					size="editorial"
 					class={cn(
-						"text-center text-lg lg:text-xl text-brand-dark",
+						"editorial text-center text-lg lg:text-xl text-brand-dark ",
 						"leading-[1.6] lg:leading-[1.7] max-w-[540px]"
 					)}
 				>
 					{data.description}
 				</Text>
 
-				<div class="flex flex-wrap items-center justify-center gap-4">
+				<div class="flex flex-row md:flex-wrap items-center justify-center gap-4">
 					<Button
 						href={`https://wa.me/${whatsappNumber}`}
 						class={cn(
