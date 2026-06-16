@@ -25,6 +25,7 @@
     "astro-icon": "^1.1.5",
     "astro-leaflet": "^1.12.0",
     "astro-splide": "^2.1.1",
+    "clsx": "^2.1.1",
     "graphql": "^16.14.2",
     "graphql-request": "^7.4.0",
     "graphql-tag": "^2.12.6",

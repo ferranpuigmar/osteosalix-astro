@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets';
+import { cn } from '@/lib/utils';
 import type { HomeData } from '@/server/domain/models';
 import LayoutWrapper from '../layout/layout-wrapper.astro';
 import Text from '../shared/text.astro';
@@ -19,12 +20,29 @@ const { data } = Astro.props;
   }
 </style>
 
-<section id="el-centro" class="w-full bg-white md:bg-[var(--neutral-50)] min-h-[625px] relative max-lg:z-10 max-lg:-mt-8 rounded-[24px]">
+<section
+  id="el-centro"
+  class={cn(
+    "w-full min-h-[625px] relative max-lg:z-10 max-lg:-mt-8 rounded-[24px]",
+    "bg-white md:bg-[var(--neutral-50)]"
+  )}
+>
   <LayoutWrapper class="lg:py-[100px] lg:pb-0 max-lg:-mt-8 max-lg:px-0">
 
-    <div class="p-[48px_28px] lg:bg-transparent lg:rounded-none lg:p-0 flex flex-col md:flex-row lg:items-center lg:gap-20 gap-5">
+    <div
+      class={cn(
+        "p-[48px_28px] flex flex-col gap-5",
+        "lg:bg-transparent lg:rounded-none lg:p-0",
+        "md:flex-row lg:items-center lg:gap-20"
+      )}
+    >
 
-      <div class="flex flex-col gap-5 md:gap-7 md:w-[400px] lg:w-[500px] md:shrink-0">
+      <div
+        class={cn(
+          "flex flex-col gap-5 md:gap-7",
+          "md:w-[400px] lg:w-[500px] md:shrink-0"
+        )}
+      >
 
         <Text
           size="overline"
@@ -37,7 +55,9 @@ const { data } = Astro.props;
         <Text
           tag="h2"
           size="h2"
-          class="md:text-4xl lg:text-5xl md:max-w-none intro-title"
+          class={cn(
+            "md:text-4xl lg:text-5xl md:max-w-none intro-title"
+          )}
         >
           <Fragment set:html={data.title} />
         </Text>
@@ -45,13 +65,21 @@ const { data } = Astro.props;
         <Text
           tag="div"
           size="editorial"
-          class="[&_p]:m-0 text-[14px] md:text-lg leading-[1.7] md:leading-[1.9] text-[#444444] md:text-neutral-600 md:max-w-[480px]"
+          class={cn(
+            "[&_p]:m-0 text-[14px] md:text-lg leading-[1.7] md:leading-[1.9]",
+            "text-[#444444] md:text-neutral-600 md:max-w-[480px]"
+          )}
         >
           <Fragment set:html={data.content} />
         </Text>
 
         <!-- values grid: 2 cols on mobile, row on desktop -->
-        <div class="grid grid-cols-2 mb-3 md:mb-0 md:flex md:gap-10 gap-5">
+        <div
+          class={cn(
+            "grid grid-cols-2 gap-5 mb-3 md:mb-0",
+            "md:flex md:gap-10"
+          )}
+        >
           {data.values.map((v) => (
             <ValueChip icon={v.icon} title={v.title} />
           ))}
@@ -64,7 +92,12 @@ const { data } = Astro.props;
       {
         data.image ? (
           <>
-            <div class="md:hidden w-full h-[200px] rounded-tl-[60px] rounded-tr-[16px] rounded-br-[60px] rounded-bl-[16px] overflow-hidden">
+            <div
+              class={cn(
+                "md:hidden w-full h-[200px] overflow-hidden",
+                "rounded-tl-[60px] rounded-tr-[16px] rounded-br-[60px] rounded-bl-[16px]"
+              )}
+            >
               <Image
                 src={data.image}
                 alt=""
@@ -74,8 +107,20 @@ const { data } = Astro.props;
               />
             </div>
 
-            <div class="relative w-full md:flex-1 xl:w-[600px] md:h-[500px]">
-              <div class="hidden md:block absolute top-[0px] left-[0px] md:left-auto md:right-0 lg:right-auto w-full lg:w-[320px] h-[400px] rounded-tl-[80px] rounded-tr-[20px] rounded-br-[80px] rounded-bl-[20px] overflow-hidden">
+            <div
+              class={cn(
+                "relative w-full md:flex-1 md:h-[500px]",
+                "xl:w-[600px]"
+              )}
+            >
+              <div
+                class={cn(
+                  "hidden md:block absolute top-[0px] left-[0px] h-[400px] overflow-hidden",
+                  "md:left-auto md:right-0 lg:right-auto",
+                  "w-full lg:w-[320px]",
+                  "rounded-tl-[80px] rounded-tr-[20px] rounded-br-[80px] rounded-bl-[20px]"
+                )}
+              >
                 <Image
                   src={data.image}
                   alt=""
@@ -86,7 +131,12 @@ const { data } = Astro.props;
               </div>
               {
                 data.image2 ? (
-                  <div class="absolute top-[100px] left-[280px] w-[280px] h-[350px] rounded-tl-[20px] rounded-tr-[80px] rounded-br-[20px] rounded-bl-[80px] overflow-hidden hidden xl:block">
+                  <div
+                    class={cn(
+                      "absolute top-[100px] left-[280px] w-[280px] h-[350px] overflow-hidden hidden xl:block",
+                      "rounded-tl-[20px] rounded-tr-[80px] rounded-br-[20px] rounded-bl-[80px]"
+                    )}
+                  >
                     <Image
                       src={data.image2}
                       alt=""

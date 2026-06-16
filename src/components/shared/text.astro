@@ -1,5 +1,5 @@
 ---
-import { twMerge } from 'tailwind-merge';
+import { cn } from '@/lib/utils';
 import { typographySizes, typographyColors } from '@/styles/typography';
 import type { TypographySize, TypographyColor } from '@/styles/typography';
 
@@ -19,7 +19,7 @@ const { size = 'body', color, tag, class: className, href, 'set:html': html } = 
 const entry = typographySizes[size] ?? typographySizes.body!;
 const Tag = tag || entry.tag;
 const colorClass = color ? typographyColors[color] : undefined;
-const allClasses = twMerge(...entry.classes, colorClass, className);
+const allClasses = cn(...entry.classes, colorClass, className);
 ---
 
 <Tag class={allClasses} href={href}>

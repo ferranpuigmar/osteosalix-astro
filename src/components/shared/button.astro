@@ -1,4 +1,6 @@
 ---
+import { cn } from '@/lib/utils';
+
 export type ButtonVariant = 'primary' | 'outline' | 'ghost';
 
 interface Props {
@@ -24,11 +26,11 @@ const base =
 
 {
   href ? (
-    <a href={href} class={`${base} ${variants[variant]} ${className}`}>
+    <a href={href} class={cn(base, variants[variant], className)}>
       <slot />
     </a>
   ) : (
-    <button type="button" class={`${base} ${variants[variant]} ${className}`}>
+    <button type="button" class={cn(base, variants[variant], className)}>
       <slot />
     </button>
   )
