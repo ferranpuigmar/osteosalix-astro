@@ -1,6 +1,12 @@
 @import "tailwindcss";
 @plugin '@tailwindcss/typography';
 
+@theme {
+  --font-heading: "Avenir", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-editorial: "Lora", Georgia, serif;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -93,18 +99,6 @@ footer {
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* ── Font Families ── */
-  .font-heading {
-    font-family: "Avenir", ui-sans-serif, system-ui, sans-serif;
-  }
-
-  .font-body {
-    font-family: "DM Sans", ui-sans-serif, system-ui, sans-serif;
-  }
-
-  .font-editorial {
-    font-family: "Lora", Georgia, serif;
-  }
 }
 
 /* ═══════════════════════════════════════

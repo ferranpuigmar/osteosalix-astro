@@ -22,10 +22,10 @@ console.log('🚀 ~ data:', data.service);
       <Text size="h2" class="text-center lg:text-left">{data.subtitle}</Text>
     </div>
 
-    <div class="flex flex-wrap items-start gap-6 lg:gap-x-[30px]">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-x-[30px] items-start">
       {
         data.service.map((service, i) => (
-          <div class={`w-full lg:w-[calc(25%-22.5px)] ${mtOffsets[i] ?? ''}`}>
+          <div class={mtOffsets[i] ?? ''}>
             <ServiceCard
               title={service.title}
               description={service.description}

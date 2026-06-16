@@ -64,10 +64,10 @@ const { data } = Astro.props;
 
         <Text
           tag="div"
-          size="editorial"
+          size="body-sm"
           class={cn(
             "[&_p]:m-0 text-[14px] md:text-lg leading-[1.7] md:leading-[1.9]",
-            "text-[#444444] md:text-neutral-600 md:max-w-[480px]"
+            "text-[#444444] md:text-neutral-600 md:max-w-[480px] md:font-editorial"
           )}
         >
           <Fragment set:html={data.content} />

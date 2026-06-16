@@ -3,7 +3,7 @@ export interface TypographyEntry {
   tag: keyof HTMLElementTagNameMap;
 }
 
-export const typographySizes: Record<string, TypographyEntry> = {
+export const typographySizes = {
   display:    { classes: ['text-[48px]', 'md:text-[56px]', 'lg:text-[64px]', 'font-[500]', 'leading-[1.1]', 'tracking-[-1px]', 'font-heading'], tag: 'h1' },
   h1:         { classes: ['text-[56px]', 'font-[500]', 'tracking-[-1px]', 'font-heading'], tag: 'h1' },
   h2:         { classes: ['text-[26px] md:text-5xl', 'font-[600] md:font-[500]', 'leading-[1.15]', 'font-heading'], tag: 'h2' },

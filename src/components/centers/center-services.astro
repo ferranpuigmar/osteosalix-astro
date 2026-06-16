@@ -24,9 +24,9 @@ const mtOffsets = ['', 'lg:mt-12', '', 'lg:mt-12'];
       <span class="text-overline-sm text-xs text-[var(--brand-accent)]">Servicios disponibles</span>
       <h2 class="text-h3">Tratamientos en este centro</h2>
     </div>
-    <div class="flex flex-wrap items-start gap-6 lg:gap-x-[30px]">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-x-[30px] items-start">
       {services.map((service, i) => (
-        <div class={`w-full lg:w-[calc(25%-22.5px)] ${mtOffsets[i] ?? ''}`}>
+        <div class={mtOffsets[i] ?? ''}>
           <ServiceCard
             title={service.title}
             description={service.description}
